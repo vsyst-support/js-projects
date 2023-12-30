@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--  Design by Mystery code (foolishdeveloper.com) -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <link rel="stylesheet" href="/agecalculator/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="base">
+          <h4>Age Calculator</h4>
+
+          <div class="block">
+            <p class="title">Date</p>
+            <input
+              type="text"
+              name="date"
+              id="date"
+              placeholder="dd"
+              minlength="1"
+              maxlength="2"
+              required
+            />
+          </div>
+
+          <div class="block">
+            <p class="title">Month</p>
+            <input
+              type="text"
+              name="month"
+              id="month"
+              placeholder="mm"
+              minlength="1"
+              maxlength="2"
+              required
+            />
+          </div>
+
+          <div class="block">
+            <p class="title">Year</p>
+            <input
+              type="text"
+              name="year"
+              id="year"
+              placeholder="yyyy"
+              minlength="4"
+              maxlength="4"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="base">
+          <input type="button" name="submit" value="submit" onclick="age()" />
+        </div>
+        <!-- display -->
+
+        <div class="age" id="age"></div>
+      </form>
+    </div>
+
+    <!--Now active it using javascript code -->
+
+    <script type="text/javascript">
+      function age() {
+        let d1 = document.getElementById("date").value;
+        let m1 = document.getElementById("month").value;
+        let y1 = document.getElementById("year").value;
+
+        let date = new Date(); // new Date() is a javascript method that collects time from your device
+        let d2 = date.getDate();
+
+        let m2 = 1 + date.getMonth();
+        let y2 = date.getFullYear();
+
+        let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        if (d1 > d2) {
+          d2 = d2 + month[m2 - 1];
+          m2 = m2 - 1;
+        }
+
+        if (m1 > m2) {
+          m2 = m2 + 12;
+          y2 = y2 - 1;
+        }
+
+        let d = d2 - d1;
+        let m = m2 - m1;
+        let y = y2 - y1;
+
+        document.getElementById("age").innerHTML =
+          "Your Age is " + y + " Years " + m + " Months " + d + " Days";
+      }
+    </script>
+  </body>
+</html>

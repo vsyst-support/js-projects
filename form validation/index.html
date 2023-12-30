@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Form Validation - Easy Tutorials YouTube Channel</title>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <i class="fas fa-paper-plane"></i>
+
+        <div class="input-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            id="contact-name"
+            onkeyup="validateName()"
+          />
+          <span id="name-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Phone No.</label>
+          <input
+            type="tel"
+            placeholder="123 456 7890"
+            id="contact-phone"
+            onkeyup="validatePhone()"
+          />
+          <span id="phone-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Email Id</label>
+          <input
+            type="email"
+            placeholder="Enter email"
+            id="contact-email"
+            onkeyup="validateEmail()"
+          />
+          <span id="email-error"></span>
+        </div>
+
+        <div class="input-group">
+          <label>Your Message</label>
+          <textarea
+            rows="5"
+            placeholder="Enter your message"
+            id="contact-message"
+            onkeyup="validateMessage()"
+          ></textarea>
+          <span id="message-error"></span>
+        </div>
+
+        <button onclick="return validateForm()">Submit</button>
+        <span id="submit-error"></span>
+      </form>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

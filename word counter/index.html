@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>The word Counter</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Word Counter</h1>
+      <p class="subtitle">
+        Count Live Characters, Words, Sentence Paragraphs by using this cool
+        website.
+      </p>
+      <textarea name="" id="textArea" rows="15"></textarea>
+      <div class="count">
+        <div class="box">
+          <h5 id="characters">0</h5>
+          <p>Characters</p>
+        </div>
+
+        <div class="box">
+          <h5 id="words">0</h5>
+          <p>Words</p>
+        </div>
+
+        <div class="box">
+          <h5 id="sentences">0</h5>
+          <p>Sentences</p>
+        </div>
+
+        <div class="box">
+          <h5 id="paragraphs">0</h5>
+          <p>paragraphs</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let textArea = document.getElementById("textArea");
+      let characters = document.getElementById("characters");
+      let words = document.getElementById("words");
+      let sentences = document.getElementById("sentences");
+      let paragraphs = document.getElementById("paragraphs");
+
+      textArea.addEventListener("input", () => {
+        characters.textContent = textArea.value.length;
+        let text = textArea.value.trim();
+
+        words.textContent = text.split(/\s+/).filter((item) => item).length;
+
+        sentences.textContent = text.split(/[.|!|?]+/g).length - 1;
+
+        paragraphs.textContent = text.replace(/\$/gm, "").split(/\n./).length;
+      });
+    </script>
+  </body>
+</html>

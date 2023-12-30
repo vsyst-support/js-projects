@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>quote of the day</title>
+  </head>
+  <body>
+    <div class="quote-box">
+      <h2>Quote of the day</h2>
+      <blockquote id="quote">Loading...</blockquote>
+      <span id="author">Loading...</span>
+      <div>
+        <button onclick="getquote(api_url)">New Quote</button>
+        <button onclick="tweet()"><img src="twitter.png" />Tweet</button>
+      </div>
+    </div>
+
+    <script>
+      const quote = document.getElementById("quote");
+      const author = document.getElementById("author");
+
+      const api_url = "https://api.quotable.io/random";
+      const quote_data = [
+        { author: "message", content: "new" },
+        { author: "one", content: "two" },
+        { author: "three", content: "four" },
+        { author: "five", content: "six" },
+        { author: "seven", content: "eight" },
+        { author: "nine", content: "ten" },
+        { author: "eleven", content: "twelve" },
+        { author: "thirteen", content: "fourteen" },
+      ];
+
+      const quote_content = `${"this message"}`;
+
+      async function getquote(url) {
+        const responce = await fetch(url);
+        var data = await responce.json();
+        console.log(data);
+        // quote.innerHTML = data.content;
+        const rnum = Math.floor(Math.random() * 10);
+        // const rnum = 4;
+        quote.innerHTML = quote_data[rnum].content;
+        const answersss = quote_data[5].content;
+        // author.innerHTML = quote_data.author;
+        author.innerHTML = quote_data[rnum].author;
+
+        console.log(rnum);
+      }
+
+      getquote(api_url);
+
+      function tweet() {
+        window.open(
+          "https://twitter.com/intent/tweet?text=" +
+            quote.innerHTML +
+            "---- by" +
+            author.innerHTML,
+          "Tweet Window",
+          "width=600, height=300"
+        );
+      }
+    </script>
+  </body>
+</html>
