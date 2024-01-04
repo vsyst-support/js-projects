@@ -2,6 +2,18 @@ const imageFileInput = document.querySelector("#imageFileInput");
 const topTextInput = document.querySelector("#topTextInput");
 const bottomTextInput = document.querySelector("#bottomTextInput");
 const canvas = document.querySelector("#meme");
+const topTextColor = document.querySelector("#topTextColor");
+
+topTextColor.addEventListener("change", () => {
+  const color = topTextColor.value;
+  updateMemeCanvas(
+    canvas,
+    image,
+    topTextInput.value,
+    bottomTextInput.value,
+    color
+  );
+});
 
 let image;
 
@@ -33,12 +45,19 @@ bottomTextInput.addEventListener("change", () => {
   updateMemeCanvas(canvas, image, topTextInput.value, bottomTextInput.value);
 });
 
-function updateMemeCanvas(canvas, image, topText, bottomText) {
+function updateMemeCanvas(
+  canvas,
+  image,
+  topText,
+  bottomText,
+  topTxtColor,
+  bottomTxtColor
+) {
   const ctx = canvas.getContext("2d");
   const width = image.width;
   const height = image.height;
-  const fontSize = Math.floor(width / 8);
-  const yOffset = height / 13;
+  const fontSize = Math.floor(width / 10);
+  const yOffset = height / 7;
 
   // update canvas background
   canvas.width = width;
@@ -48,13 +67,17 @@ function updateMemeCanvas(canvas, image, topText, bottomText) {
   // Prepare text
   ctx.strokeStyle = "black";
   ctx.lineWidth = Math.floor(fontSize / 4);
-  ctx.fillStyle = "white";
+  ctx.fillStyle = !!topTxtColor ? topTxtColor : "white";
+  ctx.background = "red";
+  // ctx.fillStyle = !!bottomTxtColor ? bottomTxtColor : "white";
   ctx.textAlign = "center";
   ctx.lineJoin = "round";
   ctx.font = `${fontSize}px sans-serif`;
+  console.log("color");
 
   // Add top text
   ctx.textbaseline = "top";
+  // ctx.fillText(topText, color / 4);
   ctx.strokeText(topText, width / 2, yOffset);
   ctx.fillText(topText, width / 2, yOffset);
 

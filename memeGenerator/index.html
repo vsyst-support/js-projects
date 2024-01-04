@@ -14,14 +14,20 @@
       <input type="file" id="imageFileInput" />
 
       <label>Top text</label>
-      <input type="color" id="topTextInput" />
+      <div style="display: flex; flex-direction: row">
+        <input type="text" id="topTextInput" /><br />
+        <div style="width: 20%">
+          <input type="color" id="topTextColor" />
+        </div>
+      </div>
+
 
       <label>Bottom text</label>
-      <input type="color" id="bottomTextInput" />
+      <input type="text" id="bottomTextInput" />
 
       <canvas id="meme"></canvas>
     </div>
 
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>

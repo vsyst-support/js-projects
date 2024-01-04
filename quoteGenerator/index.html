@@ -34,32 +34,32 @@
       const author = document.getElementById("author");
 
       const api_url = "https://api.quotable.io/random";
-      const quote_data = [
-        { author: "message", content: "new" },
-        { author: "one", content: "two" },
-        { author: "three", content: "four" },
-        { author: "five", content: "six" },
-        { author: "seven", content: "eight" },
-        { author: "nine", content: "ten" },
-        { author: "eleven", content: "twelve" },
-        { author: "thirteen", content: "fourteen" },
-      ];
+      // const quote_data = [
+      //   { author: "message", content: "new" },
+      //   { author: "one", content: "two" },
+      //   { author: "three", content: "four" },
+      //   { author: "five", content: "six" },
+      //   { author: "seven", content: "eight" },
+      //   { author: "nine", content: "ten" },
+      //   { author: "eleven", content: "twelve" },
+      //   { author: "thirteen", content: "fourteen" },
+      // ];
 
       const quote_content = `${"this message"}`;
 
       async function getquote(url) {
         const responce = await fetch(url);
         var data = await responce.json();
-        console.log(data);
-        // quote.innerHTML = data.content;
-        const rnum = Math.floor(Math.random() * 10);
+        // console.log(data);
+        quote.innerHTML = data.content;
+        // const rnum = Math.floor(Math.random() * 10);
         // const rnum = 4;
-        quote.innerHTML = quote_data[rnum].content;
-        const answersss = quote_data[5].content;
-        // author.innerHTML = quote_data.author;
-        author.innerHTML = quote_data[rnum].author;
+        // quote.innerHTML = quote_data[rnum].content;
+        // const answersss = quote_data[5].content;
+        author.innerHTML = quote_data.author;
+        // author.innerHTML = quote_data[rnum].author;
 
-        console.log(rnum);
+        // console.log(rnum);
       }
 
       getquote(api_url);
