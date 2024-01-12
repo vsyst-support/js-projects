@@ -6,70 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- custom css file link -->
-    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1 style="text-align: center; color: blue">INDEX PAGE</h1>
-    <div style="font-size: 24px; margin-left: 30px">
-      <p style="margin-left: 10px; display: flex; flex-direction: column">
-        <a href="./agecalculator/calculator.html">1. Age Calculator</a>
-        <a style="margin-top: 20px" href="./qrcodeGenerator/index.html"
-          >2. QR Code Generator</a
-        >
-        <a style="margin-top: 20px" href="./dictionaryApp/index.html"
-          >3. Dictionary App</a
-        >
-
-        <a style="margin-top: 20px" href="./ticTacToe/index.html"
-          >4. Tic Tac Toe</a
-        >
-
-        <a style="margin-top: 20px" href="./wordCounter/index.html"
-          >5. Word Counter</a
-        >
-
-        <a style="margin-top: 20px" href="./quoteGenerator/index.html"
-          >6. Quote Generator</a
-        >
-
-        <a style="margin-top: 20px" href="./crudOperation/index.html"
-          >7. Crud Operation
-        </a>
-
-        <a style="margin-top: 20px" href="./dynamicTextFormatter/index.html"
-          >8. Dynaimc Text Formatter
-        </a>
-
-        <a style="margin-top: 20px" href="./formValidation/index.html"
-          >9. Form Validation
-        </a>
-
-        <a style="margin-top: 20px" href="./weatherApp/index.html"
-          >10. Weather App
-        </a>
-
-        <a style="margin-top: 20px" href="./memeGenerator/index.html"
-          >11. Meme Generator
-        </a>
-
-        
-        <a style="margin-top: 20px" href="./ImageEditor/index.html"
-          >12. Image Editor
-        </a>
-
-        <a style="margin-top: 20px" href="./kanbanBoardJs/index.html"
-         >13. Kanban Board JS
-        </a>
-
-        <a style="margin-top: 20px" href="./rgbaToHexConverter/index.html"
-         >14. Rgba to Hex Converter
-        </a>
-
-        <a style="margin-top: 20px" href="./speedTypingGame/index.html"
-          >15. Speed Typing Game
-        </a>
-      
-      </p>
+    <h1 class="title">INDEX PAGE</h1>
+    <div class="list-style">
+      <div class="search-box">
+        <div class="row">
+          <input
+            type="text"
+            id="inputBox"
+            placeholder="search"
+            autocomplete="off"
+          />
+          <button class="search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </div>
+      <!-- <div style="display: flex; flex-direction: row"> -->
+      <!-- <div class="alignment"> -->
+      <div style="display: flex; flex-wrap: wrap" id="root"></div>
+      <!-- </div> -->
+      <!-- </div> -->
+      <script src="./script.js"></script>
     </div>
   </body>
 </html>
