@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script src="script.js" defer></script>
+
+    <title>Scissor Paper 6 Rock</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="game-title">
+        <h2>Scissors, Paper & Rock</h2>
+      </div>
+      <div class="game-content">
+        <div class="game-show">
+          <div class="player-1-choice">
+            <img src="./images/hand.png" class="animate-1" />
+            <p>PLAYER 1</p>
+          </div>
+          <div id="message">start!</div>
+          <div class="player-2-choice">
+            <img src="./images/hand.png" class="animate-2" />
+            <p>PLAYER 2</p>
+          </div>
+        </div>
+
+        <h3>Choose:</h3>
+        <div class="game-options">
+          <div class="option scissors">
+            <img src="./images/scissors.png" data-id="scissors" />
+            <span>Scissors</span>
+          </div>
+
+          <div class="option paper">
+            <img src="./images/paper.png" data-id="paper" />
+            <span>Paper</span>
+          </div>
+          <div class="option rock">
+            <img src="./images/rock.png" data-id="rock" />
+            <span>Rock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
