@@ -133,7 +133,7 @@ let names = [
   },
   {
     title: "Rgb to Hex Converter",
-    href: "./rgbToHexConverter/index.html",
+    href: "./rgbtoHexConverter/index.html",
     date: "1/01/2024",
     description: "convert rgb to hex",
     youtubelink: "https://www.youtube.com/watch?v=wDCU2XCOh40",
