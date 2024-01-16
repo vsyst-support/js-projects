@@ -1,0 +1,56 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.ui-widget {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  margin: 1.5rem;
+  border: 1.2rem solid #ff6464;
+  text-align: center;
+  border-radius: 9rem;
+  box-shadow: inset 0 0 7px rgba(0, 0, 0, 0.3);
+  border-bottom-color: #fff;
+  border-top-color: #fff;
+  border-right-color: #fff;
+  box-sizing: border-box;
+}
+
+.ui-widget:nth-child(2) {
+  border-left-color: #ff6464;
+  border-top-color: #db3056;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.ui-widget:nth-child(3) {
+  border-left-color: #ff6464;
+  border-top-color: #db3056;
+  border-right-color: #851d41;
+  border-bottom-color: #fff;
+}
+
+.ui-widget .ui-value {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 19px;
+  font-size: 2.3rem;
+  font-weight: 700;
+}
+
+.ui-widget .ui-label {
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #888;
+  width: 100%;
+}

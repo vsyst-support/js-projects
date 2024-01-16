@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>multilevel navigation bar - fully responsive</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="branding">
+          <h2><a href="#" class="branding-logo">Smashtheshell</a></h2>
+        </div>
+        <label for="input-hamburger" class="hamburger"></label>
+        <input type="checkbox" id="input-hamburger" hidden />
+        <ul class="menu">
+          <li><a href="#" class="menu-link">Home</a></li>
+          <li class="has-dropdown">
+            <a href="#" class="menu-link"
+              >Services
+              <span class="arrow"></span>
+            </a>
+            <ul class="submenu">
+              <li><a href="#" class="menu-link">Web Design</a></li>
+              <li><a href="#" class="menu-link">Web Development</a></li>
+
+              <li class="has-dropdown">
+                <a href="#" class="menu-link"
+                  >Full Stack Development
+                  <span class="arrow"></span>
+                </a>
+                <ul class="submenu">
+                  <li>
+                    <a href="#" class="menu-link">Wordpress Development</a>
+                  </li>
+                  <li>
+                    <a href="#" class="menu-link">Front End Development</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="has-dropdown">
+                <a href="#" class="menu-link"
+                  >MEAN Stack Development
+                  <span class="arrow"></span>
+                </a>
+                <ul class="submenu">
+                  <li><a href="#" class="menu-link">MongoDb</a></li>
+                  <li><a href="#" class="menu-link">expressJS</a></li>
+                  <li><a href="#" class="menu-link">AngularJS</a></li>
+                  <li><a href="#" class="menu-link">NodeJS</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="menu-link">Back End Development</a></li>
+            </ul>
+          </li>
+          <li><a href="#" class="menu-link">Portfolio</a></li>
+          <li><a href="#" class="menu-link">Articles</a></li>
+          <li><a href="#" class="menu-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      hamburger.addEventListener("click", function () {
+        this.classList.toggle("close");
+      });
+    </script>
+  </body>
+</html>

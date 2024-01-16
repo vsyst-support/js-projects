@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device width, initial-scale=1.0" />
+    <meta name="description" content="Free Web tutorials" />
+    <meta name="Keywords" content="HTML, CSS, Javascript" />
+    <meta name="author" content="Naah 0latoye" />
+    <title>FAQ Custom Page</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Frequently Asked Questions</h1>
+      <div class="faq-list">
+        <div class="faq open">
+          <!-- FAQ 1 -->
+          <div class="faq_text">
+            <h2>How can I pay for essential or premium plan?</h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer look a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <span class="btn">&#8722;</span>
+        </div>
+        <!-- FAQ 1 End -->
+
+        <div class="faq">
+          <!-- FAQ 2 -->
+          <div class="faq_text">
+            <h2>
+              Can i cancel my Essentials or premium plan subscription at any
+              time?
+            </h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer look a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <span class="btn">&#43;</span>
+        </div>
+        <!-- FAQ 2 End -->
+
+        <div class="faq">
+          <!-- FAQ 3 -->
+          <div class="faq_text">
+            <h2>
+              We need to add new users to our team. How will that be billed?
+            </h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer look a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <span class="btn">&#43;</span>
+        </div>
+        <!-- FAQ 3 End -->
+
+        <div class="faq">
+          <!-- FAQ 4 -->
+          <div class="faq_text">
+            <h2>
+              My team wants to cancel its subscription. How do we do that ? Can
+              we get a refund?
+            </h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer look a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <span class="btn">&#43;</span>
+        </div>
+        <!-- FAQ 4 End -->
+
+        <div class="faq">
+          <!-- FAQ 5 -->
+          <div class="faq_text">
+            <h2>
+              Do you offers discount for non-profit organisations or educational
+              institutions?
+            </h2>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer look a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
+          </div>
+          <span class="btn">&#43;</span>
+        </div>
+      </div>
+
+      <!-- FAQ 5 End -->
+    </main>
+
+    <footer>
+      <h2>About</h2>
+      <p>
+        Frequently Ask Question offers all the functionality you need to create
+        an FAQ page in your website design. The FAQ page is shared by
+        <a href="http://instincthub.com/" target="_blank">instinHub</a>
+        Teachers, the learning platform for beginners and professional. Whether
+        you are a beginner or season pro, InstinctHub has design and web
+        development courses you can learn from.
+        <a href="http://skills.instinhub.com/" target="_blank"
+          >start with our free courses.</a
+        >
+      </p>
+    </footer>
+  </body>
+
+  <script>
+    let listfaq = document.querySelectorAll(".faq-list .faq");
+    let title = document.querySelector(".main-video .title");
+
+    listfaq.forEach((singlefaq) => {
+      singlefaq.onclick = () => {
+        // listfaq.forEach((a_faq) => a_faq.classList.remove("open"));
+        let faqBtn = singlefaq.querySelector(".btn");
+
+        if (singlefaq.classList.contains("open")) {
+          singlefaq.classList.remove("open");
+          faqBtn.innerHTML = "&#43;"; // plus
+        } else {
+          singlefaq.classList.add("open");
+          faqBtn.innerHTML = "&#8722;"; // minus
+        }
+      };
+    });
+  </script>
+</html>

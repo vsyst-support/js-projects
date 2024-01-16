@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>CountDown</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Jquery CSS -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+
+    <!-- Jquery Scripts -->
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <!-- fontawesome  for fonts -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- HTML -->
+    <!-- Bootstrap /Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-75 center ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown link
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Container that displays event name and used to change date and event name -->
+    <div class="container">
+        <div class="con head center w-75 ">
+            <!-- Default value is Event but when user changes it, it will update -->
+            <p id="event">Event</p>
+            </br>
+            <!-- input fields in a p tag that used to change the name and date of event -->
+            <p class="ip ipname">Change Event:<input type="text" name="name" id="name"></p>
+            <p class=" ip ipdate">Change Date: <input type="text" id="datepicker-13"></p>
+        </div>
+        <!-- container which has some divs that displays date -->
+        <div class=" container count " style="    left: 12.4rem; top: -10rem;">
+            <!-- This part will display days left till the event -->
+            <div class="box t1"> <span class="Count_time" id="day"></span><span class="name">Days</span></div>
+            <!-- This part will display Hours left till the event -->
+            <div class="box t2"> <span class="Count_time" id="hour"></span><span class="name">Hours</span></div>
+            <!-- This part will display Minutes left till the event -->
+            <div class="box t3"> <span class="Count_time" id="min"></span><span class="name">Minutes</span></div>
+            <!-- This part will display Seconds left till the event -->
+            <div class="box t4"> <span class="Count_time" id="sec"></span> <span class="name">Seconds</span></div>
+        </div>
+    </div>
+    </div>
+    <!-- A small animation which will be displayed Every hour -->
+    <div class="animate" id="animate">
+        <img src="animation.png" alt="">
+    </div>
+    <script>
+        // In this script part will write code used to calculate the remaining time till Event
+
+        // Declare a variable which will be given by user
+        let desttime = "";
+        // Function that calculates the remaining time for event
+        function update() {
+            // now Varible will fetch present date , to calculate remaining time
+            const now = new Date();
+            // User input will be assigned to this variable
+            const dest = new Date(desttime);
+            // Time difference Between presnt day till the event
+            const totalseconds = (dest - now) / 1000;
+            // Total Days remaining till the event
+            const totaldays = Math.floor(totalseconds / 3600 / 24);
+            // Total Hours remaining till the event Excluding the upper days
+            const totalhours = Math.floor(totalseconds / 3600) % 24;
+            // Total Minutes remaining till the event Excluding the upper days
+            const totalmins = Math.floor(totalseconds / 60) % 60;
+            // Total Secounds remaining till the event Excluding the upper days
+            const totalsecs = Math.floor(totalseconds) % 60;
+            // This condition will check whether the given date by user is in future or past
+            // IF its in past then 00 will be returned
+            if (totaldays < 0) {
+                document.getElementById("day").innerHTML = "00";
+                document.getElementById("hour").innerHTML = "00";
+                document.getElementById("min").innerHTML = "00";
+                document.getElementById("sec").innerHTML = "00";
+
+            }
+            // If the given date is valid then it will return the Calculated values
+            else {
+                document.getElementById("day").innerHTML = format(totaldays);
+                document.getElementById("hour").innerHTML = format(totalhours);
+                document.getElementById("min").innerHTML = format(totalmins);
+                document.getElementById("sec").innerHTML = format(totalsecs);
+            }
+            // This conditio call a funtion which is a remainder which comes every Hour
+            if (totalmins == "00") {
+                if(totalsecs == "00"){
+                    // Calls the animated funtion to show the animation
+                animate()
+                // again calls the funtion after 5 secounds to make it hide
+                setTimeout(function () { animate() }, 5000);
+                }
+                
+            }
+        }
+        // This will take time as input(days or hours or minutes or secounds ) and checks if it is less than 10 
+        // if It si less than 10 returns the same value adding 0 as prefix
+        function format(time) {
+            // terrinary operator same as IF-else 
+            return time < 10 ? `0${time}` : time;
+        }
+
+        // This setInterval will call the update function for every 1000 millisecounds(1 Sec)
+        setInterval(update, 1000);
+
+        // This is Jquery script will is used to display the calendar 
+        $(function () {
+            $("#datepicker-13").datepicker();
+            $("#datepicker-13").datepicker("show");
+        });
+
+        // It is a function which animates the Picture 
+        function animate() {
+            $("#animate").animate({ height: 'toggle' }, "slow");
+        }
+        
+        // This line calls the cnme function every time a particular container is changed
+        document.getElementById("name").onchange = function () { cname() };
+        document.getElementById("datepicker-13").onchange = function () { cdate() };
+        // Function which assigs the Event name as header in Realtime
+        function cname() {
+            var x = document.getElementById("name").value;
+            document.getElementById("event").innerHTML = x;
+        }
+        // Function which is used to update to timer in Realtime
+        function cdate() {
+            var y = document.getElementById("datepicker-13").value;
+            desttime = y;
+        }
+        
+
+    </script>
+
+</body>
+
+</html>

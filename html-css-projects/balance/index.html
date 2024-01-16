@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body style="background: #fbfbfb">
+    <header>
+      <div>
+        <h2>Balance</h2>
+      </div>
+
+      <div class="user-wrapper">
+        <div><input type="date" /></div>
+        <div class="header_icon">
+          <span class="fas fa-search icon_margin"></span>
+          <span class="fas fa-bell icon_margin"></span>
+        </div>
+
+        <div>
+          <h4>Jones Ferdinand</h4>
+        </div>
+        <img src="/profile.png" width="40px" height="40px" alt="" />
+      </div>
+    </header>
+    <div class="card_align">
+      <div class="card_1">
+        <h4 class="h4_text">Opening Bal<span class="left">12/02/2022</span></h4>
+        <h1 class="amount">₹ 0.00</h1>
+      </div>
+
+      <div class="card_2">
+        <h4 class="h4_text">Outstanding</h4>
+        <h1 class="bolder">₹ 0.00</h1>
+      </div>
+
+      <div class="card_3">
+        <h4 class="h4_text">Final Bal.<span class="left">12/02/2022</span></h4>
+        <h1 class="bolder">₹ 0.00</h1>
+      </div>
+    </div>
+    <div class="list_card">
+      <div class="list_header_align">
+        <div>
+          <button class="export_btn">Export</button>
+        </div>
+        <div class="sort_filter_align">
+          <div class="flex">
+            <i class="material-icons sort_icon">sort</i>
+            <p class="filters_color">Sort</p>
+          </div>
+
+          <div class="icon_align">
+            <i class="material-icons filter_icon">filter</i>
+            <p class="filters_color">Filter</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="header">
+        <p class="flex1 left_margin">Date</p>
+        <p class="flex1 padding">Particular Name</p>
+        <p class="flex1">Type</p>
+        <p class="flex1">Pay Mode</p>
+        <p class="flex1">Debit</p>
+        <p class="flex1">Credit</p>
+        <p class="right_margin">Balance</p>
+      </div>
+
+      <div class="list_align">
+        <p class="column left_margin">
+          21/12/2022 <span class="time">6:30 PM</span>
+        </p>
+        <p class="flex1 right">Agriculture Activity Programme</p>
+        <p class="flex1">Activity</p>
+        <p class="currency">
+          <i class="material-icons cash_icon">currency_rupee</i>CASH
+        </p>
+        <p class="flex1">1500.00</p>
+        <p class="flex1">_</p>
+        <p class="balance_align">1,500.00</p>
+      </div>
+
+      <div class="list_align">
+        <p class="column left_margin">
+          21/12/2022 <span class="time">6:30 PM</span>
+        </p>
+        <p class="flex1 right">Welfare Programme</p>
+        <p class="flex1">Donor</p>
+        <p class="flex1 blue">
+          <i class="material-icons bank_icon">account_balance</i>Bank
+        </p>
+        <p class="flex1">_</p>
+        <p class="flex1">1500.00</p>
+        <p class="balance_align">1,500.00</p>
+      </div>
+
+      <div class="selected">
+        <p class="column top left_margin">
+          21/12/2022 <span class="time">6:30 PM</span>
+        </p>
+        <p class="flex1 top right">Cloth Distribution for Deprived People</p>
+        <p class="flex1 top">Activity</p>
+        <p class="flex1 top green">
+          <i class="material-icons cash_icon">currency_rupee</i>CASH
+        </p>
+        <p class="flex1 top">1500.00</p>
+        <p class="flex1 top">_</p>
+        <p class="balance_align top">2,287.00</p>
+      </div>
+
+      <div class="list_align">
+        <p class="column left_margin">
+          21/12/2022 <span class="time">6:30 PM</span>
+        </p>
+        <p class="flex1 right">Medical Camp</p>
+        <p class="flex1">Donor</p>
+        <p class="flex1 blue">
+          <i class="material-icons bank_icon">account_balance</i>Bank
+        </p>
+        <p class="flex1">_</p>
+        <p class="flex1">1500.00</p>
+        <p class="balance_align">1,500.00</p>
+      </div>
+
+      <div class="list_align">
+        <p class="column left_margin">
+          21/12/2022 <span class="time">6:30 PM</span>
+        </p>
+        <p class="flex1 right">Agriculture Activity Programme</p>
+        <p class="flex1">Activity</p>
+        <p class="flex1 top green">
+          <i class="material-icons cash_icon">currency_rupee</i>CASH
+        </p>
+        <p class="flex1">1500.00</p>
+        <p class="flex1">_</p>
+        <p class="balance_align">1,500.00</p>
+      </div>
+      <div class="flex_end">
+        <div class="align_end">
+          <p class="gray">Rows per page: <span class="color">8</span></p>
+          <i class="material-icons gray">arrow_drop_down</i>
+        </div>
+
+        <div class="bottom_number">
+          <p class="right_margin">1-8 of 1240</p>
+          <i class="material-icons">arrow_back_ios</i>
+          <i class="material-icons">arrow_forward_ios</i>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

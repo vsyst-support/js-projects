@@ -1,76 +1,83 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-size: "Poppins", sans-serif;
-    box-sizing: border-box;
-  }
-  body {
-    background: #f2f2f2;
-  }
-  .search-box {
-    width: 600px;
-    background: #fff;
-    border-radius: 5px;
-    margin: 10px auto 0;
-  }
-  
-  .row {
-    display: flex;
-    justify-content: center;
-    padding: 10px 20px;
-  }
-  
-  input[type="text"] {
-    flex: 1;
-    height: 30px;
-    background: transparent;
-    /* background-color: #f33; */
-    border: 0;
-    outline: 0;
-    font-size: 18px;
-    color: #333;
-  }
-  
-  button {
-    background: transparent;
-    border: 0;
-    outline: 0;
-  }
-  
-  button .fa-solid {
-    width: 25px;
-    color: #555;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  .row-apart {
-    display: flex;
-    flex-direction: column;
-    /* flex-wrap: wrap; */
-  }
-  
-  .top {
-    margin-top: 20px;
-  }
-  
-  .alignment {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .title {
-    text-align: center;
-    color: blue;
-  }
-  
-  .list-style {
-    font-size: 24px;
-    margin-left: 30px;
-  }
-  
-  .title {
-    text-align: center;
-    color: blue;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-size: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+body {
+  background: #f2f2f2;
+}
+.search-box {
+  width: 600px;
+  background: #fff;
+  border-radius: 5px;
+  margin: 10px auto 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  padding: 10px 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  height: 30px;
+  background: transparent;
+  /* background-color: #f33; */
+  border: 0;
+  outline: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+button .fa-solid {
+  width: 25px;
+  color: #555;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.row-apart {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+}
+
+.top {
+  margin-top: 20px;
+}
+
+.title {
+  text-align: center;
+  color: blue;
+}
+
+.list-style {
+  font-size: 24px;
+  margin-left: 30px;
+}
+
+.title {
+  text-align: center;
+  color: blue;
+}
+
+.card {
+  background-color: white;
+  border-radius: 20px;
+  /* width: 20%; */
+  /* height: 120px; */
+  padding: 20px 20px;
+  margin: 16px;
+  border: 1px solid #cdcdcd;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

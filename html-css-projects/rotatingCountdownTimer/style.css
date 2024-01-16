@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#home {
+  width: 100%;
+  height: 100vh;
+  background: url(img.jpg);
+  background-size: 100% 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#heading-sale {
+  font-size: 5vw;
+  margin-bottom: 10vh;
+}
+
+#time {
+  display: flex;
+  color: grey;
+  font-size: 5vh;
+  width: 85vw;
+  justify-content: space-around;
+}
+
+#clock {
+  display: flex;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12vw;
+  font-family: "Courier-new", Courier, monospace;
+  height: 20vh;
+  line-height: 21vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.move {
+  animation: move ease-in-out 1s infinite;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-25vh);
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coupon widget on website - Easy tutorials</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="coupon-card">
+        <img src="logo.png" class="logo" />
+        <h3>
+          20% flat off on all rides within the city <br />
+          using HDFC Credit Card
+        </h3>
+
+        <div class="coupon-row">
+          <span id="cpnCode">STEALDEAL20</span>
+          <span id="cpnBtn">COPY CODE</span>
+        </div>
+
+        <p>Valid Till: 20Dec, 2021</p>
+
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+      </div>
+    </div>
+
+    <script>
+      var cpnBtn = document.getElementById("cpnBtn");
+      var cpnCode = document.getElementById("cpnCode");
+
+      cpnBtn.onclick = function () {
+        navigator.clipboard.writeText(cpnCode.innerHTML);
+        cpnBtn.innerHTML = "COPIED";
+        setTimeout(function () {
+          cpnBtn.innerHTML = "COPY CODE";
+        }, 3000);
+      };
+    </script>
+  </body>
+</html>

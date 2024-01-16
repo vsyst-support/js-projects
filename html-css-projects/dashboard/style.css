@@ -1,0 +1,211 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  /* position: fixed;
+    left: 345px;
+    width: calc(100-345px);
+    top: 0;
+    z-index: 100; */
+}
+
+header h2 {
+  color: #000;
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.user-wrapper img p {
+  border-radius: 50%;
+  margin-right: 0.1rem;
+}
+
+.user-wrapper h4 {
+  margin-bottom: 0rem !important;
+  margin-right: 20px;
+}
+
+main {
+  margin-top: 5px;
+  padding: 2rem 1.8rem;
+  /* background: #f3f; */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  margin-top: 1rem;
+}
+
+.card-single {
+  display: grid;
+  justify-content: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 3px solid #dfe0eb;
+  align-items: center;
+}
+
+.card-single1 {
+  border: 3px solid #0cbbc7;
+}
+
+.card-single h1 {
+  color: #252733;
+  font-weight: bold;
+  display: grid;
+  justify-content: center;
+}
+
+.card-single h3 {
+  color: #9fa2b4;
+  margin-bottom: 10px;
+}
+
+.card-single h4 {
+  color: #0cbbc7;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.card-single h2 {
+  color: #0cbbc7;
+  font-weight: bold;
+  font-size: 30px;
+  display: grid;
+  justify-content: center;
+}
+
+.header_icon {
+  margin-right: 20px;
+  border-right: 3px solid #dfe0eb;
+}
+
+.icon_margin {
+  margin-right: 20px;
+}
+
+.cashflow_background {
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 2px solid #dfe0eb;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.margin {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.cashflow-color {
+  color: #252733;
+  font-weight: bold;
+}
+
+.p_text {
+  color: #9fa2b4;
+}
+
+.income_expenses {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+
+.income_exp_aligmnent {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.income {
+  width: 40px;
+  height: 10px;
+  background-color: #3751ff;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.align_center {
+  display: flex;
+  align-items: center;
+}
+
+.expenses {
+  width: 40px;
+  height: 10px;
+  background-color: #eb0303;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.receipt_background {
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 2px solid #dfe0eb;
+  width: 49%;
+}
+
+.group {
+  color: #9fa2b4;
+  margin-top: 10px;
+}
+
+.support {
+  color: #4b506d;
+  margin-left: 5px;
+}
+
+.product_alignment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 2px solid #dfe0eb;
+  padding: 20px;
+}
+
+.name {
+  margin-left: 20px;
+  color: #252733;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.gray {
+  display: flex;
+  margin-right: 20px;
+  font-weight: 500;
+  color: #9fa2b4;
+  font-size: 18px;
+}
+
+.date_margin {
+  margin-right: 20px;
+}
+
+.border_right {
+  border-right: 2px solid #9fa2b4;
+  margin-right: 20px;
+}

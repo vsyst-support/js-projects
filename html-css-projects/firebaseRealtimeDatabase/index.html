@@ -1,0 +1,71 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Firebase - Database client Side</title>
+    <!-- 
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.2.2/firebase-app.min.js"></script> -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <form>
+        <label for="userid">User ID</label><br />
+        <input type="text" name="userId" id="userId" /><br />
+        <label for="firstName">First Name</label><br />
+        <input type="text" name="firstName" id="firstName" /><br />
+        <label for="lastName">Last Name</label><br />
+        <input type="text" name="lastName" id="lastName" /><br />
+        <label for="age">Age</label><br />
+        <input type="number" name="age" id="age" /><br />
+        <button id="addBtn" class="btn waves-effect waves-light">Add</button>
+        <button id="updateBtn" class="btn waves-effect waves-light">
+          Update
+        </button>
+        <button id="removeBtn" class="btn waves-effect red darken-1">
+          REMOVE
+        </button>
+      </form>
+    </main>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.9.2/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-database.js"></script>
+    <!-- <script type="module"> -->
+    <script>
+      // Import the functions you need from the SDKs you need
+      //   import { initializeApp } from src="https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+      //                                 src="https://www.gstatic.com/firebasejs/9.9.2/firebase-database.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      //   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.2/firebase-app.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCODv19MzZH_BtDcu_oCpedZOt-0gldq3g",
+        authDomain: "crud-intro.firebaseapp.com",
+        databaseURL: "https://crud-intro-default-rtdb.firebaseio.com",
+        projectId: "crud-intro",
+        storageBucket: "crud-intro.appspot.com",
+        messagingSenderId: "553307269784",
+        appId: "1:553307269784:web:f629a13b053552eb3f3eed",
+      };
+
+      // Initialize Firebase
+      //   const app = initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
+      // console.log("my db ", firebase);
+      // console.log("my db ", firebase.database());
+    </script>
+    <script src="./function.js"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  background-color: #fcfdfe;
+  border: 1px solid #9fa2b4;
+  border-radius: 10px;
+}
+
+.model {
+  background: #fff;
+  width: 30%;
+  padding: 10px 50px;
+  align-items: center;
+  margin-top: 50px;
+  margin-left: 5%;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.contact_us {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.top {
+  margin-top: 30px;
+}
+
+.text_label {
+  font-weight: bold;
+  color: #9fa2b4;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.bg_img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.phone_frame {
+  position: absolute;
+  width: 500px;
+  height: 933px;
+  left: 772px;
+}
+
+.background {
+  background-color: #edfeff;
+}
+
+.send_btn {
+  width: 60%;
+  height: 50px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: #0cbbc7;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+.padding {
+  padding: 40px;
+}
+
+.btn_alignment {
+  display: flex;
+  justify-content: end;
+}
+
+.phone_align {
+  position: absolute;
+  left: 772px;
+  transform: rotate(-30deg);
+  width: 500px;
+  height: 733px;
+}
+
+@media (max-width: 1200px) {
+  .model {
+    width: 50%;
+    padding: 10px 50px;
+    margin-top: 10px;
+  }
+
+  .phone_align {
+    position: absolute;
+    left: 650px;
+    transform: rotate(-30deg);
+    width: 200px;
+    height: 633px;
+  }
+}
+
+@media (max-width: 430px) {
+  .model {
+    width: 90%;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+
+  .phone_align {
+    position: absolute;
+    left: 65px;
+    top: 750px;
+    transform: rotate(-30deg);
+    width: 200px;
+    height: 633px;
+  }
+}

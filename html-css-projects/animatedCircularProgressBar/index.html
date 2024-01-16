@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initital scale=1.0" />
+    <title>Animated circular progress</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@100&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Roboto Condensed", sans-serif;
+      }
+
+      body {
+        background: #ededf7;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .progress_outer {
+        height: 210px;
+        width: 210px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+          -6px -6px 10px -1px rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .progress_inner {
+        height: 160px;
+        width: 160px;
+        background: #ededf7;
+        border-radius: 50%;
+        box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+          inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+          0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+          0.5px 12px 10px -10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .progress_inner span {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress_outer" id="progress_outer">
+      <div class="progress_inner">
+        <span id="counter"></span>
+      </div>
+    </div>
+    <script>
+      var start = setInterval(update, 100);
+      var upto = 1;
+      function update() {
+        var counter = document.getElementById("counter");
+        var counts = upto++;
+        if (upto > 100) {
+          clearInterval(start);
+        }
+        counter.innerHTML = counts + "%";
+        document.getElementById("progress_outer").style.background =
+          // "conic-gradient(#4070f4 ${counts}%,#fff ${counts}%";
+          // "conic-gradient(red, yellow, green)";
+          `conic-gradient(#4070f4 ${counts}%, #fff ${counts}%)`;
+      }
+    </script>
+  </body>
+</html>
