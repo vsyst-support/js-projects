@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autocomplete Input</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <form autocomplete="off">
+      <div>
+        <input type="text" id="input" placeholder="Select state" />
+      </div>
+      <ul class="list"></ul>
+    </form>
+
+    <!-- <form autocomplete="off">
+      <div>
+        <input type="text" id="cityinput" placeholder="Select city" />
+      </div>
+      <ul class="citylist"></ul>
+    </form> -->
+    <!-- Script -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAAS_qpho4gnA39HyVM-BJQ81UWJ1vkjj8",
+        authDomain: "crudwithcand-4c5c7.firebaseapp.com",
+        databaseURL:
+          "https://crudwithcand-4c5c7-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "crudwithcand-4c5c7",
+        storageBucket: "crudwithcand-4c5c7.appspot.com",
+        messagingSenderId: "57028707711",
+        appId: "1:57028707711:web:33256283970506fa9cc64a",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      import {
+        getDatabase,
+        ref,
+        child,
+        onValue,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-database.js";
+
+      const db = getDatabase();
+
+      let names = [];
+
+      function GetAllDataRealtime() {
+        const dbRef = ref(db, "/");
+        // const dbRef = ref(db, "/Delhi");
+
+        onValue(dbRef, (snapshot) => {
+          var students = [];
+          // console.log(snapshot.val());
+
+          const states = Object.keys(snapshot.val());
+          // const cities = Object.values(snapshot.val());
+          // console.log(states);
+          names = states;
+          // console.log(names);
+          // AddAllItemsToTable(states);
+
+          // Sort name in ascending order
+          let sortedNames = names ? names.sort() : [];
+
+          // reference
+          let input = document.getElementById("input");
+
+          // Excute function on keyup
+          input.addEventListener("keyup", (e) => {
+            // loop through above array
+            // Initially remove all elements  ( so if user erases a letter or adds new letter then clean previous outputs)
+            removeElements();
+            for (let i of sortedNames) {
+              // covert input to lowercase and compare with each string
+
+              if (
+                i.toLowerCase().startsWith(input.value.toLowerCase()) &&
+                input.value != ""
+              ) {
+                // create li element
+                let listItem = document.createElement("li");
+                // One common class name
+                listItem.classList.add("list-items");
+                listItem.style.cursor = "pointer";
+                listItem.setAttribute("onclick", "displayNames('" + i + "')");
+                //Display matched part in bold
+                let word = "<b>" + i.substr(0, input.value.length) + "</b>";
+                word += i.substr(input.value.length);
+                //   display the value in array
+                listItem.innerHTML = word;
+                document.querySelector(".list").appendChild(listItem);
+              }
+            }
+          });
+          function displayNames(value) {
+            input.value = value;
+            removeElements();
+          }
+
+          function removeElements() {
+            // clear all the item
+            let items = document.querySelectorAll(".list-items");
+            items.forEach((item) => {
+              item.remove();
+            });
+          }
+        });
+      }
+
+      window.onload = GetAllDataRealtime();
+    </script>
+    <script src="/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="time">
+      <div class="circle">
+        <div class="dots min_dot"></div>
+        <svg width="160" height="150" viewBox="0 0 160 150" fill="none">
+          <circle cx="50" cy="50" r="50"></circle>
+          <circle cx="50" cy="50" r="50" id="mm"></circle>
+        </svg>
+        <div id="minutes">00</div>
+      </div>
+
+      <div class="circle">
+        <div class="dots sec_dot"></div>
+        <svg width="160" height="150" viewBox="0 0 160 150" fill="none">
+          <circle cx="50" cy="50" r="50"></circle>
+          <circle cx="50" cy="50" r="50" id="ss"></circle>
+        </svg>
+        <div id="seconds">00</div>
+      </div>
+    </div>
+    <script src="countdown.js"></script>
+  </body>
+</html>

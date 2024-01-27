@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="time">
+      <div id="del-countdown">
+        <!-- <div id="clock "> -->
+        <div style="display: flex">
+          <!-- <div class="circle"> -->
+          <div class="circle" id="lineM" style="--clr: #04fc43">
+            <div class="dots min_dot"></div>
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70" id="mm"></circle>
+            </svg>
+            <div id="minutes">00</div>
+          </div>
+
+          <div class="circle" id="lineS" style="--clr: #04fc43">
+            <!-- <div class="circle"> -->
+            <div class="dots sec_dot"></div>
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70" id="ss"></circle>
+            </svg>
+            <div id="seconds">00</div>
+          </div>
+        </div>
+        <!-- </div> -->
+      </div>
+    </div>
+    <script src="./countdown.js"></script>
+  </body>
+</html>

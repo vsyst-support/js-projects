@@ -1,0 +1,61 @@
+#time {
+  display: flex;
+}
+
+#time .circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transform: scale(1); */
+  margin-left: 10px;
+}
+
+#time .circle svg {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform: rotate(270deg);
+}
+
+#time .circle svg circle {
+  width: 50%;
+  height: 50%;
+  fill: transparent;
+  stroke: #191919;
+  stroke-width: 4;
+  transform: translate(5px, 5px);
+}
+
+#time .circle svg circle:nth-child(2) {
+  stroke: var(--clr);
+  stroke-dasharray: 440;
+}
+
+#time div {
+  position: absolute;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.dots {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.dots::before {
+  content: "";
+  position: absolute;
+  top: -px;
+  width: 10px;
+  height: 10px;
+  background: var(--clr);
+  border-radius: 50%;
+}

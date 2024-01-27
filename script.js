@@ -713,6 +713,77 @@ let names = [
     youtubelink: "",
     section: sections.HtmlJS,
   },
+
+  {
+    title: "10 Minute sCountdown",
+    href: "./html-css-projects/timerCountdown/10-minutesCountdown/index.html",
+    date: "1/01/2022",
+    description: "create countdown",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+
+  {
+    title: "10 Minutes Countdown Completed",
+    href: "./html-css-projects/timerCountdown/10minutesCountdownCompleted/index.html",
+    date: "1/01/2022",
+    description: "create 10 minnutes countdown",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+
+  {
+    title: "10 Minutes Countdown Final",
+    href: "./html-css-projects/timerCountdown/10-minutesCountdownFinal/index.html",
+    date: "1/01/2022",
+    description: "create 10 minnutes countdown",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+
+  {
+    title: "Music Player",
+    href: "./javascript-projects/musicPlayer/index.html",
+    date: "1/01/2022",
+    description: "create a music player",
+    youtubelink: "https://www.youtube.com/watch?v=JtrFzoL1joI",
+    section: sections.AdvJS,
+  },
+
+  {
+    title: "Firebase Realtime Data",
+    href: "./javascript-projects/firebaseRealtimeData/index.html",
+    date: "1/01/2022",
+    description: "create a music player",
+    youtubelink: "https://www.youtube.com/watch?v=7hB2ASYBkXo",
+    section: sections.AdvJS,
+  },
+
+  {
+    title: "Mixture Introduction Page(pink)",
+    href: "./html-css-projects/mixtureIntroductionPage(pink)/index.html",
+    date: "1/01/2022",
+    description: "make mixture introduction page",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+
+  {
+    title: "Vsyst Dzzlo Website",
+    href: "./html-css-projects/vsyst-dzzlo-website/index.html",
+    date: "1/01/2022",
+    description: "make vsyst website",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+  {
+    title: "Firebase Queue Management",
+    href: "./javascript-projects/firebaseQueueManagement/index.html",
+    date: "1/01/2022",
+    description: "firebase queue management",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
 ];
 
 let sortedNames = [];
