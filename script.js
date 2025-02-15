@@ -8,6 +8,14 @@ const sections = {
 };
 let names = [
   {
+    title: "IOCL BOB Indent Excel Export",
+    href: "./javascript-projects/indentExcelExport/index.html",
+    date: "15/02/2025",
+    description: "IOCL BOB Indent Excel Export",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+  {
     title: "Age Calculator",
     href: "./javascript-projects/agecalculator/calculator.html",
     date: "1/01/2024",

@@ -1,0 +1,143 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export Data in Excel</title>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script
+      lang="javascript"
+      src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto Condensed"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div>
+      <div class="container">
+        <form>
+          <h1>Excel Entry form</h1>
+          <div class="form-group">
+            <label>Indent Date</label>
+            <input type="date" class="form-control" id="indent_dt_input" />
+          </div>
+          <div class="form-group">
+            <label>Indent No.</label>
+            <input
+              value="001"
+              type="number"
+              class="form-control"
+              id="indent_no_input"
+            />
+          </div>
+          <div class="form-group">
+            <label>Amount</label>
+            <input
+              value="1000"
+              type="number"
+              class="form-control"
+              id="amt_input"
+            />
+          </div>
+          <div class="form-group">
+            <label>Dealer Code</label>
+            <input value="169776" type="number" class="form-control" readonly />
+          </div>
+        </form>
+      </div>
+      <p style="font-size: 40px; font-family: 'Roboto Condensed'">
+        Excel Table
+      </p>
+      <table border="1" height="100" width="500" id="data">
+        <tr>
+          <th>Indent Date</th>
+          <th>Indent No.</th>
+          <th>Amount</th>
+          <th>Dealer Code</th>
+        </tr>
+        <tr>
+          <td id="indent_dt_text">01.02.2025</td>
+          <td id="indent_no_text">169776/001</td>
+          <td id="amt_text">1000</td>
+          <td>169776</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <button class="btn" onclick="export_data();">Export in Excel</button>
+    </div>
+
+    <script>
+      const indent_dt_text = document.getElementById("indent_dt_text");
+
+      window.onload = function () {
+        let today = new Date().toISOString().split("T")[0];
+        document.getElementById("indent_dt_input").value = today;
+
+        let unformattdate = new Date(today);
+        let day1 = String(unformattdate.getDate()).padStart(2, "0"); // Ensures 2-digit day
+        let month1 = String(unformattdate.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+        let year1 = unformattdate.getFullYear();
+
+        let formatedDate = `${day1}.${month1}.${year1}`;
+        console.log(formatedDate); // Output: "08.02.2025"
+
+        indent_dt_text.innerHTML = formatedDate;
+      };
+
+      document
+        .getElementById("indent_dt_input")
+        .addEventListener("change", (e) => {
+          e.preventDefault();
+
+          let unformatdate = new Date(e.target.value);
+          let day = String(unformatdate.getDate()).padStart(2, "0"); // Ensures 2-digit day
+          let month = String(unformatdate.getMonth() + 1).padStart(2, "0"); // Months are 0-based
+          let year = unformatdate.getFullYear();
+
+          let formattedDate = `${day}.${month}.${year}`;
+          console.log(formattedDate); // Output: "08.02.2025"
+
+          indent_dt_text.innerHTML = formattedDate;
+        });
+
+      const indent_no_text = document.getElementById("indent_no_text");
+      document
+        .getElementById("indent_no_input")
+        .addEventListener("keyup", (e) => {
+          e.preventDefault();
+
+          let formatednumber = `169776/${e.target.value}`;
+          console.log(formatednumber); // Output: "08.02.2025"
+
+          indent_no_text.innerHTML = formatednumber;
+        });
+
+      const amt_text = document.getElementById("amt_text");
+      document.getElementById("amt_input").addEventListener("keyup", (e) => {
+        e.preventDefault();
+        amt_text.innerHTML = e.target.value;
+      });
+
+      // document.getElementById("indent_dt_input").setAttribute("min", today);
+      // document.getElementById("indent_dt_input").setAttribute("max", today);
+
+      function export_data() {
+        let data = document.getElementById("data");
+        console.log("data", data);
+        let fp = XLSX.utils.table_to_book(data, { sheet: "Sheet1" });
+        XLSX.write(fp, {
+          bookType: "xlsx",
+          type: "base64",
+        });
+        XLSX.writeFile(fp, "Export.xlsx");
+      }
+    </script>
+  </body>
+</html>
