@@ -4,19 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Export Data in Excel</title>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-    <script
-      lang="javascript"
-      src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto Condensed"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <div>
@@ -51,13 +40,11 @@
           </div>
         </form>
       </div>
-      <p style="font-size: 40px; font-family: 'Roboto Condensed'">
-        Excel Table
-      </p>
+      <h1>Excel Table</h1>
       <table border="1" height="100" width="500" id="data">
         <tr>
           <th>Indent Date</th>
-          <th>Indent No.</th>
+          <th>Indent No</th>
           <th>Amount</th>
           <th>Dealer Code</th>
         </tr>
@@ -108,6 +95,7 @@
         });
 
       const indent_no_text = document.getElementById("indent_no_text");
+
       document
         .getElementById("indent_no_input")
         .addEventListener("keyup", (e) => {
@@ -128,15 +116,84 @@
       // document.getElementById("indent_dt_input").setAttribute("min", today);
       // document.getElementById("indent_dt_input").setAttribute("max", today);
 
-      function export_data() {
-        let data = document.getElementById("data");
-        console.log("data", data);
-        let fp = XLSX.utils.table_to_book(data, { sheet: "Sheet1" });
-        XLSX.write(fp, {
-          bookType: "xlsx",
-          type: "base64",
+      async function export_data() {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet("Sheet1");
+        // Add Bold Header
+        const headerRow = worksheet.addRow([
+          "Indent Date",
+          "Indent No",
+          "Amount",
+          "Dealer Code",
+        ]);
+        headerRow.eachCell((cell) => {
+          cell.font = { bold: true, size: 10, name: "Arial" };
+
+          cell.border = {
+            top: { style: "thin" },
+            left: { style: "thin" },
+            bottom: { style: "thin" },
+            right: { style: "thin" },
+          };
         });
-        XLSX.writeFile(fp, "Export.xlsx");
+        headerRow.getCell(1).alignment = { horizontal: "right" };
+        var indent_dt_text1 =
+          document.getElementById("indent_dt_text").innerText;
+        var indent_no_text1 =
+          document.getElementById("indent_no_text").innerText;
+        var amt_text1 = document.getElementById("amt_text").innerText;
+        // Add Data
+        const valueRow = worksheet.addRow([
+          indent_dt_text1,
+          indent_no_text1,
+          Number(amt_text1),
+          Number("169776"),
+        ]);
+
+        valueRow.eachCell((cell) => {
+          // cell.font = { bold: true };
+
+          cell.border = {
+            top: { style: "thin" },
+            left: { style: "thin" },
+            bottom: { style: "thin" },
+            right: { style: "thin" },
+          };
+        });
+
+        valueRow.getCell(1).font = { size: 11, name: "calibri" };
+        valueRow.getCell(2).font = { size: 8, name: "Tahoma" };
+        valueRow.getCell(3).font = { size: 11, name: "calibri" };
+        valueRow.getCell(4).font = { size: 8, name: "Tahoma" };
+
+        valueRow.getCell(4).alignment = { horizontal: "left" };
+
+        worksheet.getColumn(1).width = 11;
+        worksheet.getColumn(2).width = 11.8;
+        worksheet.getColumn(3).width = 7.5;
+        worksheet.getColumn(4).width = 12;
+
+        // Create Excel Blob and Download
+        const buffer = await workbook.xlsx.writeBuffer();
+        const blob = new Blob([buffer], {
+          type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        var input = document.getElementById("indent_no_input").value;
+        link.download = `IOCL_Indent_${input}.xlsx`;
+        link.click();
+
+        // let data = document.getElementById("data");
+        // // console.log("data", data);
+        // let fp = XLSX.utils.table_to_book(data, { sheet: "Sheet1" });
+        // XLSX.write(fp, {
+        //   bookType: "xlsx",
+        //   type: "base64",
+        // });
+        // var input = document.getElementById("indent_no_input").value;
+        // const indent_no_input1 = document.getElementById("indent_no_input");
+        // XLSX.writeFile(fp, `IOCL_Indent_${input}.xlsx`);
       }
     </script>
   </body>
