@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./design_system.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="nozzle-list" id="tankl">
+      <div class="btn_txt_alignment">
+        <div class="icon_title_alignment">
+          <a href="./index.html">
+            <i class="material-icons">density_medium</i></a
+          >
+          <p class="title_style">Nozzles/List</p>
+        </div>
+        <div>
+          <button class="btn" onclick="openModal()">Add New Nozzle</button>
+        </div>
+      </div>
+      <div class="border_bottom"></div>
+
+      <div class="date_search_alignment end_align">
+        <div class="align_center">
+          <i class="material-icons filter_icon">filter_alt</i>
+          <div class="search-container left">
+            <i class="material-icons search_icon">search</i>
+            <input class="search_icon" type="text" placeholder="Search" />
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>NZL_NO</th>
+            <th>PROD_ID</th>
+            <th>DU_ID</th>
+            <th>TANK_ID</th>
+            <th>STAMPING_DT</th>
+            <th>RENEW_DT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>NZ-01</td>
+            <td>HSD</td>
+            <td>1</td>
+            <td>3</td>
+            <td>16.02.23</td>
+            <td>25.02.23</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>NZ-02</td>
+            <td>MS</td>
+            <td>3</td>
+            <td>75</td>
+            <td>17.05.24</td>
+            <td>05.05.24</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>NZ-03</td>
+            <td>XP</td>
+            <td>4</td>
+            <td>8</td>
+            <td>20.05.24</td>
+            <td>19.03.24</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <div id="overlay" class="overlay"></div>
+    <div id="modal" class="modal">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <p>New Tank/Create</p>
+      </div>
+
+      <p>This modal was created dynamically!</p>
+    </div> -->
+  </body>
+</html>
+<script>
+  function openModal() {
+    // const tablehtml = (
+    //   <div>
+    //     <div id="overlay" class="overlay"></div>
+    //   </div>
+    // );
+    // document.body.innerHTML += tablehtml;
+    const tablelist = document.getElementById("tankl");
+    tablelist.innerHTML += `
+            <div id="overlay" class="overlay"></div>
+            <div id="modal" class="modal">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <p class="modal_title">New Nozzle/Create</p>
+                <div class="border_bottom"></div>
+                   <div class="row1">
+                      <div class="column top" >
+                        <label class="label_style">Nozzle No</label>
+                        <input type="text" placeholder="nzl_no" />
+                        </div>
+                        <div class="flex"></div>
+                        <div class="column top" >
+                         <label class="label_style">Product ID</label>
+                         <input type="text" placeholder="prod_id" />
+                         </div>
+                    </div>
+                    <div class="row1">
+                        <div class="column top" >
+                          <label class="label_style">DU ID</label>
+                          <input type="text" placeholder="s_no" />
+                          </div>
+                          <div class="flex"></div>
+                           <div class="column top" >
+                          <label class="label_style">Tank ID</label>
+                          <input type="text" placeholder="tank_id" />
+                          </div>
+                       </div>
+                       <div class="row1">
+                            <div class="column top" >
+                             <label class="label_style">Stamping Date</label>
+                             <input type="text" placeholder="Stamping_date" />
+                        </div>
+                        <div class="flex"></div>
+                            <div class="column top" >
+                            <label class="label_style">Renew Date</label>
+                            <input type="text" placeholder="Renew_date" />
+                        </div>
+                        </div>
+                        <div class="modal_footer">
+          <div class="footer_border"></div>
+          <div class="right">
+            <button onclick="closeModal()" class="create_btn">Create</button>
+          </div>
+        </div>
+                    </div>
+        `;
+
+    // Show overlay and modal
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("modal").style.display = "block";
+
+    // Close modal if overlay is clicked
+    document.getElementById("overlay").onclick = closeModal;
+  }
+
+  function closeModal() {
+    document.getElementById("overlay").remove();
+    document.getElementById("modal").remove();
+    document.getElementById("modal").remove();
+  }
+</script>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./design_system.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="du-list" id="tankl">
+      <div class="btn_txt_alignment">
+        <div class="icon_title_alignment">
+          <a href="./index.html">
+            <i class="material-icons">density_medium</i></a
+          >
+          <p class="title_style">DU/List</p>
+        </div>
+        <div>
+          <button class="btn" onclick="openModal()">Add New DU</button>
+        </div>
+      </div>
+      <div class="border_bottom"></div>
+
+      <div class="date_search_alignment end_align">
+        <div class="align_center">
+          <i class="material-icons filter_icon">filter_alt</i>
+          <div class="search-container left">
+            <i class="material-icons search_icon">search</i>
+            <input class="search_icon" type="text" placeholder="Search" />
+          </div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>DU_NO</th>
+            <th>MAKE</th>
+            <th>S_NO</th>
+            <th>MODEL_NO</th>
+            <th>TYPE</th>
+            <th>INST_YR</th>
+            <th>MFD_YR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>GVR</td>
+            <td>202010002487</td>
+            <td>LIDSMU2TNEC2E01</td>
+            <td>Dual</td>
+            <td>2020</td>
+            <td>2021</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>GVR</td>
+            <td>201305000501</td>
+            <td>GU24BGGEM1470HW</td>
+            <td>Dual</td>
+            <td>16.02.2015</td>
+            <td>2022</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>5</td>
+            <td>Tokheim</td>
+            <td>M1904069</td>
+            <td>TIQ444SSPN</td>
+            <td>MPD</td>
+            <td>2005</td>
+            <td>2006</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <div id="overlay" class="overlay"></div>
+    <div id="modal" class="modal">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        "
+      >
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <p>New Tank/Create</p>
+      </div>
+
+      <p>This modal was created dynamically!</p>
+    </div> -->
+  </body>
+</html>
+<script>
+  function openModal() {
+    // const tablehtml = (
+    //   <div>
+    //     <div id="overlay" class="overlay"></div>
+    //   </div>
+    // );
+    // document.body.innerHTML += tablehtml;
+    const tablelist = document.getElementById("tankl");
+    tablelist.innerHTML += `
+              <div id="overlay" class="overlay"></div>
+              <div id="modal" class="modal">
+                  <span class="close-btn" onclick="closeModal()">&times;</span>
+                  <p class="modal_title">DUs/Create</p>
+                  <div class="border_bottom"></div>
+                      <div class="row1">
+                          <div class="column top">
+                            <label class="label_style">DU NO</label>
+                            <input type="text" placeholder="du_no" />
+                            </div>
+                            <div class="flex"></div>
+                            <div class="column top" >
+                            <label class="label_style">Make</label>
+                            <input type="text" placeholder="make" />
+                            </div>
+                         </div>
+                         <div class="row1">
+                              <div class="column top" >
+                               <label class="label_style">S No</label>
+                               <input type="text" placeholder="s_no" />
+                          </div>
+                          <div class="flex"></div>
+                              <div class="column top" >
+                              <label class="label_style">Model No</label>
+                              <input type="text" placeholder="model no" />
+                          </div>
+                          </div>
+                          <div class="row1">
+                          <div class="column top" >
+                            <label class="label_style">Type</label>
+                            <input type="text" placeholder="type" />
+                            </div>
+                            <div class="flex"></div>
+                            <div class="column top" >
+                            <label class="label_style">Inst Year</label>
+                            <input type="text" placeholder="inst_yr" />
+                            </div>
+                         </div>
+                         <div class="row1">
+                              <div class="column top" >
+                               <label class="label_style">Mfd Year</label>
+                               <input type="text" placeholder="mfd_yr" />
+                          </div>
+                          </div>
+                          <div class="modal_footer">
+          <div class="footer_border"></div>
+          <div class="right">
+            <button onclick="closeModal()" class="create_btn">Create</button>
+          </div>
+        </div>
+                      </div>
+          `;
+
+    // Show overlay and modal
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("modal").style.display = "block";
+
+    // Close modal if overlay is clicked
+    document.getElementById("overlay").onclick = closeModal;
+  }
+
+  function closeModal() {
+    document.getElementById("overlay").remove();
+    document.getElementById("modal").remove();
+    document.getElementById("modal").remove();
+  }
+</script>

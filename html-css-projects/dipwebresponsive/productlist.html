@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./design_system.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="prod-list" id="tankl">
+      <div class="btn_txt_alignment">
+        <div class="icon_title_alignment">
+          <a href="./index.html">
+            <i class="material-icons">density_medium</i></a
+          >
+          <p class="title_style">Products/List</p>
+        </div>
+        <div>
+          <button class="btn" onclick="openModal()">Add New Product</button>
+        </div>
+      </div>
+      <div class="border_bottom"></div>
+
+      <div class="date_search_alignment">
+        <div>
+          <label class="date">Select Month</label>
+          <input type="date" />
+        </div>
+        <div class="align_center">
+          <i class="material-icons filter_icon">filter_alt</i>
+          <div class="search-container left">
+            <i class="material-icons search_icon">search</i>
+            <input class="search_icon" type="text" placeholder="Search" />
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>COLOR</th>
+            <th>NAME</th>
+            <th>EVP_LOSS_CENT</th>
+            <th>PROD_ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="vertical_border">1</td>
+            <td>
+              <span class="color-box diesel_color"></span>
+            </td>
+            <td class="bold">High Speed Diesel</td>
+            <td>30 %</td>
+            <td>45</td>
+          </tr>
+          <tr>
+            <td class="vertical_border">2</td>
+            <td>
+              <span class="color-box Petrol_color"></span>
+            </td>
+            <td class="bold">Unleaded Petrol</td>
+            <td>60 %</td>
+            <td>87</td>
+          </tr>
+          <tr>
+            <td class="vertical_border">3</td>
+            <td>
+              <span class="color-box Petrol_color"></span>
+            </td>
+            <td class="bold">XP 0 95</td>
+            <td>20 %</td>
+            <td>56</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+  function openModal() {
+    // const tablehtml = (
+    //   <div>
+    //     <div id="overlay" class="overlay"></div>
+    //   </div>
+    // );
+    // document.body.innerHTML += tablehtml;
+    const tablelist = document.getElementById("tankl");
+    tablelist.innerHTML += `
+            <div id="overlay" class="overlay"></div>
+            <div id="modal" class="modal">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <p class="modal_title">New Tank/Create</p>
+                <div class="border_bottom"></div>
+                   <div class="row1">
+                       <div class="column top" >
+                            <label class="label_style">Color</label>
+                            <select>
+                                    <option>color</option>
+                            </select>
+                            </div>
+                        <div class="flex"></div>
+                        <div class="column top" >
+                         <label class="label_style">Product Name</label>
+                         <input type="text" placeholder="product name" />
+                         </div>
+                    </div>
+                    <div class="row1">
+                        <div class="column top" >
+                          <label class="label_style">Evaporation loss Percent</label>
+                          <input type="text" placeholder="Evaporation loss percent" />
+                          </div>
+                          <div class="flex"></div>
+                        <div class="column top" >
+                          <label class="label_style">Product ID</label>
+                          <input type="text" placeholder="Product id" />
+                          </div>
+                       </div>
+                   <div class="modal_footer">
+          <div class="footer_border"></div>
+          <div class="right">
+            <button onclick="closeModal()" class="create_btn">Create</button>
+          </div>
+        </div>
+                    </div>
+        `;
+
+    // Show overlay and modal
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("modal").style.display = "block";
+
+    // Close modal if overlay is clicked
+    document.getElementById("overlay").onclick = closeModal;
+  }
+
+  function closeModal() {
+    document.getElementById("overlay").remove();
+    document.getElementById("modal").remove();
+    document.getElementById("modal").remove();
+  }
+</script>

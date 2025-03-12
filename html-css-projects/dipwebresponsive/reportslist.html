@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./design_system.css" />
+    <link rel="stylesheet" href="./transaction.css" />
+  </head>
+  <body>
+    <div class="reports-list">
+      <div class="theme_btn_alignment">
+        <div>
+          <div class="icon_title_alignment">
+            <a href="./index.html">
+              <i class="material-icons">density_medium</i></a
+            >
+            <p class="title_style">Reports/List</p>
+          </div>
+        </div>
+        <div class="theme-btn">
+          <i class="material-icons active">light_mode</i>
+          <i class="material-icons">dark_mode</i>
+        </div>
+      </div>
+      <div class="border_bottom"></div>
+
+      <div class="date_search_alignment">
+        <div class="date_align align_center">
+          <div class="flex_column">
+            <label class="label_style">From</label>
+            <input type="datetime-local" />
+          </div>
+          <div class="left flex_column">
+            <label class="label_style">To</label>
+            <input type="datetime-local" />
+          </div>
+          <div class="left flex_column">
+            <label class="label_style">Invoice Date</label>
+            <input type="datetime-local" />
+          </div>
+        </div>
+        <div class="align_center search_padding">
+          <i class="material-icons filter_icon">filter_alt</i>
+          <div class="search-container left">
+            <i class="material-icons search_icon">search</i>
+            <input class="search_icon" type="text" placeholder="Search" />
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>DATE_TIME</th>
+            <th>QTY REC.</th>
+            <th>DIP SALE</th>
+            <th>NOZZLE SALE</th>
+            <th>DIFF</th>
+            <th>IN LIMIT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Group 1 -->
+          <tr class="group-header selected" onclick="toggleGroup('group1')">
+            <td class="sn_icon_align">
+              <i class="material-icons">keyboard_arrow_down</i>1
+            </td>
+            <td>02/May/23 - 03 : 32 PM</td>
+            <td>20000</td>
+            <td>400.1</td>
+            <td>200 Ltr.</td>
+            <td>85.34</td>
+            <td>YN</td>
+          </tr>
+
+          <tr class="group1_1">
+            <td colspan="2">
+              <div>
+                <div class="table_text_alignment">
+                  <p class="gray">TOTAL NOZZLE SALE :</p>
+                  <p>5000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP SALE :</p>
+                  <p>200</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">TANK_NO:.</p>
+                  <p>1</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">PRODUCT</p>
+                  <p>XP-95</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">QTY REC.</p>
+                  <p>10000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">STOCK</p>
+                  <p>13000 Ltr.</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP</p>
+                  <p>85.9</p>
+                </div>
+              </div>
+            </td>
+            <td colspan="5">
+              <table>
+                <tr class="group1_1 tr_header">
+                  <td></td>
+                  <td>NAME</td>
+                  <td>TEST</td>
+                  <td>READING</td>
+                </tr>
+
+                <tr class="group1_1">
+                  <td class="du_style">DU-1</td>
+                  <td>1B1</td>
+                  <td>100.1</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group1_1">
+                  <td></td>
+                  <td>1B2</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group1_1">
+                  <td class="du_style">DU-2</td>
+                  <td>1B1</td>
+                  <td>100.1</td>
+                  <td>43534654</td>
+                </tr>
+
+                <tr class="group1_1">
+                  <td></td>
+                  <td>1B2</td>
+                  <td>100.2</td>
+                  <td>43534654</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Group 2 -->
+          <tr class="group-header selected" onclick="toggleGroup('group2')">
+            <td class="sn_icon_align">
+              <i class="material-icons">keyboard_arrow_down</i>2
+            </td>
+            <td>03/May/23 - 03 : 12 PM</td>
+            <td>20000</td>
+            <td>324.1</td>
+            <td>130 Ltr.</td>
+            <td>54.34</td>
+            <td>YN</td>
+          </tr>
+
+          <tr class="group2_1">
+            <td colspan="2">
+              <div>
+                <div class="table_text_alignment">
+                  <p class="gray">TOTAL NOZZLE SALE :</p>
+                  <p>1000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP SALE :</p>
+                  <p>120</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">TANK_NO:.</p>
+                  <p>2</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">PRODUCT</p>
+                  <p>Petrol</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">QTY REC.</p>
+                  <p>15000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">STOCK</p>
+                  <p>13000 Ltr.</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP</p>
+                  <p>87.9</p>
+                </div>
+              </div>
+            </td>
+            <td colspan="5">
+              <table>
+                <tr class="group2_1 tr_header">
+                  <td></td>
+                  <td>NAME</td>
+                  <td>TEST</td>
+                  <td>READING</td>
+                </tr>
+
+                <tr class="group2_1">
+                  <td class="du_style">DU-1</td>
+                  <td>1B3</td>
+                  <td>100.1</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group2_1">
+                  <td></td>
+                  <td>1B4</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group2_1">
+                  <td class="du_style">DU-2</td>
+                  <td>1B3</td>
+                  <td>100.1</td>
+                  <td>43534654</td>
+                </tr>
+
+                <tr class="group2_1">
+                  <td></td>
+                  <td>1B4</td>
+                  <td>100.2</td>
+                  <td>43534654</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Group 3 -->
+          <tr class="group-header selected" onclick="toggleGroup('group3')">
+            <td class="sn_icon_align">
+              <i class="material-icons">keyboard_arrow_down</i>3
+            </td>
+            <td>05/May/23 - 04 : 22 PM</td>
+            <td>20000</td>
+            <td>232.1</td>
+            <td>543 Ltr.</td>
+            <td>65.34</td>
+            <td>YN</td>
+          </tr>
+
+          <tr class="group3_1">
+            <td colspan="2">
+              <div>
+                <div class="table_text_alignment">
+                  <p class="gray">TOTAL NOZZLE SALE :</p>
+                  <p>5000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP SALE :</p>
+                  <p>200</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">TANK_NO:.</p>
+                  <p>1</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">PRODUCT</p>
+                  <p>High Speed Diesel</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">QTY REC.</p>
+                  <p>10000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">STOCK</p>
+                  <p>13000 Ltr.</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP</p>
+                  <p>85.9</p>
+                </div>
+              </div>
+            </td>
+            <td colspan="5">
+              <table>
+                <tr class="group3_1 tr_header">
+                  <td></td>
+                  <td>NAME</td>
+                  <td>TEST</td>
+                  <td>READING</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td class="du_style">DU-3</td>
+                  <td>1B1</td>
+                  <td>100.1</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td></td>
+                  <td>1B2</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td></td>
+                  <td>1B3</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td></td>
+                  <td>1B4</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td class="du_style">DU-4</td>
+                  <td>1B1</td>
+                  <td>100.1</td>
+                  <td>43534654</td>
+                </tr>
+
+                <tr class="group3_1">
+                  <td></td>
+                  <td>1B2</td>
+                  <td>100.2</td>
+                  <td>43534654</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Group 4 -->
+          <tr class="group-header selected" onclick="toggleGroup('group4')">
+            <td class="sn_icon_align">
+              <i class="material-icons">keyboard_arrow_down</i>4
+            </td>
+            <td>14/Jun/23 - 03 : 32 PM</td>
+            <td>20000</td>
+            <td>345.1</td>
+            <td>676 Ltr.</td>
+            <td>87.54</td>
+            <td>YN</td>
+          </tr>
+
+          <tr class="group4_1">
+            <td colspan="2">
+              <div>
+                <div class="table_text_alignment">
+                  <p class="gray">TOTAL NOZZLE SALE :</p>
+                  <p>5000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP SALE :</p>
+                  <p>200</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">TANK_NO:.</p>
+                  <p>1</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">PRODUCT</p>
+                  <p>High Speed Diesel</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">QTY REC.</p>
+                  <p>10000</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">STOCK</p>
+                  <p>13000 Ltr.</p>
+                </div>
+                <div class="table_text_alignment">
+                  <p class="gray">DIP</p>
+                  <p>85.9</p>
+                </div>
+              </div>
+            </td>
+            <td colspan="5">
+              <table>
+                <tr class="group4_1 tr_header">
+                  <td></td>
+                  <td>NAME</td>
+                  <td>TEST</td>
+                  <td>READING</td>
+                </tr>
+
+                <tr class="group4_1">
+                  <td class="du_style">DU-4</td>
+                  <td>1B3</td>
+                  <td>100.1</td>
+                  <td>89739934</td>
+                </tr>
+
+                <tr class="group4_1">
+                  <td></td>
+                  <td>1B4</td>
+                  <td>100.2</td>
+                  <td>89739934</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+  const themeBtn = document.querySelector(".theme-btn");
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    themeBtn.querySelector("i:first-child").classList.toggle("active");
+
+    themeBtn.querySelector("i:last-child").classList.toggle("active");
+  });
+
+  function toggleGroup(groupClass) {
+    // let rows = document.querySelectorAll("." + groupClass);
+    let rows = document.querySelectorAll(`[class*="${groupClass}"]`);
+    rows.forEach((row) => {
+      row.classList.toggle("hidden");
+    });
+  }
+</script>

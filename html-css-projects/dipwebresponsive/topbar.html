@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dip Website</title>
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./design_system.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body style="margin: 0px">
+    <div class="top-bar">
+      <div class="left-section">
+        <img
+          class="dzzlo_img"
+          src="https://is5-ssl.mzstatic.com/image/thumb/Purple115/v4/06/18/de/0618defd-4d5e-8849-88da-408a18110d7f/source/512x512bb.jpg"
+          data-holder-rendered="true"
+        />
+        <p class="row">DZZLO OMS</p>
+        <div class="menu">
+          <a href="./index.html">Masters</a>
+          <a href="#">Reports</a>
+          <a href="#" class="active">Decantation</a>
+        </div>
+      </div>
+      <div class="right-section">
+        <!-- <div class="toggle-container">
+          <label class="toggle-switch">
+            <input type="checkbox" id="themeToggle" />
+            <span class="slider"></span>
+          </label>
+        </div> -->
+
+        <div class="theme-btn">
+          <i class="material-icons active">light_mode</i>
+          <i class="material-icons">dark_mode</i>
+        </div>
+        <i class="material-icons right">settings</i>
+        <div class="user-info">
+          <p>User One</p>
+          <div class="user-icon">UO</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  const themeBtn = document.querySelector(".theme-btn");
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-theme");
+
+    themeBtn.querySelector("i:first-child").classList.toggle("active");
+
+    themeBtn.querySelector("i:last-child").classList.toggle("active");
+  });
+</script>

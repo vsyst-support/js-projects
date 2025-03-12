@@ -8,6 +8,14 @@ const sections = {
 };
 let names = [
   {
+    title: "Responsive Dip Website HTML",
+    href: "./html-css-projects/dipwebresponsive/index.html",
+    date: "11/03/2025",
+    description: "added masters & transactions pages",
+    youtubelink: "",
+    section: sections.HtmlJS,
+  },
+  {
     title: "IOCL BOB Indent Excel Export",
     href: "./javascript-projects/indentExcelExport/index.html",
     date: "15/02/2025",

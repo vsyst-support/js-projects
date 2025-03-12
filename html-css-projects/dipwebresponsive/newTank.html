@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expandable Table</title>
+    <style>
+      .flex-container {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        /* padding: 20px; */
+      }
+
+      /* Style the Parent Table */
+      .parent-table,
+      .child-table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .parent-table th,
+      .parent-table td,
+      .child-table th,
+      .child-table td {
+        border: 1px solid black;
+        padding: 8px;
+        /* text-align: center; */
+      }
+
+      /* Flex Row for Nested Table and Div */
+      .nested-flex {
+        display: flex;
+        align-items: center;
+        /* gap: 20px; */
+      }
+
+      /* Style the Extra Div */
+    </style>
+  </head>
+  <body>
+    <div class="flex-container">
+      <!-- Parent Table -->
+      <table class="parent-table">
+        <thead>
+          <tr>
+            <th>SN.</th>
+            <th>DATE_TIME</th>
+            <th>QTY REC.</th>
+            <th>DIP SALE</th>
+            <th>NOZZLE SALE</th>
+            <th>DIFF</th>
+            <th>IN LIMIT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>02/May/23 - 03 : 32 PM</td>
+            <td>20000</td>
+            <td>400.1</td>
+            <td>200 Ltr.</td>
+            <td>85.34</td>
+            <td>YN</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                "
+              >
+                <p>dsfsd</p>
+                <p>dsfsd</p>
+              </div>
+
+              <div style="display: flex">
+                <p>dsfsd</p>
+                <p>dsfsd</p>
+              </div>
+              <div style="display: flex">
+                <p>dsfsd</p>
+                <p>dsfsd</p>
+              </div>
+              <div style="display: flex">
+                <p>dsfsd</p>
+                <p>dsfsd</p>
+              </div>
+            </td>
+            <!-- Nested Flex Row (Child Table + Div) -->
+            <td colspan="5">
+              <div class="nested-flex">
+                <!-- Child Table -->
+                <table class="child-table">
+                  <thead>
+                    <tr>
+                      <th>Sub Col 1</th>
+                      <th>Sub Col 2</th>
+                      <th>Sub Col 1</th>
+                      <th>Sub Col 2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Sub Data 1</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                    </tr>
+                    <tr>
+                      <td>Sub Data 1</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                    </tr>
+                    <tr>
+                      <td>Sub Data 1</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                    </tr>
+                    <tr>
+                      <td>Sub Data 1</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                      <td>Sub Data 2</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
