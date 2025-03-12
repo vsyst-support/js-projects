@@ -7,14 +7,7 @@ const sections = {
   HtmlJS: "html css in javascript projects",
 };
 let names = [
-  {
-    title: "Responsive Dip Website HTML",
-    href: "./html-css-projects/dipwebresponsive/index.html",
-    date: "11/03/2025",
-    description: "added masters & transactions pages",
-    youtubelink: "",
-    section: sections.HtmlJS,
-  },
+
   {
     title: "IOCL BOB Indent Excel Export",
     href: "./javascript-projects/indentExcelExport/index.html",
@@ -175,6 +168,15 @@ let names = [
     description: "convert rgb to hex",
     youtubelink: "https://www.youtube.com/watch?v=wDCU2XCOh40",
     section: sections.AdvJS,
+  },
+
+  {
+    title: "Responsive Dip Website HTML",
+    href: "./html-css-projects/dipwebresponsive/index.html",
+    date: "11/03/2025",
+    description: "added masters & transactions pages",
+    youtubelink: "",
+    section: sections.HtmlJS,
   },
 
   {
