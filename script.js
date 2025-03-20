@@ -9,6 +9,42 @@ const sections = {
 let names = [
 
   {
+    title: "Working Chatbot",
+    href: "./javascript-projects/workingChatbot/index.html",
+    date: "20/03/2025",
+    description: "Working Chatbot",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
+  {
+    title: "Snake Game",
+    href: "./javascript-projects/snakeGame/index.html",
+    date: "20/03/2025",
+    description: "Snake Game",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
+  {
+    title: "Note App",
+    href: "./javascript-projects/noteApp/index.html",
+    date: "20/03/2025",
+    description: "Note App",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
+  {
+    title: "Dropdown",
+    href: "./javascript-projects/dropdown/index.html",
+    date: "20/03/2025",
+    description: "Dropdown",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
+  {
     title: "IOCL BOB Indent Excel Export",
     href: "./javascript-projects/indentExcelExport/index.html",
     date: "15/02/2025",
@@ -168,6 +204,15 @@ let names = [
     description: "convert rgb to hex",
     youtubelink: "https://www.youtube.com/watch?v=wDCU2XCOh40",
     section: sections.AdvJS,
+  },
+
+  {
+    title: "Live Search",
+    href: "./html-css-projects/liveSearch/index.html",
+    date: "20/03/2025",
+    description: "live search",
+    youtubelink: "",
+    section: sections.HtmlJS,
   },
 
   {

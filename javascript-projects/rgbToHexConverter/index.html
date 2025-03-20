@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+
+    <title>RGB-Hex converter</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <label for="rgb">RGB</label>
+        <input
+          type="text"
+          id="rgb"
+          oninput="toHex() "
+          placeholder="Enter RGB Value"
+        />
+      </div>
+      <div class="wrapper">
+        <label for="hex">HEX</label>
+        <input
+          type="text"
+          id="hex"
+          oninput="toRgb()"
+          placeholder="Enter hex Value"
+        />
+      </div>
+    </div>
+    <!-- <script src="script.js"></script> -->
+  </body>
+</html>

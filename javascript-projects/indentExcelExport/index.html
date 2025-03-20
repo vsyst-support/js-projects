@@ -3,45 +3,74 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Export Data in Excel</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/shim.min.js" integrity="sha512-nPnkC29R0sikt0ieZaAkk28Ib7Y1Dz7IqePgELH30NnSi1DzG4x+envJAOHz8ZSAveLXAHTR3ai2E9DZUsT8pQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/exceljs@4.3.0/dist/exceljs.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
+    <div style="max-width: 480px">
       <div class="container">
         <form>
           <h1>Excel Entry form</h1>
-          <div class="form-group">
-            <label>Indent Date</label>
-            <input type="date" class="form-control" id="indent_dt_input" />
+          <div class="flex">
+            <div class="mb-3 me-2">
+              <label for="formGroupExampleInput" class="form-label"
+                >Indent Date</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                id="indent_dt_input"
+                placeholder="Example input placeholder"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label"
+                >Indent No.</label
+              >
+              <input
+                value="001"
+                type="number"
+                class="form-control"
+                id="indent_no_input"
+              />
+            </div>
           </div>
-          <div class="form-group">
-            <label>Indent No.</label>
-            <input
-              value="001"
-              type="number"
-              class="form-control"
-              id="indent_no_input"
-            />
-          </div>
-          <div class="form-group">
-            <label>Amount</label>
-            <input
-              value="1000"
-              type="number"
-              class="form-control"
-              id="amt_input"
-            />
-          </div>
-          <div class="form-group">
-            <label>Dealer Code</label>
-            <input value="169776" type="number" class="form-control" readonly />
+
+          <div class="flex">
+            <div class="mb-3 me-2">
+              <label for="formGroupExampleInput2" class="form-label"
+                >Amount</label
+              >
+              <input
+                value="1000"
+                type="number"
+                class="form-control"
+                id="amt_input"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="formGroupExampleInput2" class="form-label"
+                >Dealer Code</label
+              >
+              <input
+                style="background-color: #eee"
+                value="169776"
+                type="number"
+                class="form-control"
+                readonly
+              />
+            </div>
           </div>
         </form>
       </div>
-      <h1>Excel Table</h1>
-      <table border="1" height="100" width="500" id="data">
+      <table class="table table-striped" style="max-width: 480px" id="data">
         <tr>
           <th>Indent Date</th>
           <th>Indent No</th>
@@ -56,12 +85,135 @@
         </tr>
       </table>
     </div>
-    <div>
-      <button class="btn" onclick="export_data();">Export in Excel</button>
+    <div class="btn_text_alignment" style="max-width: 480px">
+      <div>
+        <p id="inWords" style="font-weight: bold">₹ One Thousand only.</p>
+      </div>
+      <div>
+        <button type="button" onclick="export_data();" class="btn btn-success">
+          Export in Excel
+        </button>
+      </div>
     </div>
 
     <script>
+      const price_in_words = (price) => {
+        var sglDigit = [
+            "Zero",
+            "One",
+            "Two",
+            "Three",
+            "Four",
+            "Five",
+            "Six",
+            "Seven",
+            "Eight",
+            "Nine",
+          ],
+          dblDigit = [
+            "Ten",
+            "Eleven",
+            "Twelve",
+            "Thirteen",
+            "Fourteen",
+            "Fifteen",
+            "Sixteen",
+            "Seventeen",
+            "Eighteen",
+            "Nineteen",
+          ],
+          tensPlace = [
+            "",
+            "Ten",
+            "Twenty",
+            "Thirty",
+            "Forty",
+            "Fifty",
+            "Sixty",
+            "Seventy",
+            "Eighty",
+            "Ninety",
+          ],
+          handle_tens = function (dgt, prevDgt) {
+            return 0 == dgt
+              ? ""
+              : " " + (1 == dgt ? dblDigit[prevDgt] : tensPlace[dgt]);
+          },
+          handle_utlc = function (dgt, nxtDgt, denom) {
+            return (
+              (0 != dgt && 1 != nxtDgt ? " " + sglDigit[dgt] : "") +
+              (0 != nxtDgt || dgt > 0 ? " " + denom : "")
+            );
+          };
+
+        var str = "",
+          digitIdx = 0,
+          digit = 0,
+          nxtDigit = 0,
+          words = [];
+        if (((price += ""), isNaN(parseInt(price)))) str = "";
+        else if (parseInt(price) > 0 && price.length <= 10) {
+          for (digitIdx = price.length - 1; digitIdx >= 0; digitIdx--)
+            switch (
+              ((digit = price[digitIdx] - 0),
+              (nxtDigit = digitIdx > 0 ? price[digitIdx - 1] - 0 : 0),
+              price.length - digitIdx - 1)
+            ) {
+              case 0:
+                words.push(handle_utlc(digit, nxtDigit, ""));
+                break;
+              case 1:
+                words.push(handle_tens(digit, price[digitIdx + 1]));
+                break;
+              case 2:
+                words.push(
+                  0 != digit
+                    ? " " +
+                        sglDigit[digit] +
+                        " Hundred" +
+                        (0 != price[digitIdx + 1] && 0 != price[digitIdx + 2]
+                          ? " and"
+                          : "")
+                    : ""
+                );
+                break;
+              case 3:
+                words.push(handle_utlc(digit, nxtDigit, "Thousand"));
+                break;
+              case 4:
+                words.push(handle_tens(digit, price[digitIdx + 1]));
+                break;
+              case 5:
+                words.push(handle_utlc(digit, nxtDigit, "Lakh"));
+                break;
+              case 6:
+                words.push(handle_tens(digit, price[digitIdx + 1]));
+                break;
+              case 7:
+                words.push(handle_utlc(digit, nxtDigit, "Crore"));
+                break;
+              case 8:
+                words.push(handle_tens(digit, price[digitIdx + 1]));
+                break;
+              case 9:
+                words.push(
+                  0 != digit
+                    ? " " +
+                        sglDigit[digit] +
+                        " Hundred" +
+                        (0 != price[digitIdx + 1] || 0 != price[digitIdx + 2]
+                          ? " and"
+                          : " Crore")
+                    : ""
+                );
+            }
+          str = words.reverse().join("");
+        } else str = "";
+        return str;
+      };
+
       const indent_dt_text = document.getElementById("indent_dt_text");
+      const inWords = document.getElementById("inWords");
 
       window.onload = function () {
         let today = new Date().toISOString().split("T")[0];
@@ -111,6 +263,7 @@
       document.getElementById("amt_input").addEventListener("keyup", (e) => {
         e.preventDefault();
         amt_text.innerHTML = e.target.value;
+        inWords.innerHTML = price_in_words(e.target.value);
       });
 
       // document.getElementById("indent_dt_input").setAttribute("min", today);

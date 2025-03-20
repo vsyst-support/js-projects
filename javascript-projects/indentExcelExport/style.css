@@ -5,7 +5,7 @@
 }
 
 body {
-  margin-left: 10px;
+  margin: 10px;
 }
 
 table {
@@ -27,43 +27,25 @@ th {
   margin-bottom: 1rem;
 }
 
-.form-control {
-  display: block;
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  font-size: 1rem;
-  font-weight: 400;
-  color: #495057;
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-}
-
-.container {
-  padding: 20px;
-  width: 90%;
-  background: #eee;
-  margin-top: 20px;
-}
-
-.btn {
-  width: 200px;
-  margin-top: 10px;
-  height: 50px;
-  border: none;
-  text-align: center;
-  background: green;
-  cursor: pointer;
-  font-size: 16px;
-  text-transform: uppercase;
-  color: white;
-  border-radius: 5px;
-}
-
 .th {
   font-size: 140px;
 }
 
 input {
   padding-left: 5px;
+}
+
+.btn_text_alignment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
 }
