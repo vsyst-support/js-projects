@@ -47,5 +47,14 @@ input {
   justify-content: space-between;
 }
 
-@media screen and (max-width: 480px) {
+/* Hide the spin buttons in WebKit browsers */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spin buttons in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
