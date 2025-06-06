@@ -1,0 +1,155 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact us Form</title>
+    <style>
+      .container {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        padding: 2rem;
+        background-color: #f2f2f2;
+        overflow: hidden;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wrapper {
+        position: relative;
+        max-width: 390px;
+        background-color: #fff;
+        padding: 34px;
+        border-radius: 7px;
+        box-shadow: 0px 0px 6.6px 0px rgba(0, 0, 0, 0.25);
+        width: 100%;
+      }
+      .wrapper form .input-box {
+        height: 52px;
+        margin: 18px;
+      }
+
+      form .input-box input {
+        padding: 10px;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        color: #848484;
+        /* outline: none; */
+      }
+
+      .input-box input input:focus,
+      .input-box input input:valid {
+        border-color: #848484;
+        border: 1px solid #848484;
+      }
+
+      form .input-box.button input {
+        color: #fff;
+        border: none;
+        background: #7530af;
+        font-weight: bold;
+        width: 50%;
+      }
+
+      form .input-box.button input:hover {
+        background: #c79cec;
+      }
+      .message {
+        padding: 10px;
+        border-radius: 3px;
+        background-color: #f5f4f4;
+        width: 100%;
+        border: none;
+        font-size: 16px;
+        color: #848484;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form id="myForm">
+        <div class="input-box">
+          <input type="text" id="name" placeholder="Full Name*" />
+        </div>
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Email*" />
+        </div>
+        <div class="input-box">
+          <input type="number" id="phone" placeholder="Phone*" />
+        </div>
+        <div class="input-box">
+          <textarea
+            class="message"
+            id="message"
+            name="Message"
+            placeholder="Message"
+          ></textarea>
+        </div>
+        <div id="send-message" class="input-box button">
+          <input type="submit" value="Send Message" />
+        </div>
+        <!-- <div>
+          <button type="submit">sd</button>
+        </div> -->
+      </form>
+    </div>
+  </body>
+  <script>
+    const button = document.getElementById("send-message");
+
+    async function getData({ name, email, phone, message }) {
+      const promise = await fetch(
+        "https://test.doms.vsyst.in/api/v2/contact/contact_us",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            source: "SPA-vsyst.in",
+            username: `${name}`,
+            phone: `${phone}`,
+            email: `${email}`,
+            message: `${message}`,
+          }),
+        }
+      );
+      return await promise.json();
+    }
+
+    button.addEventListener("click", async () => {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const result = await getData({
+        name,
+        email,
+        phone,
+        message,
+      });
+      console.log(result);
+    });
+
+    document.getElementById("myForm").addEventListener("submit", function (e) {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !phone || !message) {
+        e.preventDefault();
+        alert("All fields are required!");
+      }
+    });
+  </script>
+</html>
