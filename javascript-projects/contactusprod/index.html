@@ -4,15 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact us Form</title>
        <style>
-      .container {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        padding: 2rem;
-        background-color: #f2f2f2;
-        overflow: hidden;
-      }
-
       body {
         min-height: 100vh;
         display: flex;
@@ -23,7 +14,7 @@
 
       .wrapper {
         position: relative;
-        max-width: 350px;
+        max-width: 500px;
         background-color: #fff;
         padding: 15px;
         border-radius: 7px;
@@ -82,37 +73,75 @@
       .right {
         margin-right: 20px;
       }
+
+      .alignment {
+        display: flex;
+        flex-direction: row;
+        width: 40%;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @media (max-width: 800px) {
+        .alignment {
+          display: flex;
+          flex-direction: column;
+          width: 50%;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bottom {
+          margin-bottom: 20px;
+        }
+
+        .right {
+          margin-right: 0px;
+        }
+      }
+
+      @media (max-width: 375px) {
+        .alignment {
+          display: flex;
+          flex-direction: column;
+          width: 80%;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     </style>
   </head>
- <body>
-    <div class="wrapper right">
-      <div class="center">
-        <img src="./contact us.png" alt="" />
+  <body>
+    <div class="alignment">
+      <div class="wrapper right bottom">
+        <div class="center">
+          <img src="./contact us.png" alt="" />
+        </div>
       </div>
-    </div>
-    <div class="wrapper">
-      <form id="myForm">
-        <div class="input-box">
-          <input type="text" id="name" placeholder="Full Name*" />
-        </div>
-        <div class="input-box">
-          <input type="email" id="email" placeholder="Email*" />
-        </div>
-        <div class="input-box">
-          <input type="number" id="phone" placeholder="Phone*" />
-        </div>
-        <div class="input-box">
-          <textarea
-            class="message"
-            id="message"
-            name="Message"
-            placeholder="Message"
-          ></textarea>
-        </div>
-        <div id="send-message" class="input-box button">
-          <input type="submit" value="Send Message" />
-        </div>
-      </form>
+      <div class="wrapper">
+        <form id="myForm">
+          <div class="input-box">
+            <input type="text" id="name" placeholder="Full Name*" />
+          </div>
+          <div class="input-box">
+            <input type="email" id="email" placeholder="Email*" />
+          </div>
+          <div class="input-box">
+            <input type="number" id="phone" placeholder="Phone*" />
+          </div>
+          <div class="input-box">
+            <textarea
+              class="message"
+              id="message"
+              name="Message"
+              placeholder="Message"
+            ></textarea>
+          </div>
+          <div id="send-message" class="input-box button">
+            <input type="submit" value="Send Message" />
+          </div>
+        </form>
+      </div>
     </div>
   </body>
   <script>
