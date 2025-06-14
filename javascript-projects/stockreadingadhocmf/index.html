@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fuel Table</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+        background: #fff;
+      }
+
+      table {
+        border-collapse: collapse;
+        overflow: hidden;
+        width: 500px;
+        text-align: center;
+        border-radius: 10px;
+        background-color: #fff;
+      }
+
+      th,
+      td {
+        padding: 15px;
+        border: 1px solid #ccc;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      .title {
+        font-size: 20px;
+      }
+
+      .header_color {
+        background-color: #ffe5cc;
+      }
+
+      .ms_color {
+        background-color: #f5fdea;
+        text-align: center;
+      }
+      .xp95_color {
+        background-color: #fde9f7;
+        text-align: center;
+      }
+      .hsd_color {
+        background-color: #e9f3fa;
+        text-align: center;
+      }
+      .xg_color {
+        background-color: #dfffe1;
+        text-align: center;
+      }
+
+      #downloadBtn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      input[type="date"] {
+        width: 100%;
+        padding: 8px 10px;
+        box-sizing: border-box;
+        border: none;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px 15px;
+        box-sizing: border-box;
+        font-size: 16px;
+        border: none;
+      }
+
+      .btn {
+        background-color: #04aa6d; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+
+      .btn_alignment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <table id="fuelTable">
+        <thead>
+          <tr>
+            <td class="title bold" colspan="3">Adhoc Mahakoshal Fuels</td>
+          </tr>
+          <tr class="header_color">
+            <th><input class="header_color" type="date" /></th>
+            <th>Sales</th>
+            <th>Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ms_color">
+            <td class="bold">MS</td>
+            <td><input class="ms_color" type="number" /></td>
+            <td><input class="ms_color" type="number" /></td>
+          </tr>
+
+          <tr class="xp95_color">
+            <td class="bold">XP95</td>
+            <td><input class="xp95_color" type="number" /></td>
+            <td><input class="xp95_color" type="number" /></td>
+          </tr>
+
+          <tr class="hsd_color">
+            <td class="bold">HSD</td>
+            <td><input class="hsd_color" type="number" /></td>
+            <td><input class="hsd_color" type="number" /></td>
+          </tr>
+
+          <tr class="xg_color">
+            <td class="bold">XG</td>
+            <td><input class="xg_color" type="number" /></td>
+            <td><input class="xg_color" type="number" /></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="btn_alignment">
+        <button class="btn" id="downloadBtn">Export as Image</button>
+      </div>
+    </div>
+
+    <!-- html2canvas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+      function formatDate(input) {
+        if (!input) return "";
+        const date = new Date(input);
+        if (isNaN(date.getTime())) return "";
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const year = date.getFullYear();
+        return `${day}/${month}/${year}`;
+      }
+
+      document.getElementById("downloadBtn").addEventListener("click", () => {
+        const originalTable = document.getElementById("fuelTable");
+        const clone = originalTable.cloneNode(true); // deep clone
+
+        // Hide the clone off-screen
+        clone.style.position = "absolute";
+        clone.style.left = "-9999px";
+        document.body.appendChild(clone);
+
+        // Find and replace the date input in the cloned table
+        const dateInputClone = clone.querySelector('input[type="date"]');
+        const formattedDate = formatDate(
+          document.querySelector('input[type="date"]').value
+        );
+
+        const span = document.createElement("span");
+        span.textContent = formattedDate;
+        span.className = "header_color";
+        span.style.display = "inline-block";
+        span.style.padding = "8px 10px";
+        span.style.width = "100%";
+        span.style.boxSizing = "border-box";
+
+        if (dateInputClone) {
+          const parent = dateInputClone.parentElement;
+          parent.replaceChild(span, dateInputClone);
+        }
+
+        // Capture the clone
+        html2canvas(clone).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = "fuel-table.jpg";
+          link.href = canvas.toDataURL("image/jpeg", 1.0);
+          link.click();
+          clone.remove(); // remove off-screen clone after export
+        });
+      });
+    </script>
+  </body>
+</html>

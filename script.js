@@ -7,6 +7,25 @@ const sections = {
   HtmlJS: "html css in javascript projects",
 };
 let names = [
+
+    {
+    title: "Stock Reading Adhoc MF",
+    href: "./javascript-projects/stockreadingadhocmf/index.html",
+    date: "14/06/2025",
+    description: "stock reading adhoc mf",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
+    {
+    title: "Stock Reading MF",
+    href: "./javascript-projects/stockreadingmf/index.html",
+    date: "14/06/2025",
+    description: "stock reading mf",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+  
     {
     title: "Contact us prod form",
     href: "./javascript-projects/contactusprod/index.html",
