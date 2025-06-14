@@ -100,6 +100,36 @@
         align-items: center;
         justify-content: center;
       }
+
+      @media (max-width: 768px) {
+        table {
+          width: 350px;
+        }
+
+        th,
+        td {
+          padding: 10px;
+        }
+
+        .title {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 350px) {
+        table {
+          width: 100px;
+        }
+
+        th,
+        td {
+          padding: 8px;
+        }
+
+        .title {
+          font-size: 16px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -196,6 +226,17 @@
           link.click();
           clone.remove(); // remove off-screen clone after export
         });
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const dateInput = document.querySelector('input[type="date"]');
+        const today = new Date();
+
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, "0");
+        const dd = String(today.getDate()).padStart(2, "0");
+
+        dateInput.value = `${yyyy}-${mm}-${dd}`; // Format: YYYY-MM-DD
       });
     </script>
   </body>
