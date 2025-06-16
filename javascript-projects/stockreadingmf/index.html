@@ -16,7 +16,7 @@
       table {
         border-collapse: collapse;
         overflow: hidden;
-        width: 500px;
+        width: 400px;
         text-align: center;
         border-radius: 10px;
         background-color: #fff;
@@ -56,6 +56,10 @@
         background-color: #e9f3fa;
         text-align: center;
       }
+      .xg_color {
+        background-color: #dfffe1;
+        text-align: center;
+      }
 
       #downloadBtn {
         margin-top: 20px;
@@ -65,7 +69,7 @@
 
       input[type="date"] {
         width: 100%;
-        padding: 8px 10px;
+        padding: 2px 8px;
         box-sizing: border-box;
         border: none;
       }
@@ -97,6 +101,25 @@
         justify-content: center;
       }
 
+      .row {
+        display: flex;
+        flex-direction: row;
+        margin: 10px;
+      }
+
+      .dip_table {
+        width: 25%;
+        margin-left: 10px;
+      }
+
+      .header_height {
+        height: 20px;
+      }
+
+      .table_width {
+        width: 30%;
+      }
+
       @media (max-width: 768px) {
         table {
           width: 350px;
@@ -110,58 +133,106 @@
         .title {
           font-size: 18px;
         }
+
+        .dip_table {
+          width: 20%;
+          margin-left: 10px;
+        }
+
+        .table_width {
+          width: 20%;
+        }
       }
 
       @media (max-width: 350px) {
         table {
-          width: 100px;
+          width: 80px;
         }
 
         th,
         td {
-          padding: 8px;
+          padding: 5px;
         }
 
         .title {
           font-size: 16px;
+        }
+
+        .row {
+          display: flex;
+          flex-direction: row;
+          margin: 1px;
+        }
+
+        .dip_table {
+          width: 25%;
+          margin-left: 5px;
+        }
+
+        .table_width {
+          width: 10%;
         }
       }
     </style>
   </head>
   <body>
     <div>
-      <table id="fuelTable">
-        <thead>
+      <div class="row">
+        <table id="fuelTable">
+          <thead>
+            <tr>
+              <td class="title bold" colspan="3">Mahakoshal Fuels</td>
+            </tr>
+            <tr class="header_color">
+              <th class="table_width">
+                <input class="header_color" type="date" />
+              </th>
+              <th class="table_width">Sales</th>
+              <th class="table_width">Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="ms_color">
+              <td class="bold">MS</td>
+              <td><input class="ms_color" type="number" /></td>
+              <td class="ms_color"></td>
+            </tr>
+
+            <tr class="xp95_color">
+              <td class="bold">XP95</td>
+              <td><input class="xp95_color" type="number" /></td>
+              <td class="xp95_color"></td>
+            </tr>
+
+            <tr class="hsd_color">
+              <td class="bold">HSD</td>
+              <td><input class="hsd_color" type="number" /></td>
+              <td class="hsd_color"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="dip_table">
           <tr>
-            <td class="title bold" colspan="3">Mahakoshal Fuels</td>
+            <td class="title bold header_height" colspan="1"></td>
           </tr>
           <tr class="header_color">
-            <th><input class="header_color" type="date" /></th>
-            <th>Sales</th>
-            <th>Stock</th>
+            <th>Dip</th>
           </tr>
-        </thead>
-        <tbody>
+
           <tr class="ms_color">
-            <td class="bold">MS</td>
-            <td><input class="ms_color" type="number" /></td>
             <td><input class="ms_color" type="number" /></td>
           </tr>
 
           <tr class="xp95_color">
-            <td class="bold">XP95</td>
-            <td><input class="xp95_color" type="number" /></td>
             <td><input class="xp95_color" type="number" /></td>
           </tr>
 
           <tr class="hsd_color">
-            <td class="bold">HSD</td>
-            <td><input class="hsd_color" type="number" /></td>
             <td><input class="hsd_color" type="number" /></td>
           </tr>
-        </tbody>
-      </table>
-
+        </table>
+      </div>
       <div class="btn_alignment">
         <button class="btn" id="downloadBtn">Export as Image</button>
       </div>
@@ -219,14 +290,28 @@
       });
 
       window.addEventListener("DOMContentLoaded", () => {
+        // Set today's date
         const dateInput = document.querySelector('input[type="date"]');
         const today = new Date();
-
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, "0");
         const dd = String(today.getDate()).padStart(2, "0");
+        dateInput.value = `${yyyy}-${mm}-${dd}`;
 
-        dateInput.value = `${yyyy}-${mm}-${dd}`; // Format: YYYY-MM-DD
+        // Auto-fill stock column when dip is entered
+        const dipInputs = document.querySelectorAll(
+          'table:nth-of-type(2) tbody input[type="number"]'
+        );
+        const stockCells = document.querySelectorAll(
+          "table:nth-of-type(1) tbody tr td:nth-child(3)"
+        );
+
+        dipInputs.forEach((dipInput, index) => {
+          dipInput.addEventListener("input", () => {
+            const value = dipInput.value;
+            stockCells[index].textContent = value;
+          });
+        });
       });
     </script>
   </body>
