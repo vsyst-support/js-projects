@@ -37,7 +37,7 @@
       }
 
       .title {
-        font-size: 20px;
+        font-size: 16px;
       }
 
       .header_color {
@@ -79,7 +79,8 @@
         padding: 10px 15px;
         box-sizing: border-box;
         font-size: 16px;
-        border: none;
+        border: 1px solid #bbbbbb;
+        border-radius: 5px;
       }
 
       .btn {
@@ -120,6 +121,34 @@
         width: 30%;
       }
 
+      /* Applied only to export clone */
+      .no-border input[type="number"],
+      .no-border input[type="date"] {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Remove number input spinner in Chrome, Safari, Edge */
+      input[type="number"]::-webkit-outer-spin-button,
+      input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      /* Remove number input spinner in Firefox */
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .Dip_height {
+        height: 85px;
+      }
+
+      .title-row {
+        height: 50px;
+      }
+
       @media (max-width: 768px) {
         table {
           width: 350px;
@@ -131,16 +160,32 @@
         }
 
         .title {
-          font-size: 18px;
+          font-size: 12px;
         }
 
         .dip_table {
-          width: 20%;
+          width: 25%;
           margin-left: 10px;
         }
 
         .table_width {
           width: 20%;
+        }
+
+        .row {
+          display: flex;
+          flex-direction: row;
+          margin: 1px;
+          margin-left: 10px;
+          margin-right: 10px;
+        }
+
+        .Dip_height {
+          height: 91px;
+        }
+
+        .title-row {
+          height: 45px;
         }
       }
 
@@ -155,13 +200,15 @@
         }
 
         .title {
-          font-size: 16px;
+          font-size: 18px;
         }
 
         .row {
           display: flex;
           flex-direction: row;
           margin: 1px;
+          margin-left: 10px;
+          margin-right: 10px;
         }
 
         .dip_table {
@@ -172,6 +219,18 @@
         .table_width {
           width: 10%;
         }
+
+        .Dip_height {
+          height: 85px;
+        }
+
+        .header_height {
+          height: 5px;
+        }
+
+        .title-row {
+          height: 95px;
+        }
       }
     </style>
   </head>
@@ -180,7 +239,7 @@
       <div class="row">
         <table id="fuelTable">
           <thead>
-            <tr>
+            <tr class="title-row">
               <td class="title bold" colspan="3">Adhoc Mahakoshal Fuels</td>
             </tr>
             <tr class="header_color">
@@ -188,7 +247,7 @@
                 <input class="header_color" type="date" />
               </th>
               <th class="table_width">Sales</th>
-              <th class="table_width">Stock</th>
+              <th class="table_width">Stock (excluding dead stock)</th>
             </tr>
           </thead>
           <tbody>
@@ -204,42 +263,62 @@
               <td class="xp95_color"></td>
             </tr>
 
-            <tr class="hsd_color">
-              <td class="bold">HSD</td>
-              <td><input class="hsd_color" type="number" /></td>
-              <td class="hsd_color"></td>
-            </tr>
-
             <tr class="xg_color">
               <td class="bold">XG</td>
               <td><input class="xg_color" type="number" /></td>
               <td class="xg_color"></td>
             </tr>
+            <tr class="hsd_color">
+              <td class="bold">HSD A</td>
+              <td><input class="hsd_color" type="number" /></td>
+              <td class="hsd_color"></td>
+            </tr>
+
+            <tr class="hsd_color">
+              <td class="bold">HSD B</td>
+              <td><input class="hsd_color" type="number" /></td>
+              <td class="hsd_color"></td>
+            </tr>
+
+            <tr class="hsd_color">
+              <td class="bold">HSD Total</td>
+              <td></td>
+              <td class="hsd_color"></td>
+            </tr>
           </tbody>
         </table>
 
         <table class="dip_table">
-          <tr>
-            <td class="title bold header_height" colspan="1"></td>
+          <tr class="title-row">
+            <td class="title bold header_height" colspan="1">
+              Dead stock - 2300
+            </td>
           </tr>
-          <tr class="header_color">
+          <tr class="header_color Dip_height">
             <th>Dip</th>
           </tr>
 
-          <tr class="ms_color">
+          <tr class="ms_color header_height">
             <td><input class="ms_color" type="number" /></td>
           </tr>
 
-          <tr class="xp95_color">
+          <tr class="xp95_color header_height">
             <td><input class="xp95_color" type="number" /></td>
           </tr>
 
-          <tr class="hsd_color">
+          <tr class="xg_color header_height">
+            <td><input class="xg_color" type="number" /></td>
+          </tr>
+
+          <tr class="hsd_color header_height">
             <td><input class="hsd_color" type="number" /></td>
           </tr>
 
-          <tr class="xg_color">
-            <td><input class="xg_color" type="number" /></td>
+          <tr class="hsd_color header_height">
+            <td><input class="hsd_color" type="number" /></td>
+          </tr>
+          <tr class="hsd_color">
+            <td></td>
           </tr>
         </table>
       </div>
@@ -265,12 +344,14 @@
         const originalTable = document.getElementById("fuelTable");
         const clone = originalTable.cloneNode(true); // deep clone
 
+        clone.classList.add("no-border");
+
         // Hide the clone off-screen
         clone.style.position = "absolute";
         clone.style.left = "-9999px";
         document.body.appendChild(clone);
 
-        // Find and replace the date input in the cloned table
+        // Replace date input with formatted date
         const dateInputClone = clone.querySelector('input[type="date"]');
         const formattedDate = formatDate(
           document.querySelector('input[type="date"]').value
@@ -289,6 +370,14 @@
           parent.replaceChild(span, dateInputClone);
         }
 
+        // ✅ Hide HSD A and HSD B rows in cloned table
+        const rows = clone.querySelectorAll("tbody tr");
+        rows[3].style.display = "none"; // HSD A
+        rows[4].style.display = "none"; // HSD B
+
+        // ✅ Rename "HSD Total" to "HSD"
+        rows[5].querySelector("td").textContent = "HSD";
+
         // Capture the clone
         html2canvas(clone).then((canvas) => {
           const link = document.createElement("a");
@@ -300,7 +389,6 @@
       });
 
       window.addEventListener("DOMContentLoaded", () => {
-        // Set today's date
         const dateInput = document.querySelector('input[type="date"]');
         const today = new Date();
         const yyyy = today.getFullYear();
@@ -308,18 +396,69 @@
         const dd = String(today.getDate()).padStart(2, "0");
         dateInput.value = `${yyyy}-${mm}-${dd}`;
 
-        // Auto-fill stock column when dip is entered
+        const v = ({ d = 210, l = 625, P1 = 0, P2 = 0, dw = 18, h }) => {
+          const r = d / 2;
+          const ACOS = Math.acos(1 - h / r);
+          const P12 = P1 + P2;
+          const rS = r * r;
+          const lh = (l + P12 / 2) * rS * (ACOS - 0.5 * Math.sin(2 * ACOS));
+          const rh =
+            ((Math.sin(2 * ACOS) - 0.5 * Math.sin(4 * ACOS)) * P12 * rS) / 12;
+          const t = lh - rh;
+          const f1 = t / (1.000028 * 1000);
+          const f2 = (dw / d) * h;
+          const f = Number(Number(f1) - Number(f2)).toFixed(0);
+          return f;
+        };
+
         const dipInputs = document.querySelectorAll(
           'table:nth-of-type(2) tbody input[type="number"]'
         );
         const stockCells = document.querySelectorAll(
           "table:nth-of-type(1) tbody tr td:nth-child(3)"
         );
+        const salesInputs = document.querySelectorAll(
+          "table:nth-of-type(1) tbody input[type='number']"
+        );
+
+        const hsdTotalSalesCell = document.querySelector(
+          "table:nth-of-type(1) tbody tr:last-child td:nth-child(2)"
+        );
+        const hsdTotalStockCell = document.querySelector(
+          "table:nth-of-type(1) tbody tr:last-child td:nth-child(3)"
+        );
+
+        function updateHSDTotals() {
+          // Sales Total: HSD A (index 3) + HSD B (index 4)
+          const hsdASales = parseFloat(salesInputs[3].value) || 0;
+          const hsdBSales = parseFloat(salesInputs[4].value) || 0;
+          const totalSales = hsdASales + hsdBSales;
+          hsdTotalSalesCell.textContent = totalSales;
+
+          // Stock Total: HSD A (index 3) + HSD B (index 4)
+          const hsdAStock = parseFloat(stockCells[3].textContent) || 0;
+          const hsdBStock = parseFloat(stockCells[4].textContent) || 0;
+          const totalStock = hsdAStock + hsdBStock;
+          hsdTotalStockCell.textContent = totalStock;
+        }
 
         dipInputs.forEach((dipInput, index) => {
           dipInput.addEventListener("input", () => {
-            const value = dipInput.value;
-            stockCells[index].textContent = value;
+            const h = parseFloat(dipInput.value);
+            if (!isNaN(h)) {
+              const stock = v({ h });
+              stockCells[index].textContent = stock - 2300;
+            } else {
+              stockCells[index].textContent = "";
+            }
+
+            updateHSDTotals();
+          });
+        });
+
+        salesInputs.forEach((input, index) => {
+          input.addEventListener("input", () => {
+            updateHSDTotals();
           });
         });
       });
