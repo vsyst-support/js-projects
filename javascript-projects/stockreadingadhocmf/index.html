@@ -16,7 +16,7 @@
       table {
         border-collapse: collapse;
         overflow: hidden;
-        width: 400px;
+        width: 500px;
         text-align: center;
         border-radius: 10px;
         background-color: #fff;
@@ -69,7 +69,6 @@
 
       input[type="date"] {
         width: 100%;
-        padding: 2px 8px;
         box-sizing: border-box;
         border: none;
       }
@@ -102,25 +101,6 @@
         justify-content: center;
       }
 
-      .row {
-        display: flex;
-        flex-direction: row;
-        margin: 10px;
-      }
-
-      .dip_table {
-        width: 25%;
-        margin-left: 10px;
-      }
-
-      .header_height {
-        height: 20px;
-      }
-
-      .table_width {
-        width: 30%;
-      }
-
       /* Applied only to export clone */
       .no-border input[type="number"],
       .no-border input[type="date"] {
@@ -141,17 +121,26 @@
         -moz-appearance: textfield;
       }
 
-      .Dip_height {
-        height: 85px;
-      }
-
       .title-row {
         height: 50px;
       }
 
+      th:nth-child(2),
+      td:nth-child(2),
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 120px;
+      }
+
+      .input_border {
+        border: 1px solid #6d6d6d !important;
+      }
+
       @media (max-width: 768px) {
         table {
-          width: 350px;
+          width: 400px;
+          margin-left: 10px;
+          margin-right: 10px;
         }
 
         th,
@@ -160,38 +149,15 @@
         }
 
         .title {
-          font-size: 12px;
-        }
-
-        .dip_table {
-          width: 25%;
-          margin-left: 10px;
-        }
-
-        .table_width {
-          width: 20%;
-        }
-
-        .row {
-          display: flex;
-          flex-direction: row;
-          margin: 1px;
-          margin-left: 10px;
-          margin-right: 10px;
-        }
-
-        .Dip_height {
-          height: 91px;
-        }
-
-        .title-row {
-          height: 45px;
+          font-size: 16px;
         }
       }
 
       @media (max-width: 350px) {
         table {
-          width: 80px;
+          width: 300px;
+          margin-left: 20px;
+          margin-right: 20px;
         }
 
         th,
@@ -202,126 +168,75 @@
         .title {
           font-size: 18px;
         }
-
-        .row {
-          display: flex;
-          flex-direction: row;
-          margin: 1px;
-          margin-left: 10px;
-          margin-right: 10px;
-        }
-
-        .dip_table {
-          width: 25%;
-          margin-left: 5px;
-        }
-
-        .table_width {
-          width: 10%;
-        }
-
-        .Dip_height {
-          height: 85px;
-        }
-
-        .header_height {
-          height: 5px;
-        }
-
-        .title-row {
-          height: 95px;
-        }
       }
     </style>
   </head>
   <body>
     <div>
-      <div class="row">
-        <table id="fuelTable">
-          <thead>
-            <tr class="title-row">
-              <td class="title bold" colspan="3">Adhoc Mahakoshal Fuels</td>
-            </tr>
-            <tr class="header_color">
-              <th class="table_width">
-                <input class="header_color" type="date" />
-              </th>
-              <th class="table_width">Sales</th>
-              <th class="table_width">Stock (excluding dead stock)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="ms_color">
-              <td class="bold">MS</td>
-              <td><input class="ms_color" type="number" /></td>
-              <td class="ms_color"></td>
-            </tr>
-
-            <tr class="xp95_color">
-              <td class="bold">XP95</td>
-              <td><input class="xp95_color" type="number" /></td>
-              <td class="xp95_color"></td>
-            </tr>
-
-            <tr class="xg_color">
-              <td class="bold">XG</td>
-              <td><input class="xg_color" type="number" /></td>
-              <td class="xg_color"></td>
-            </tr>
-            <tr class="hsd_color">
-              <td class="bold">HSD A</td>
-              <td><input class="hsd_color" type="number" /></td>
-              <td class="hsd_color"></td>
-            </tr>
-
-            <tr class="hsd_color">
-              <td class="bold">HSD B</td>
-              <td><input class="hsd_color" type="number" /></td>
-              <td class="hsd_color"></td>
-            </tr>
-
-            <tr class="hsd_color">
-              <td class="bold">HSD Total</td>
-              <td></td>
-              <td class="hsd_color"></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table class="dip_table">
+      <table id="fuelTable">
+        <thead>
           <tr class="title-row">
-            <td class="title bold header_height" colspan="1">
-              Dead stock - 2300
-            </td>
+            <td class="title bold" colspan="4">Adhoc Mahakoshal Fuels</td>
           </tr>
-          <tr class="header_color Dip_height">
-            <th>Dip</th>
+          <tr class="header_color">
+            <th>
+              <input class="header_color" type="date" />
+            </th>
+            <th>Sales</th>
+            <th>
+              Dip
+              <p style="font-size: 11px; padding: 0px">(Dead stock - 2300)</p>
+            </th>
+            <th>Stock (excluding dead stock)</th>
           </tr>
-
-          <tr class="ms_color header_height">
+        </thead>
+        <tbody>
+          <tr class="ms_color">
+            <td class="bold">MS</td>
             <td><input class="ms_color" type="number" /></td>
+            <td>
+              <input class="ms_color input_border" type="number" />
+            </td>
+            <td class="ms_color"></td>
           </tr>
 
-          <tr class="xp95_color header_height">
+          <tr class="xp95_color">
+            <td class="bold">XP95</td>
             <td><input class="xp95_color" type="number" /></td>
+            <td><input class="xp95_color input_border" type="number" /></td>
+            <td class="xp95_color"></td>
           </tr>
 
-          <tr class="xg_color header_height">
+          <tr class="xg_color">
+            <td class="bold">XG</td>
             <td><input class="xg_color" type="number" /></td>
+            <td><input class="xg_color input_border" type="number" /></td>
+            <td class="xg_color"></td>
           </tr>
 
-          <tr class="hsd_color header_height">
-            <td><input class="hsd_color" type="number" /></td>
-          </tr>
-
-          <tr class="hsd_color header_height">
-            <td><input class="hsd_color" type="number" /></td>
-          </tr>
           <tr class="hsd_color">
-            <td></td>
+            <td class="bold">HSD A</td>
+            <td><input class="hsd_color" type="number" /></td>
+            <td><input class="hsd_color input_border" type="number" /></td>
+            <td class="hsd_color"></td>
           </tr>
-        </table>
-      </div>
+
+          <tr class="hsd_color">
+            <td class="bold">HSD B</td>
+            <td><input class="hsd_color" type="number" /></td>
+            <td><input class="hsd_color input_border" type="number" /></td>
+            <td class="hsd_color"></td>
+          </tr>
+
+          <tr class="hsd_color">
+            <td class="bold">HSD Total</td>
+            <td></td>
+            <td>-</td>
+            <td class="hsd_color"></td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="btn_alignment">
         <button class="btn" id="downloadBtn">Export as Image</button>
       </div>
@@ -370,6 +285,14 @@
           parent.replaceChild(span, dateInputClone);
         }
 
+        // ✅ Remove Dip column (3rd column) from all rows in cloned table
+        clone.querySelectorAll("thead tr, tbody tr").forEach((row) => {
+          const cells = Array.from(row.children);
+          if (cells.length >= 3) {
+            row.removeChild(cells[2]); // remove 3rd cell (Dip column)
+          }
+        });
+
         // ✅ Hide HSD A and HSD B rows in cloned table
         const rows = clone.querySelectorAll("tbody tr");
         rows[3].style.display = "none"; // HSD A
@@ -378,13 +301,13 @@
         // ✅ Rename "HSD Total" to "HSD"
         rows[5].querySelector("td").textContent = "HSD";
 
-        // Capture the clone
+        // Export image
         html2canvas(clone).then((canvas) => {
           const link = document.createElement("a");
           link.download = "fuel-table.jpg";
           link.href = canvas.toDataURL("image/jpeg", 1.0);
           link.click();
-          clone.remove(); // remove off-screen clone after export
+          clone.remove(); // remove the off-screen clone after export
         });
       });
 
@@ -412,34 +335,30 @@
         };
 
         const dipInputs = document.querySelectorAll(
-          'table:nth-of-type(2) tbody input[type="number"]'
-        );
-        const stockCells = document.querySelectorAll(
-          "table:nth-of-type(1) tbody tr td:nth-child(3)"
-        );
-        const salesInputs = document.querySelectorAll(
-          "table:nth-of-type(1) tbody input[type='number']"
+          "table#fuelTable tbody tr td:nth-child(3) input[type='number']"
         );
 
+        const stockCells = document.querySelectorAll(
+          "table#fuelTable tbody tr td:nth-child(4)"
+        );
+        const salesInputs = document.querySelectorAll(
+          "table#fuelTable tbody tr td:nth-child(2) input[type='number']"
+        );
         const hsdTotalSalesCell = document.querySelector(
-          "table:nth-of-type(1) tbody tr:last-child td:nth-child(2)"
+          "table#fuelTable tbody tr:last-child td:nth-child(2)"
         );
         const hsdTotalStockCell = document.querySelector(
-          "table:nth-of-type(1) tbody tr:last-child td:nth-child(3)"
+          "table#fuelTable tbody tr:last-child td:nth-child(4)"
         );
 
         function updateHSDTotals() {
-          // Sales Total: HSD A (index 3) + HSD B (index 4)
           const hsdASales = parseFloat(salesInputs[3].value) || 0;
           const hsdBSales = parseFloat(salesInputs[4].value) || 0;
-          const totalSales = hsdASales + hsdBSales;
-          hsdTotalSalesCell.textContent = totalSales;
+          hsdTotalSalesCell.textContent = hsdASales + hsdBSales;
 
-          // Stock Total: HSD A (index 3) + HSD B (index 4)
           const hsdAStock = parseFloat(stockCells[3].textContent) || 0;
           const hsdBStock = parseFloat(stockCells[4].textContent) || 0;
-          const totalStock = hsdAStock + hsdBStock;
-          hsdTotalStockCell.textContent = totalStock;
+          hsdTotalStockCell.textContent = hsdAStock + hsdBStock;
         }
 
         dipInputs.forEach((dipInput, index) => {
@@ -456,7 +375,7 @@
           });
         });
 
-        salesInputs.forEach((input, index) => {
+        salesInputs.forEach((input) => {
           input.addEventListener("input", () => {
             updateHSDTotals();
           });
