@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>'Stock_${DDMMYY}'</title>
+    <title>Stock Reading AMF</title>
     <style>
       body {
         font-family: sans-serif;
@@ -181,6 +181,11 @@
         td:nth-child(1) {
           width: 140px; /* Adjust this value as needed */
         }
+
+        .dead_stock_style {
+          font-size: 8px;
+          padding: 0px;
+        }
       }
 
       @media (max-width: 350px) {
@@ -221,7 +226,10 @@
               Dip
               <p class="dead_stock_style">(Dead stock - 2300)</p>
             </th>
-            <th class="font">Stock (excluding dead stock)</th>
+            <th class="font">
+              Stock
+              <p class="dead_stock_style">(excluding dead stock)</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -350,7 +358,12 @@
         // Export image
         html2canvas(clone).then((canvas) => {
           const link = document.createElement("a");
-          link.download = "fuel-table.jpg";
+          const dateValue = document.querySelector('input[type="date"]').value;
+          const dateObj = new Date(dateValue);
+          const dd = String(dateObj.getDate()).padStart(2, "0");
+          const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
+          const yy = String(dateObj.getFullYear()).slice(-2);
+          link.download = `Stock_${dd}_${mm}_${yy}.jpg`;
           link.href = canvas.toDataURL("image/jpeg", 1.0);
           link.click();
           clone.remove(); // remove the off-screen clone after export

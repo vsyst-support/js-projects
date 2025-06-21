@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>'Stock_${DDMMYY}'</title>
+    <title>Stock Reading MF</title>
     <style>
       body {
         font-family: sans-serif;
+        margin-top: 5px;
         display: flex;
         justify-content: center;
-        margin-top: 5px;
         background: #fff;
       }
 
@@ -125,13 +125,14 @@
       td:nth-child(2),
       th:nth-child(3),
       td:nth-child(3) {
-        width: 100px;
+        width: 120px;
       }
 
       th:nth-child(1),
       td:nth-child(1) {
-        width: 140px; /* Adjust this value as needed */
+        width: 100px; /* Adjust this value as needed */
       }
+
       .input_border {
         border: 1px solid #6d6d6d !important;
       }
@@ -169,12 +170,17 @@
         td:nth-child(2),
         th:nth-child(3),
         td:nth-child(3) {
-          width: 120px;
+          width: 100px;
         }
 
         th:nth-child(1),
         td:nth-child(1) {
-          width: 130px; /* Adjust this value as needed */
+          width: 140px; /* Adjust this value as needed */
+        }
+
+        .dead_stock_style {
+          font-size: 8px;
+          padding: 0px;
         }
       }
 
@@ -216,7 +222,10 @@
               Dip
               <p class="dead_stock_style">(Dead stock - 2300)</p>
             </th>
-            <th class="font">Stock (excluding dead stock)</th>
+            <th class="font">
+              Stock
+              <p class="dead_stock_style">(excluding dead stock)</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -237,14 +246,14 @@
           </tr>
 
           <tr class="hsd_color">
-            <td class="bold">HSD A</td>
+            <td class="bold">HSD 1</td>
             <td><input class="hsd_color" type="number" /></td>
             <td><input class="hsd_color input_border" type="number" /></td>
             <td class="hsd_color"></td>
           </tr>
 
           <tr class="hsd_color">
-            <td class="bold">HSD B</td>
+            <td class="bold">HSD 2</td>
             <td><input class="hsd_color" type="number" /></td>
             <td><input class="hsd_color input_border" type="number" /></td>
             <td class="hsd_color"></td>
@@ -327,18 +336,23 @@
           }
         });
 
-        // ✅ Hide HSD A and HSD B rows in cloned table
+        // ✅ Hide HSD 1 and HSD 2 rows in cloned table
         const rows = clone.querySelectorAll("tbody tr");
-        rows[3].style.display = "none"; // HSD A
-        rows[4].style.display = "none"; // HSD B
+        rows[3].style.display = "none"; // HSD 1
+        rows[4].style.display = "none"; // HSD 2
 
         // ✅ Rename "HSD Total" to "HSD"
-        rows[5].querySelector("td").textContent = "HSD";
+        rows[4].querySelector("td").textContent = "HSD";
 
         // Export image
         html2canvas(clone).then((canvas) => {
           const link = document.createElement("a");
-          link.download = "fuel-table.jpg";
+          const dateValue = document.querySelector('input[type="date"]').value;
+          const dateObj = new Date(dateValue);
+          const dd = String(dateObj.getDate()).padStart(2, "0");
+          const mm = String(dateObj.getMonth() + 1).padStart(2, "0");
+          const yy = String(dateObj.getFullYear()).slice(-2);
+          link.download = `Stock_${dd}_${mm}_${yy}.jpg`;
           link.href = canvas.toDataURL("image/jpeg", 1.0);
           link.click();
           clone.remove(); // remove the off-screen clone after export
@@ -385,16 +399,14 @@
           "table#fuelTable tbody tr:last-child td:nth-child(4)"
         );
 
-        // This replaces your existing updateHSDTotals() function and related logic
-
         function updateHSDTotals() {
-          const hsdASales = parseFloat(salesInputs[2].value) || 0; // index 2 = HSD A
-          const hsdBSales = parseFloat(salesInputs[3].value) || 0; // index 3 = HSD B
+          const hsdASales = parseFloat(salesInputs[2].value) || 0;
+          const hsdBSales = parseFloat(salesInputs[3].value) || 0;
+          hsdTotalSalesCell.textContent = hsdASales + hsdBSales;
+
           const hsdAStock = parseFloat(stockCells[2].textContent) || 0;
           const hsdBStock = parseFloat(stockCells[3].textContent) || 0;
-
-          hsdTotalSalesCell.textContent = (hsdASales + hsdBSales).toFixed(0);
-          hsdTotalStockCell.textContent = (hsdAStock + hsdBStock).toFixed(0);
+          hsdTotalStockCell.textContent = hsdAStock + hsdBStock;
         }
 
         dipInputs.forEach((dipInput, index) => {
@@ -412,7 +424,9 @@
         });
 
         salesInputs.forEach((input) => {
-          input.addEventListener("input", updateHSDTotals);
+          input.addEventListener("input", () => {
+            updateHSDTotals();
+          });
         });
       });
     </script>
