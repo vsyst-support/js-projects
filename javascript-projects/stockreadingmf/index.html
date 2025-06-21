@@ -413,7 +413,24 @@
           dipInput.addEventListener("input", () => {
             const h = parseFloat(dipInput.value);
             if (!isNaN(h)) {
-              const stock = v({ h });
+              let stock;
+              switch (index) {
+                case 0: // MS
+                  stock = v({ d: 224, l: 524, dw: 18, h });
+                  break;
+                case 1: // XP95
+                  stock = v({ d: 194, l: 548.4, dw: 16, h });
+                  break;
+                case 2: // HSD 1
+                  stock = v({ d: 210, l: 625, dw: 18, h });
+                  break;
+                case 3: // HSD 2
+                  stock = v({ d: 210, l: 625, dw: 18, h });
+                  break;
+                default:
+                  stock = 0;
+              }
+
               stockCells[index].textContent = stock - 2300;
             } else {
               stockCells[index].textContent = "";
