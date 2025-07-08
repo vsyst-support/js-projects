@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>7 Digit Picker with Display</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+        background: #f5f5f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        justify-content: center;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        letter-spacing: 4px;
+      }
+
+      .picker-group {
+        background: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .picker-wrapper {
+        position: relative;
+        display: flex;
+        gap: 10px;
+        /* overflow: hidden; */
+        border-radius: 16px;
+        background: #f5f5f5;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+
+      .digit-column {
+        height: 100px;
+        width: 40px;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .picker-highlight {
+        top: 30px; /* highlight line position */
+        height: 30px;
+      }
+
+      .digit-column::-webkit-scrollbar {
+        display: none;
+      }
+
+      .digit-column div {
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+        text-align: center;
+        scroll-snap-align: center;
+        color: #999;
+        transition: color 0.2s;
+        font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+      }
+
+      .picker-highlight {
+        top: 40px; /* reduced */
+        height: 40px;
+      }
+
+      .picker-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          #fff,
+          transparent 25%,
+          transparent 75%,
+          #fff
+        );
+      }
+
+      .digit-column.red div {
+        color: red !important;
+      }
+
+      .dot-column {
+        width: 20px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        pointer-events: none;
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="margin-top: 30px; text-align: center">
+      <input
+        type="text"
+        id="manualInput"
+        placeholder="Enter any number"
+        style="padding: 8px; font-size: 16px; width: 200px"
+      />
+      <button
+        onclick="handleManualSubmit()"
+        style="padding: 8px 16px; font-size: 16px; margin-left: 10px"
+      >
+        Submit
+      </button>
+    </div>
+
+    <div class="picker-group">
+      <h2 id="output"></h2>
+      <p id="error" style="color: red; height: 20px; font-size: 16px"></p>
+
+      <div class="picker-wrapper" id="pickerWrapper">
+        <div class="digit-column" id="picker1"></div>
+        <div class="digit-column" id="picker2"></div>
+        <div class="digit-column" id="picker3"></div>
+        <div class="digit-column" id="picker4"></div>
+        <div class="digit-column" id="picker5"></div>
+        <div class="digit-column" id="picker6"></div>
+        <div class="digit-column" id="picker7"></div>
+        <div class="picker-mask"></div>
+        <div class="picker-highlight"></div>
+      </div>
+      <button
+        onclick="addDigitColumn()"
+        style="padding: 8px 20px; font-size: 16px"
+      >
+        +
+      </button>
+    </div>
+
+    <div style="margin-top: 20px">
+      <button
+        onclick="checkNumber()"
+        style="padding: 8px 20px; font-size: 16px"
+      >
+        Check
+      </button>
+    </div>
+    <script>
+      let originalInput = ""; // stores the input number
+      let pickerCount = 7; // starting with 7 as per initial setup
+
+      const digits = 10;
+      const itemHeight = 40;
+      const totalRepeats = 40;
+      const middleIndex = Math.floor(totalRepeats / 2);
+      const output = document.getElementById("output");
+
+      function getSelectedDigit(picker) {
+        const mid = picker.scrollTop + picker.clientHeight / 2;
+        const items = Array.from(picker.children);
+        for (let item of items) {
+          const itemMid = item.offsetTop + item.offsetHeight / 2;
+          if (Math.abs(itemMid - mid) < itemHeight / 2) {
+            return item.textContent;
+          }
+        }
+        return "0"; // fallback
+      }
+
+      function updateOutput() {
+        let number = "";
+        charMap.forEach((ref) => {
+          if (ref === ".") {
+            number += ".";
+          } else {
+            const picker = document.getElementById(ref);
+            number += getSelectedDigit(picker);
+          }
+        });
+        output.textContent = number;
+      }
+
+      function setupPicker(id, char = "0") {
+        const picker = document.getElementById(id);
+
+        if (!/^\d|\.$/.test(char)) char = "0";
+
+        const isDot = char === ".";
+        const charList = isDot
+          ? ["."].concat(Array(3).fill(""))
+          : [...Array(10).keys()].map(String);
+
+        if (isDot) {
+          picker.style.overflowY = "hidden";
+        }
+
+        picker.dataset.chars = charList.join(",");
+        picker.innerHTML = "";
+
+        for (let r = 0; r < totalRepeats; r++) {
+          charList.forEach((c) => {
+            const div = document.createElement("div");
+            div.textContent = c;
+            picker.appendChild(div);
+          });
+        }
+
+        setTimeout(() => {
+          const items = Array.from(picker.children);
+          let targetIndex = 0;
+
+          // Find a middle copy of the desired digit (not just the first)
+          const matchingIndices = items
+            .map((item, i) => (item.textContent === char ? i : -1))
+            .filter((i) => i !== -1);
+
+          const center = items.length / 2;
+          targetIndex = matchingIndices.reduce((prev, curr) => {
+            return Math.abs(curr - center) < Math.abs(prev - center)
+              ? curr
+              : prev;
+          }, matchingIndices[0]);
+
+          picker.scrollTop =
+            items[targetIndex].offsetTop -
+            (picker.clientHeight / 2 - itemHeight / 2);
+
+          highlight();
+          updateOutput();
+        }, 0);
+
+        function highlight() {
+          const items = Array.from(picker.children);
+          const mid = picker.scrollTop + picker.offsetHeight / 2;
+          items.forEach((item) => {
+            const itemMid = item.offsetTop + item.offsetHeight / 2;
+            item.style.color = Math.abs(itemMid - mid) < 30 ? "#000" : "#888";
+          });
+        }
+
+        let scrollTimeout;
+        picker.addEventListener("scroll", () => {
+          highlight();
+          updateOutput();
+
+          const maxScroll = picker.scrollHeight - picker.clientHeight;
+          if (
+            picker.scrollTop < itemHeight * charList.length ||
+            picker.scrollTop > maxScroll - itemHeight * charList.length
+          ) {
+            const index =
+              Math.round(picker.scrollTop / itemHeight) % charList.length;
+            picker.scrollTop = (middleIndex + index) * itemHeight;
+          }
+
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            const index =
+              Math.round(picker.scrollTop / itemHeight) % charList.length;
+            const offset = index * itemHeight;
+            const positionInGroup =
+              picker.scrollTop % (charList.length * itemHeight);
+            picker.scrollTop = picker.scrollTop - positionInGroup + offset;
+
+            highlight();
+            updateOutput();
+          }, 200);
+        });
+      }
+
+      window.onload = () => {
+        for (let i = 1; i <= 7; i++) {
+          setupPicker(`picker${i}`, 0); // 0 is already passed, this is correct
+        }
+        setTimeout(updateOutput, 50); // Initial value update
+      };
+      function handleManualSubmit() {
+        const inputVal = document.getElementById("manualInput").value;
+        const errorEl = document.getElementById("error");
+
+        if (!/^\d*\.?\d*$/.test(inputVal)) {
+          errorEl.textContent = "Please enter a valid number.";
+          return;
+        }
+
+        originalInput = inputVal;
+        errorEl.textContent = "";
+
+        const wrapper = document.querySelector(".picker-wrapper");
+        wrapper.innerHTML =
+          '<div class="picker-mask"></div><div class="picker-highlight"></div>';
+
+        const dotIndex = inputVal.indexOf(".");
+        let pickerCount = 1;
+
+        charMap = [
+          "picker0",
+          "picker1",
+          "picker2",
+          "picker3",
+          ".",
+          "picker4",
+          "picker5",
+        ];
+
+        // 👉 Add extra leftmost picker and include in output
+        const extraPicker = document.createElement("div");
+        extraPicker.className = "digit-column";
+        extraPicker.id = "picker0"; // consistent naming
+
+        wrapper.insertBefore(extraPicker, wrapper.firstChild);
+        setupPicker("picker0", "0");
+
+        charMap = ["picker0"]; // add to charMap first
+
+        for (let i = 0; i < inputVal.length; i++) {
+          const char = inputVal[i];
+
+          if (char === ".") {
+            charMap.push(".");
+            continue;
+          }
+
+          const picker = document.createElement("div");
+          picker.className = "digit-column";
+          const pickerId = `picker${pickerCount++}`;
+          picker.id = pickerId;
+
+          if (dotIndex !== -1 && i > dotIndex) {
+            picker.classList.add("red");
+          }
+
+          wrapper.insertBefore(picker, wrapper.querySelector(".picker-mask"));
+          setupPicker(pickerId, char);
+
+          charMap.push(pickerId);
+        }
+
+        output.textContent = inputVal;
+      }
+
+      function checkNumber() {
+        const picked = output.textContent;
+        const errorEl = document.getElementById("error");
+
+        if (parseFloat(picked) < parseFloat(originalInput)) {
+          errorEl.textContent = "Decrease Number";
+        } else {
+          errorEl.textContent = ""; // clear error
+          alert("Number is valid or increased!");
+        }
+      }
+
+      function addDigitColumn() {
+        const wrapper = document.getElementById("pickerWrapper");
+
+        // Create a new digit column
+        const picker = document.createElement("div");
+        picker.className = "digit-column";
+        const newId = `picker${
+          document.querySelectorAll(".digit-column").length + 1
+        }`;
+        picker.id = newId;
+
+        // Insert the new column to the left, before the first digit column
+        const firstDigitColumn = wrapper.querySelector(".digit-column");
+        wrapper.insertBefore(picker, firstDigitColumn);
+
+        // Setup default digit (0)
+        setupPicker(newId, "0");
+
+        // Insert this new picker ID at the beginning of charMap so it's included in output
+        charMap.unshift(newId);
+
+        // Update output
+        updateOutput();
+      }
+    </script>
+  </body>
+</html>

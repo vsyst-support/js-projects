@@ -7,6 +7,14 @@ const sections = {
   HtmlJS: "html css in javascript projects",
 };
 let names = [
+      {
+    title: "Number Picker Wheel",
+    href: "./javascript-projects/numberpickerwheel/index.html",
+    date: "08/07/2025",
+    description: "number picker wheel",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
 
     {
     title: "Stock Reading Adhoc MF",
