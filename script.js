@@ -886,7 +886,7 @@ let names = [
 
 let sortedNames = [];
 
-const input = document.getElementById("inputBox");
+const input = document.getElementById("input-box");
 const root = document.getElementById("root");
 
 const displayWebsites = ({ websites, sortedNames }) => {
@@ -948,7 +948,7 @@ window.onload = () => {
 // };
 
 input.addEventListener("keyup", (e) => {
-  const searchString = e.target.value;
+  const searchString = e.target.value.toLowerCase();
   let websites = "";
   const advjsdata = names
     .filter((ele) => ele.section === sections.AdvJS)
