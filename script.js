@@ -886,7 +886,7 @@ let names = [
 
 let sortedNames = [];
 
-const input = document.getElementById("input-box");
+const input = document.getElementById("inputBox");
 const root = document.getElementById("root");
 
 const displayWebsites = ({ websites, sortedNames }) => {
