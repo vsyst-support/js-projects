@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>7 Digit Picker with Display</title>
     <style>
+      :root {
+        --bg-color: #f2f2f2;
+        --text-color: #1c1c1e;
+        --picker-bg: #f0f0f0;
+        --digit-color: rgba(0, 0, 0, 0.54);
+        /* --highlight-color: #000; */
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --picker-wrapper-color: #ffffff;
+        --border-color: #d8d8d8;
+        --error-color: #e53935;
+        --primary-color: #3370cb;
+        --border-light-color: #e8e8e8;
+        --mask-bg-color: rgba(255, 255, 255, 0.95);
+        --highlight-text-color: #000;
+        --faded-text-color: #888888;
+      }
+
+      body.dark {
+        --bg-color: #121212;
+        --text-color: #e5e5e7;
+        --picker-bg: #1b1b1b;
+        --digit-color: rgba(255, 255, 255, 0.54);
+        /* --highlight-color: #fff; */
+        --shadow-color: rgba(255, 255, 255, 0.1);
+        --picker-wrapper-color: #232323;
+        --border-color: #525254;
+        --error-color: #e53935;
+        --primary-color: #5c8dd5;
+        --border-light-color: #232325;
+        --mask-bg-color: rgba(18, 18, 18, 0.95);
+        body.dark {
+          --highlight-text-color: #fff;
+          --faded-text-color: #777777;
+        }
+      }
+
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
         display: flex;
@@ -111,36 +147,6 @@
         color: #000;
       }
 
-      :root {
-        --bg-color: #f2f2f2;
-        --text-color: #1c1c1e;
-        --picker-bg: #f0f0f0;
-        --digit-color: rgba(0, 0, 0, 0.54);
-        --highlight-color: #000;
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --picker-wrapper-color: #ffffff;
-        --border-color: #d8d8d8;
-        --error-color: #e53935;
-        --primary-color: #3370cb;
-        --border-light-color: #e8e8e8;
-        --mask-bg-color: rgba(255, 255, 255, 0.95);
-      }
-
-      body.dark {
-        --bg-color: #121212;
-        --text-color: #e5e5e7;
-        --picker-bg: #1b1b1b;
-        --digit-color: rgba(255, 255, 255, 0.54);
-        --highlight-color: #fff;
-        --shadow-color: rgba(255, 255, 255, 0.1);
-        --picker-wrapper-color: #232323;
-        --border-color: #525254;
-        --error-color: #e53935;
-        --primary-color: #5c8dd5;
-        --border-light-color: #232325;
-        --mask-bg-color: rgba(18, 18, 18, 0.95);
-      }
-
       .switch {
         position: relative;
         display: inline-block;
@@ -205,38 +211,63 @@
         color: var(--picker-wrapper-color);
         border-radius: 5px;
       }
+
+      .toggle_text_alignment {
+        margin-left: 10px;
+        font-size: 16px;
+      }
+
+      .margin_top {
+        margin-top: 30px;
+        text-align: center;
+      }
+
+      .submit_btn {
+        padding: 8px 16px;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+
+      .error_style {
+        color: var(--error-color);
+        height: 20px;
+        font-size: 16px;
+      }
+
+      .add_btn_style {
+        padding: 8px 20px;
+        font-size: 16px;
+      }
+
+      .top {
+        margin-top: 20px;
+      }
     </style>
   </head>
   <body>
-    <div style="margin-bottom: 20px">
+    <div>
       <label class="switch">
         <input type="checkbox" id="themeToggle" onchange="toggleTheme()" />
         <span class="slider round"></span>
       </label>
-      <span id="themeLabel" style="margin-left: 10px; font-size: 16px"
-        >Light Mode</span
-      >
+      <span id="themeLabel" class="toggle_text_alignment">Light Mode</span>
     </div>
 
-    <div style="margin-top: 30px; text-align: center">
+    <div class="margin_top">
       <input
         class="input_style"
         type="text"
         id="manualInput"
         placeholder="Enter any number"
       />
-      <button
-        class="btn_style"
-        onclick="handleManualSubmit()"
-        style="padding: 8px 16px; font-size: 16px; margin-left: 10px"
-      >
+      <button class="btn_style submit_btn" onclick="handleManualSubmit()">
         Submit
       </button>
     </div>
 
     <div class="picker-group">
       <h2 id="output"></h2>
-      <p id="error" style="color: red; height: 20px; font-size: 16px"></p>
+      <p id="error" class="error_style"></p>
 
       <div class="picker-wrapper" id="pickerWrapper">
         <div class="digit-column" id="picker1"></div>
@@ -249,25 +280,16 @@
         <div class="picker-mask"></div>
         <div class="picker-highlight"></div>
       </div>
-      <button
-        class="btn_style"
-        onclick="addDigitColumn()"
-        style="padding: 8px 20px; font-size: 16px"
-      >
+      <button class="btn_style add_btn_style" onclick="addDigitColumn()">
         +
       </button>
     </div>
 
-    <div style="margin-top: 20px">
-      <button
-        class="btn_style"
-        onclick="checkNumber()"
-        style="padding: 8px 20px; font-size: 16px"
-      >
+    <div class="top">
+      <button class="btn_style add_btn_style" onclick="checkNumber()">
         Check
       </button>
     </div>
-
     <script>
       let originalInput = ""; // stores the input number
       let pickerCount = 7; // starting with 7 as per initial setup
@@ -352,35 +374,34 @@
           updateOutput();
         }, 0);
 
-        function highlightAll() {
-          const styles = getComputedStyle(document.documentElement);
+        function highlight() {
+          const items = Array.from(picker.children);
+          const mid = picker.scrollTop + picker.offsetHeight / 2;
+
+          // Get current theme colors from CSS variables
+          const styles = getComputedStyle(document.body);
           const highlightColor = styles
-            .getPropertyValue("--highlight-color")
+            .getPropertyValue("--highlight-text-color")
             .trim();
-          const digitColor = styles.getPropertyValue("--digit-color").trim();
+          const fadedColor = styles
+            .getPropertyValue("--faded-text-color")
+            .trim();
 
-          document.querySelectorAll(".digit-column").forEach((picker) => {
-            const items = Array.from(picker.children);
-            const mid = picker.scrollTop + picker.offsetHeight / 2;
-
-            items.forEach((item) => {
-              const itemMid = item.offsetTop + item.offsetHeight / 2;
-              item.style.color =
-                Math.abs(itemMid - mid) < 30 ? highlightColor : digitColor;
-            });
+          items.forEach((item) => {
+            const itemMid = item.offsetTop + item.offsetHeight / 2;
+            item.style.color =
+              Math.abs(itemMid - mid) < 30 ? highlightColor : fadedColor;
           });
         }
 
-        // items.forEach((item) => {
-        //   const isActive = Math.abs(itemMid - mid) < 30;
-        //   item.style.color = isActive
-        //     ? getComputedStyle(document.body)
-        //         .getPropertyValue("--highlight-color")
-        //         .trim()
-        //     : getComputedStyle(document.body)
-        //         .getPropertyValue("--digit-color")
-        //         .trim();
-        // });
+        //  function highlight() {
+        //   const items = Array.from(picker.children);
+        //   const mid = picker.scrollTop + picker.offsetHeight / 2;
+        //   items.forEach((item) => {
+        //     const itemMid = item.offsetTop + item.offsetHeight / 2;
+        //     item.style.color = Math.abs(itemMid - mid) < 30 ? "#000" : "#888";
+        //   });
+        // }
 
         let scrollTimeout;
         picker.addEventListener("scroll", () => {
@@ -481,7 +502,6 @@
         }
 
         output.textContent = inputVal;
-        setTimeout(highlightAll, 100);
       }
 
       function checkNumber() {
@@ -535,9 +555,6 @@
           label.textContent = "Light Mode";
           toggle.checked = false;
         }
-
-        // ✅ Apply color update to all pickers
-        highlightAll();
       }
     </script>
   </body>
