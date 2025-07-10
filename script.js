@@ -948,7 +948,7 @@ window.onload = () => {
 // };
 
 input.addEventListener("keyup", (e) => {
-  const searchString = e.target.value.toLowerCase();
+  const searchString = e.target.value;
   let websites = "";
   const advjsdata = names
     .filter((ele) => ele.section === sections.AdvJS)
