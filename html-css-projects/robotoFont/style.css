@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Regular.woff2") format("woff2"),
+    url("./fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Edu NSW ACT Cursive";
+  src: url("./fonts/EduNSWACTCursive-Regular.woff2") format("woff2"),
+    url("./fonts/EduNSWACTCursive-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+div {
+  font-family: "Roboto";
+}
+
+span {
+  font-family: "Edu NSW ACT Cursive", cursive;
+}
