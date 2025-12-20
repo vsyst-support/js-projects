@@ -7,6 +7,15 @@ const sections = {
   HtmlJS: "html css in javascript projects",
 };
 let names = [
+
+      {
+    title: "Product Invoice",
+    href: "./javascript-projects/productInvoice/index.html",
+    date: "20/12/2025",
+    description: "Product Invoice",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
       {
     title: "Number Picker Wheel",
     href: "./javascript-projects/numberpickerwheel/index.html",

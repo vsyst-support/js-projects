@@ -1,0 +1,1404 @@
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body class="body_style">
+  <div class="cards_alignment">
+    <div class="form_card">
+      <div class="row_align btn-group">
+        <button onclick="showInputs(1, this)" class="active">
+          Invoice Details
+        </button>
+        <button onclick="showInputs(2, this)">Cust & Dlr Details</button>
+        <!-- <button onclick="showInputs(3, this)">Bill & Ship</button> -->
+        <button onclick="showInputs(4, this)">Table Entries</button>
+        <button onclick="showInputs(6, this)">Settings</button>
+      </div>
+
+      <div id="input1" class="input-section active">
+        <h4>Invoice Details</h4>
+        <div class="column">
+          <label class="label_style" for="formGroupExampleInput"
+            >Invoice No</label
+          >
+          <input
+            class="input_style"
+            type="text"
+            id="inv_no_input"
+            placeholder="Invoice no"
+          />
+        </div>
+        <div class="top column">
+          <label class="label_style" for="formGroupExampleInput"
+            >Invoice Date</label
+          >
+          <input class="input_style" type="date" id="inv_date_input" />
+        </div>
+        <div class="top column">
+          <label class="label_style" for="formGroupExampleInput"
+            >Due Date</label
+          >
+          <input class="input_style" type="date" id="due_date_input" />
+        </div>
+      </div>
+
+      <div id="input2" class="input-section">
+        <div class="row_align">
+          <div>
+            <h4>Customer Details</h4>
+            <div>
+              <label class="label_style" for="formGroupExampleInput"
+                >Customer Name</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="cust_name_input"
+                placeholder="Customer name"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Customer Address</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="cust_adrs_input"
+                placeholder="Customer address"
+              />
+            </div>
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Place Of Supply</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="cust_ps_input"
+                placeholder="Place of supply"
+              />
+            </div>
+          </div>
+          <div>
+            <h4>Dealer Details</h4>
+            <div>
+              <label class="label_style" for="formGroupExampleInput"
+                >Dealer Name</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="dlr_name_input"
+                placeholder="Dealer name"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Dealer Address</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="dlr_adrs_input"
+                placeholder="Dealer address"
+              />
+            </div>
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Dealer Email</label
+              >
+              <input
+                class="input_style1"
+                type="email"
+                id="dlr_email_input"
+                placeholder="Dealer email"
+              />
+            </div>
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Email</label
+              >
+              <input
+                class="input_style1"
+                type="email"
+                id="dlr_email_1_input"
+                placeholder="Email Address"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Dealer Code</label
+              >
+              <input
+                class="input_style1"
+                type="number"
+                id="dlr_code_input"
+                placeholder="Dealer code"
+              />
+            </div>
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Dealer GSTIN</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="dlr_gstin_input"
+                placeholder="Dealer gstin"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Website</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="website_input"
+                placeholder="Website"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="input3" class="input-section">
+        <div class="row_align">
+          <div>
+            <h4>Bill To</h4>
+            <div>
+              <label class="label_style" for="formGroupExampleInput"
+                >Address</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="adrs_input"
+                placeholder="Address"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Pin :</label
+              >
+              <input
+                class="input_style1"
+                type="number"
+                id="pin_input"
+                placeholder="Pin"
+              />
+            </div>
+          </div>
+          <div>
+            <h4>Ship To</h4>
+            <div>
+              <label class="label_style" for="formGroupExampleInput"
+                >Address</label
+              >
+              <input
+                class="input_style1"
+                type="text"
+                id="adrs_1_input"
+                placeholder="Address"
+              />
+            </div>
+
+            <div class="top">
+              <label class="label_style" for="formGroupExampleInput"
+                >Place of Supply</label
+              >
+              <input
+                class="input_style1"
+                type="number"
+                id="ps1_input"
+                placeholder="Place of supply"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="input4" class="input-section">
+        <div id="product_form_parent">
+          <h4>Table Entries</h4>
+          <div class="table_card" id="row1" data-row="1">
+            <div class="row_align">
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >S N</label
+                >
+                <input
+                  class="input_style1"
+                  type="number"
+                  name="sn1"
+                  id="sn_1_i"
+                  value="000225"
+                />
+              </div>
+              <div class="input_padding"></div>
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Date</label
+                >
+                <input
+                  class="input_style1"
+                  type="text"
+                  name="dte1"
+                  id="dte_1_i"
+                  value="20/12/2025"
+                />
+              </div>
+              <div class="input_padding"></div>
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Vehicle No.</label
+                >
+                <input
+                  class="input_style1"
+                  type="text"
+                  name="veh1"
+                  id="veh_1_i"
+                  value="CG24ET4442"
+                />
+              </div>
+            </div>
+            <div class="row_align">
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Product Name</label
+                >
+                <input
+                  class="input_style1"
+                  type="text"
+                  name="product1"
+                  id="prod_1_i"
+                  value="DIESEL"
+                />
+              </div>
+              <div class="input_padding"></div>
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Qty</label
+                >
+                <input
+                  class="input_style1"
+                  type="number"
+                  name="qty1"
+                  id="qty_1_i"
+                  value="50.000"
+                />
+              </div>
+              <div class="input_padding"></div>
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Unit</label
+                >
+                <input
+                  class="input_style1"
+                  type="text"
+                  name="unit1"
+                  id="unit_1_i"
+                  value="Ltr."
+                />
+              </div>
+            </div>
+            <div class="row_align">
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Rate</label
+                >
+                <input
+                  class="input_style1"
+                  type="number"
+                  name="rate1"
+                  id="rate_1_i"
+                  value="90.5"
+                />
+              </div>
+              <div class="input_padding"></div>
+
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Disc</label
+                >
+                <input
+                  class="input_style1"
+                  type="number"
+                  name="disc1"
+                  id="disc_1_i"
+                  value="5"
+                />
+              </div>
+              <div class="input_padding"></div>
+              <div class="top">
+                <label class="label_style" for="formGroupExampleInput"
+                  >Amount</label
+                >
+                <input
+                  class="input_style1"
+                  type="number"
+                  name="amt1"
+                  id="amt_1_i"
+                  value="4525.00"
+                />
+              </div>
+            </div>
+            <button class="remove_btn flex_center" onclick="removeCard(this)">
+              <i class="material-icons active">delete</i> Remove Item
+            </button>
+          </div>
+        </div>
+        <button class="btn_design" id="btn_new">Add More</button>
+      </div>
+      <div id="input6" class="input-section">
+        <div>
+          <h4>Toogle Buttons</h4>
+
+          <!-- <button
+          id="toggleDateBtn"
+          class="toggle-btn generate_pdf_btn no-print btn_style"
+          onclick="toggleDateColumn(this)"
+          >
+          Show / Hide Date
+        </button> -->
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              background-color: #f0f0f0;
+              align-items: center;
+              padding: 10px;
+              margin-top: 10px;
+            "
+          >
+            <div>Show Dzzlo</div>
+            <div class="toggle-wrapper">
+              <label class="switch">
+                <input type="checkbox" id="toggleDzzlo" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              background-color: #f0f0f0;
+              align-items: center;
+              padding: 10px;
+              margin-top: 10px;
+            "
+          >
+            <p>Show Disc</p>
+            <div class="toggle-wrapper">
+              <label class="switch">
+                <input type="checkbox" id="toggleDisc" checked />
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="invoice" class="invoice">
+      <div class="inv">
+        <p class="subject_span">Subject to RAIPUR Jurisdiction</p>
+      </div>
+
+      <div id="boxes">
+        <div id="leftbox">
+          <img
+            id="dzzlo_logo"
+            src="./dzzlo logo demo.png"
+            width="100"
+            height="100"
+            data-holder-rendered="true"
+          />
+          <div>
+            <div id="dealer_contact">
+              <div class="margin_bottom margin_top gray">
+                Email :
+                <span class="black" id="dlr_email_1_text">info@vsyst.in</span>
+              </div>
+              <div class="margin_bottom gray">
+                Website :
+                <span class="black" id="website_text">vsyst.in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="middlebox">
+          <div>
+            <div class="name left_margin" id="dlr_name_text">Dealer One</div>
+          </div>
+          <div class="margin_top left_margin" id="dlr_adrs_text">
+            Devendra nagar Raipur Chhatisgarh
+          </div>
+          <div class="left_margin" id="dlr_email_text">dealer1@vsyst.in</div>
+          <div>
+            <h5 id="pdf_topic">INVOICE</h5>
+          </div>
+        </div>
+
+        <div id="rightbox">
+          <img
+            src="./Indian-Oil-Emblem-removebg-preview 1.png"
+            width="135"
+            height="110"
+            data-holder-rendered="true"
+          />
+          <div>
+            <div class="margin_bottom margin_top right_margin gray">
+              Dealer Code :
+              <span class="black" id="dlr_code_text">123456</span>
+            </div>
+            <div class="margin_bottom right_margin gray">
+              GSTIN :
+              <span class="black" id="dlr_gstin_text">QUE437DT38497</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border"></div>
+      <div id="customer_details" class="vertical_border">
+        <div>
+          <div class="customer_name" id="cust_name_text">Customer Two</div>
+        </div>
+        <div>
+          <div class="margin_bottom margin_top" id="cust_adrs_text">
+            Raipur Chhatisgarh
+          </div>
+        </div>
+        <div>
+          <div class="margin_bottom margin_top" id="ps_text">Uttarakhand</div>
+        </div>
+      </div>
+      <div id="invoice_details">
+        <div class="margin_bottom gray align_left">
+          Invoice no:
+          <span class="regular float_right" id="inv_no_text">DT0000001</span>
+        </div>
+        <div class="margin_bottom align_left gray">
+          Invoice Date:
+          <span class="regular float_right" id="inv_date_text">01/10/2018</span>
+        </div>
+        <div class="align_left gray">
+          Due Date:<span class="regular float_right" id="due_date_text"
+            >30/10/2018</span
+          >
+        </div>
+      </div>
+
+      <div class="row_align"></div>
+      <div>
+        <table cellspacing="5" cellpadding="5" id="dataTable">
+          <thead>
+            <tr>
+              <th class="align_center">S N</th>
+              <th class="align_center">Date</th>
+              <th class="align_center">Vehicle No.</th>
+              <th class="align_center">Product Name</th>
+              <th class="align_right">Qty</th>
+              <th class="align_right">Unit</th>
+              <th class="align_right">Rate</th>
+              <th class="align_right">Disc</th>
+              <th class="align_right">Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-row="1">
+              <td class="align_center" id="sn_1">000225</td>
+              <td
+                class="align_center"
+                id="dte_1"
+                onchange="handleDteChange(event)"
+              >
+                20/12/2025
+              </td>
+              <td class="align_center" id="veh_1">CG24ET4442</td>
+              <td class="align_center" id="prod_1">DIESEL</td>
+              <td class="align_right" id="qty_1">50.000</td>
+              <td class="align_right" id="unit_1">Ltr.</td>
+              <td class="align_right" id="rate_1">90.5</td>
+              <td class="align_right" id="disc_1">5 %</td>
+              <td class="align_right" id="amt_1">4525.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <!-- <tr>
+              <td colspan="3"></td>
+              <td colspan="1" style="text-align: left">Total Diesel Qty.</td>
+              <td colspan="1" style="font-weight: bold">85.00</td>
+              <td colspan="1" style="font-weight: bold">Ltr</td>
+              <td colspan="2" style="text-align: left">Product Amt.</td>
+              <td colspan="1" style="font-weight: bold">₹ 56.66</td>
+            </tr> -->
+
+            <tr>
+              <td colspan="4" data-colspan>Total Diesel Qty</td>
+              <td
+                colspan="1"
+                data-colspan
+                style="font-weight: bold"
+                id="total_diesel_qty"
+              >
+                50.000
+              </td>
+              <td colspan="1" style="font-weight: bold" data-colspan>Ltr.</td>
+              <td colspan="2" style="text-align: left" data-colspan>
+                Product Amt.
+              </td>
+              <td colspan="1" style="font-weight: bold" id="total_product_amt">
+                ₹ 4525.00
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" data-colspan></td>
+              <td style="text-align: left" colspan="2" data-colspan>
+                Total Disc
+              </td>
+              <td colspan="1" id="total_discount">-226.25</td>
+            </tr>
+
+            <tr>
+              <td colspan="6" data-colspan></td>
+              <td style="text-align: left" colspan="2" data-colspan>
+                Round Off
+              </td>
+              <td colspan="1" id="round_off_value">0.25</td>
+            </tr>
+            <tr>
+              <td colspan="6" rowspan="2" data-colspan>
+                <h3 id="inwords" class="align_left">
+                  ₹ Four Thousand Two Hundred and Ninety Nine only.
+                </h3>
+              </td>
+              <td
+                class="g_total_border align_left"
+                style="text-align: left"
+                colspan="2"
+                data-colspan
+              >
+                G. TOTAL
+              </td>
+              <td
+                class="g_total_border"
+                style="text-align: right"
+                colspan="1"
+                id="g_total"
+              >
+                ₹ 4,299.00
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <hr />
+      </div>
+      <div class="note">
+        <div>NOTE:</div>
+        <div>
+          A finance charge of 2% will be made on unpaid balances after 3 days.
+        </div>
+        <p id="foot">
+          This is an electronically generated Tax Invoice, hence does not
+          require seal & sign.
+        </p>
+      </div>
+
+      <body>
+        <div id="background">
+          <span id="bg-text"
+            ><img
+              style="opacity: 0.1"
+              src="./dzzlo logo demo.png"
+              width="110"
+              height="110"
+              data-holder-rendered="true"
+            />DZZLO - OMS</span
+          >
+        </div>
+      </body>
+      <div>
+        <button
+          onclick="generatePDF()"
+          id="btn-print-this"
+          class="generate_pdf_btn no-print"
+        >
+          Print This or Generate PDF
+        </button>
+      </div>
+    </div>
+  </div>
+  <div></div>
+
+  <script>
+    const inv_no_text = document.getElementById("inv_no_text");
+    document.getElementById("inv_no_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      console.log(e.target.value);
+      inv_no_text.innerHTML = e.target.value;
+    });
+
+    const inv_date_text = document.getElementById("inv_date_text");
+    document
+      .getElementById("inv_date_input")
+      .addEventListener("change", (e) => {
+        e.preventDefault();
+        inv_date_text.innerHTML = formatDateDDMMYYYY(e.target.value);
+      });
+
+    const due_date_text = document.getElementById("due_date_text");
+    document
+      .getElementById("due_date_input")
+      .addEventListener("change", (e) => {
+        e.preventDefault();
+        due_date_text.innerHTML = formatDateDDMMYYYY(e.target.value);
+      });
+
+    const cust_name_text = document.getElementById("cust_name_text");
+    document
+      .getElementById("cust_name_input")
+      .addEventListener("keyup", (e) => {
+        e.preventDefault();
+        cust_name_text.innerHTML = e.target.value;
+      });
+
+    const cust_adrs_text = document.getElementById("cust_adrs_text");
+    document
+      .getElementById("cust_adrs_input")
+      .addEventListener("keyup", (e) => {
+        e.preventDefault();
+        cust_adrs_text.innerHTML = e.target.value;
+      });
+
+    const ps_text = document.getElementById("ps_text");
+    document.getElementById("cust_ps_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      ps_text.innerHTML = e.target.value;
+    });
+
+    const dlr_name_text = document.getElementById("dlr_name_text");
+    document.getElementById("dlr_name_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      dlr_name_text.innerHTML = e.target.value;
+    });
+
+    const dlr_code_text = document.getElementById("dlr_code_text");
+    document.getElementById("dlr_code_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      dlr_code_text.innerHTML = e.target.value;
+    });
+
+    const dlr_gstin_text = document.getElementById("dlr_gstin_text");
+    document
+      .getElementById("dlr_gstin_input")
+      .addEventListener("keyup", (e) => {
+        e.preventDefault();
+        dlr_gstin_text.innerHTML = e.target.value;
+      });
+
+    const dlr_email_1_text = document.getElementById("dlr_email_1_text");
+    document
+      .getElementById("dlr_email_1_input")
+      .addEventListener("keyup", (e) => {
+        e.preventDefault();
+        dlr_email_1_text.innerHTML = e.target.value;
+      });
+
+    const website_text = document.getElementById("website_text");
+    document.getElementById("website_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      website_text.innerHTML = e.target.value;
+    });
+
+    const dlr_adrs_text = document.getElementById("dlr_adrs_text");
+    document.getElementById("dlr_adrs_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      dlr_adrs_text.innerHTML = e.target.value;
+    });
+
+    const dlr_email_text = document.getElementById("dlr_email_text");
+    document
+      .getElementById("dlr_email_input")
+      .addEventListener("keyup", (e) => {
+        e.preventDefault();
+        dlr_email_text.innerHTML = e.target.value;
+      });
+
+    const adrs_text = document.getElementById("adrs_text");
+    document.getElementById("adrs_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      adrs_text.innerHTML = e.target.value;
+    });
+
+    const pin_text = document.getElementById("pin_text");
+    document.getElementById("pin_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      pin_text.innerHTML = e.target.value;
+    });
+
+    const adrs_1_text = document.getElementById("adrs_1_text");
+    document.getElementById("adrs_1_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      adrs_1_text.innerHTML = e.target.value;
+    });
+
+    const ps1_text = document.getElementById("ps1_text");
+    document.getElementById("ps1_input").addEventListener("keyup", (e) => {
+      e.preventDefault();
+      ps1_text.innerHTML = e.target.value;
+    });
+
+    let prod_count = 1;
+    function addRow() {
+      prod_count += 1;
+
+      const table = document.querySelector("#dataTable tbody");
+
+      const row = `
+      <tr data-row="${prod_count}">
+        <td class="align_center" id="sn_${prod_count}"></td>
+        <td class="align_center" id="dte_${prod_count}"></td>
+        <td class="align_center" id="veh_${prod_count}"></td>
+        <td class="align_center" id="prod_${prod_count}"></td>
+        <td class="align_right" id="qty_${prod_count}"></td>
+        <td class="align_right" id="unit_${prod_count}"></td>
+        <td class="align_right" id="rate_${prod_count}"></td>
+        <td class="align_right" id="disc_${prod_count}"></td>
+        <td class="align_right" id="amt_${prod_count}"></td>
+      </tr>
+    `;
+
+      table.insertAdjacentHTML("beforeend", row);
+    }
+
+    // countre = 1;
+    function add_more_field() {
+      // countre += 1;
+
+      html = `
+            <div class="table_card" data-row="${prod_count}">
+              <div
+                class="row_align"
+              >
+
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >S N</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="number"
+                   name="sn1_${prod_count}"  id="sn_${prod_count}_i"
+                   placeholder="Order number"
+                  />
+                </div>
+
+                     <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Date</label
+                  >
+                   <input
+                    class="input_style1"
+                    type="text"
+                    name="dte${prod_count}"
+                    id="dte_${prod_count}_i"
+                    placeholder="Date"
+
+
+                  />
+                </div>
+
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Vehicle No.</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="text"
+                   name="veh${prod_count}" id="veh_${prod_count}_i"
+                   placeholder="Vehicle no"
+                  />
+                </div>
+              </div>
+              <div
+              class="row_align"
+              >
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Product Name</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="text"
+                    name="product1${prod_count}" id="prod_${prod_count}_i"
+                    placeholder="Product name"
+                  />
+                </div>
+
+                <div class="input_padding"></div>
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Qty</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="number"
+                   name="qty1${prod_count}" id="qty_${prod_count}_i"
+                   placeholder="Quantity"
+                  />
+                </div>
+                <div class="input_padding"></div>
+                   <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Unit</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="text"
+                    name="unit1${prod_count}" id="unit_${prod_count}_i"
+                    placeholder="Unit"
+                  />
+                </div>
+              </div>
+              <div
+                class="row_align"
+              >
+
+
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Rate</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="number"
+                    name="rate1${prod_count}" id="rate_${prod_count}_i"
+                    placeholder="Rate"
+                  />
+                </div>
+                <div class="input_padding"></div>
+
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Disc</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="number"
+                    name="disc1${prod_count}"  id="disc_${prod_count}_i"
+                    placeholder="Discount"
+                  />
+                </div>
+                <div class="input_padding"></div>
+                <div class="top">
+                  <label class="label_style" for="formGroupExampleInput"
+                    >Amount</label
+                  >
+                  <input
+                    class="input_style1"
+                    type="number"
+                     name="amt1${prod_count}"  id="amt_${prod_count}_i"
+                     placeholder="Amount"
+                  />
+                </div>
+              </div>
+                  <button
+                class="remove_btn flex_center"
+                onclick="removeCard(this)"
+              >
+                <i class="material-icons active">delete</i> Remove Item
+              </button>
+          </div>`;
+
+      var form = document.getElementById("product_form_parent");
+      form.insertAdjacentHTML("beforeend", html);
+    }
+
+    document.getElementById("btn_new").addEventListener("click", function (e) {
+      e.preventDefault();
+
+      addRow();
+      add_more_field();
+    });
+
+    // handleDteChange;
+    document
+      .getElementById("product_form_parent")
+      .addEventListener("keyup", function (e) {
+        e.preventDefault();
+
+        const baseId = e.target.id.replace("_i", "");
+        const target = document.getElementById(baseId);
+        if (!target) return;
+
+        // if (baseId.startsWith("dte")) {
+        //   target.textContent = formatDateDDMMYYYY(e.target.value);
+        // } else {
+        //   target.textContent = e.target.value;
+        // }
+
+        target.textContent = e.target.value;
+        updateTotalDieselQty();
+        calculateInvoiceTotals();
+        updateTotalDiscount();
+      });
+
+    function generatePDF() {
+      const element = document.getElementById("invoice");
+
+      // Hide buttons before generating PDF
+      document
+        .querySelectorAll(".no-print")
+        .forEach((btn) => (btn.style.display = "none"));
+
+      html2pdf()
+        .from(element)
+        .set({
+          margin: 1,
+          filename: "myDocument.pdf",
+          html2canvas: { scale: 2 },
+          jsPDF: { orientation: "portrait" },
+        })
+        .save()
+        .then(() => {
+          // toggleContent();
+          // toggleDiscColumn(true);
+
+          document
+            .querySelectorAll(".no-print")
+            .forEach((btn) => (btn.style.display = "inline-block"));
+        });
+    }
+    function showInputs(index, clickedBtn) {
+      // Remove 'active' class from all buttons
+      const buttons = document.querySelectorAll(".btn-group button");
+      buttons.forEach((btn) => btn.classList.remove("active"));
+
+      // Add 'active' class to clicked button
+      clickedBtn.classList.add("active");
+
+      // Hide all input sections
+      const sections = document.querySelectorAll(".input-section");
+      sections.forEach((sec) => sec.classList.remove("active"));
+
+      // Show selected input section
+      document.getElementById("input" + index).classList.add("active");
+    }
+
+    function removeCard(button) {
+      // 🚫 Prevent removing the last remaining item
+      if (document.querySelectorAll(".table_card").length === 1) {
+        alert("At least one item is required");
+        return;
+      }
+
+      const card = button.closest(".table_card");
+      const rowId = card.getAttribute("data-row");
+
+      // Remove form card
+      card.remove();
+
+      // Remove matching table row
+      const tableRow = document.querySelector(
+        `#dataTable tbody tr[data-row="${rowId}"]`
+      );
+      if (tableRow) tableRow.remove();
+
+      // Recalculate totals
+      updateTotalDieselQty();
+      calculateInvoiceTotals();
+      updateTotalDiscount();
+    }
+
+    function formatDateDDMMYYYY(dateValue) {
+      const date = new Date(dateValue);
+
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+
+    function toggleContent() {
+      const elements = [
+        document.getElementById("dzzlo_logo"),
+        document.getElementById("dealer_contact"),
+        document.getElementById("background"),
+      ];
+
+      elements.forEach((el) => {
+        if (!el) return;
+        el.style.display = el.style.display === "none" ? "" : "none";
+      });
+    }
+
+    // function toggleDateColumn(btn) {
+    //   // Toggle active background
+    //   btn.classList.toggle("active");
+
+    //   // Header (Date column)
+    //   const header = document.querySelector("#dataTable thead th:nth-child(2)");
+
+    //   // Body + footer cells
+    //   const cells = document.querySelectorAll(
+    //     "#dataTable tbody td:nth-child(2), #dataTable tfoot td:nth-child(2)"
+    //   );
+
+    //   // Toggle visibility
+    //   if (header) header.classList.toggle("hide-date-column");
+    //   cells.forEach((cell) => cell.classList.toggle("hide-date-column"));
+    // }
+    function toggleDiscColumn(hide) {
+      // Header
+      document
+        .querySelector("#dataTable thead th:nth-child(8)")
+        ?.classList.toggle("hide-disc-column", hide);
+
+      // Body
+      document
+        .querySelectorAll("#dataTable tbody td:nth-child(8)")
+        .forEach((td) => td.classList.toggle("hide-disc-column", hide));
+
+      // Hide "Total Disc" row
+      document
+        .getElementById("total_discount")
+        ?.closest("tr")
+        ?.classList.toggle("hide-disc-column", hide);
+
+      // Fix footer layout
+      fixFooterColspan();
+    }
+
+    function fixFooterColspan() {
+      // Count visible columns from THEAD
+      const visibleCols = document.querySelectorAll(
+        "#dataTable thead th:not(.hide-disc-column)"
+      ).length;
+
+      document.querySelectorAll("#dataTable tfoot tr").forEach((row) => {
+        const tds = [...row.children];
+
+        // Store original colspans once
+        tds.forEach((td) => {
+          if (!td.dataset.original) {
+            td.dataset.original = td.colSpan;
+          }
+          td.colSpan = Number(td.dataset.original);
+        });
+
+        // Current total colspan
+        let total = tds.reduce((sum, td) => sum + td.colSpan, 0);
+
+        // Difference after hiding column
+        const diff = visibleCols - total;
+
+        if (diff !== 0) {
+          // Expand FIRST flexible cell (usually description / empty cell)
+          const flexibleCell =
+            tds.find((td) => td.dataset.colspan !== undefined) || tds[0];
+
+          flexibleCell.colSpan += diff;
+        }
+      });
+    }
+
+    function updateTotalDieselQty() {
+      let total = 0;
+
+      // Select all qty cells in invoice table
+      document.querySelectorAll('[id^="qty_"]').forEach((cell) => {
+        const value = parseFloat(cell.textContent);
+        const index = cell.id.split("_")[1];
+        const prodName = document.getElementById(`prod_${index}`).innerHTML;
+
+        if (prodName.toLowerCase() === "diesel" && !isNaN(value)) {
+          total += value;
+        }
+      });
+
+      document.getElementById("total_diesel_qty").textContent =
+        total.toFixed(2);
+    }
+
+    function updateTotalProductAmount() {
+      let total = 0;
+
+      document.querySelectorAll('[id^="amt_"]').forEach((cell) => {
+        const value = parseFloat(cell.textContent.replace("₹", "").trim());
+        if (!isNaN(value)) {
+          total += value;
+        }
+      });
+
+      // Rounded final amount
+      const finalAmount = Math.round(total);
+
+      // Decimal part removed (ALWAYS NEGATIVE)
+      const decimalPart = +(total - Math.floor(total)).toFixed(2);
+      const roundOff = decimalPart === 0 ? 0 : -decimalPart;
+
+      // Set values
+      document.getElementById("total_product_amt").textContent =
+        "₹ " + finalAmount;
+
+      document.getElementById("round_off_value").textContent =
+        roundOff.toFixed(2);
+    }
+
+    function updateTotalDiscount() {
+      let totalDiscount = 0;
+
+      document.querySelectorAll("#dataTable tbody tr").forEach((row) => {
+        let index = row.getAttribute("data-row");
+
+        if (!index) {
+          const qtyCell = row.querySelector('[id^="qty_"]');
+          if (!qtyCell) return;
+          index = qtyCell.id.split("_")[1];
+        }
+
+        const qty = parseFloat(
+          document.getElementById(`qty_${index}`)?.textContent || 0
+        );
+
+        const rate = parseFloat(
+          document.getElementById(`rate_${index}`)?.textContent || 0
+        );
+
+        const discPercent = parseFloat(
+          document
+            .getElementById(`disc_${index}`)
+            ?.textContent.replace(/[^\d.]/g, "") || 0
+        );
+
+        if (qty <= 0 || rate <= 0 || discPercent <= 0) return;
+
+        // === YOUR FORMULA ===
+        const original_prod_amount = qty * rate;
+
+        const percentdisc = (rate * discPercent) / 100;
+        const prod_rate = rate - percentdisc;
+
+        const prod_amount = qty * prod_rate;
+
+        const discountedAmount = original_prod_amount - prod_amount;
+
+        totalDiscount += discountedAmount;
+      });
+
+      document.getElementById("total_discount").textContent =
+        "₹ " + totalDiscount.toFixed(2);
+
+      return totalDiscount;
+    }
+
+    function formatIndianNumber(x) {
+      if (!x && x !== 0) return "";
+      const parts = x.toFixed(2).split("."); // ensure 2 decimal places
+      let integerPart = parts[0];
+      const decimalPart = parts[1];
+
+      // Add commas for Indian number format
+      let lastThree = integerPart.slice(-3);
+      let otherNumbers = integerPart.slice(0, -3);
+      if (otherNumbers !== "") {
+        lastThree = "," + lastThree;
+      }
+      let formatted =
+        otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+
+      return formatted + "." + decimalPart;
+    }
+
+    function price_in_words(price) {
+      var sglDigit = [
+          "Zero",
+          "One",
+          "Two",
+          "Three",
+          "Four",
+          "Five",
+          "Six",
+          "Seven",
+          "Eight",
+          "Nine",
+        ],
+        dblDigit = [
+          "Ten",
+          "Eleven",
+          "Twelve",
+          "Thirteen",
+          "Fourteen",
+          "Fifteen",
+          "Sixteen",
+          "Seventeen",
+          "Eighteen",
+          "Nineteen",
+        ],
+        tensPlace = [
+          "",
+          "Ten",
+          "Twenty",
+          "Thirty",
+          "Forty",
+          "Fifty",
+          "Sixty",
+          "Seventy",
+          "Eighty",
+          "Ninety",
+        ],
+        handle_tens = function (dgt, prevDgt) {
+          return dgt == 0
+            ? ""
+            : " " + (dgt == 1 ? dblDigit[prevDgt] : tensPlace[dgt]);
+        },
+        handle_utlc = function (dgt, nxtDgt, denom) {
+          return (
+            (dgt != 0 && nxtDgt != 1 ? " " + sglDigit[dgt] : "") +
+            (nxtDgt != 0 || dgt > 0 ? " " + denom : "")
+          );
+        };
+
+      var str = "",
+        digitIdx = 0,
+        digit = 0,
+        nxtDigit = 0,
+        words = [];
+      price = price.toString();
+      if (isNaN(parseInt(price))) return "";
+      else if (parseInt(price) > 0 && price.length <= 10) {
+        for (digitIdx = price.length - 1; digitIdx >= 0; digitIdx--) {
+          digit = price[digitIdx] - 0;
+          nxtDigit = digitIdx > 0 ? price[digitIdx - 1] - 0 : 0;
+          switch (price.length - digitIdx - 1) {
+            case 0:
+              words.push(handle_utlc(digit, nxtDigit, ""));
+              break;
+            case 1:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 2:
+              words.push(
+                digit != 0
+                  ? " " +
+                      sglDigit[digit] +
+                      " Hundred" +
+                      (price[digitIdx + 1] != 0 && price[digitIdx + 2] != 0
+                        ? " and"
+                        : "")
+                  : ""
+              );
+              break;
+            case 3:
+              words.push(handle_utlc(digit, nxtDigit, "Thousand"));
+              break;
+            case 4:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 5:
+              words.push(handle_utlc(digit, nxtDigit, "Lakh"));
+              break;
+            case 6:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 7:
+              words.push(handle_utlc(digit, nxtDigit, "Crore"));
+              break;
+            case 8:
+              words.push(handle_tens(digit, price[digitIdx + 1]));
+              break;
+            case 9:
+              words.push(
+                digit != 0
+                  ? " " +
+                      sglDigit[digit] +
+                      " Hundred" +
+                      (price[digitIdx + 1] != 0 || price[digitIdx + 2] != 0
+                        ? " and"
+                        : " Crore")
+                  : ""
+              );
+              break;
+          }
+        }
+        str = words.reverse().join("");
+      }
+      return str;
+    }
+
+    function calculateInvoiceTotals() {
+      let productTotal = 0;
+
+      document.querySelectorAll('[id^="amt_"]').forEach((cell) => {
+        const v = parseFloat(cell.textContent.replace(/[₹,\s]/g, ""));
+        if (!isNaN(v)) productTotal += v;
+      });
+
+      const discountTotal = updateTotalDiscount(); // ✅ correct discount
+      const totalValue = productTotal - discountTotal; // net total before rounding
+
+      // 🔹 Your rounding formula
+      const inv_Gtotal_amt = Math.round(Number(totalValue).toFixed(2));
+      const inv_round_amt = (inv_Gtotal_amt - totalValue).toFixed(2);
+
+      // Update DOM
+      document.getElementById("total_product_amt").textContent =
+        "₹ " + productTotal.toFixed(2);
+
+      document.getElementById("round_off_value").textContent = inv_round_amt;
+
+      document.getElementById("g_total").textContent =
+        "₹ " + formatIndianNumber(inv_Gtotal_amt);
+
+      // 🔹 Update inwords using price_in_words
+      const inwordsElem = document.getElementById("inwords");
+      inwordsElem.textContent =
+        "₹ " + price_in_words(inv_Gtotal_amt) + " only.";
+    }
+
+    const toggle = document.getElementById("toggleDzzlo");
+    const content = document.getElementById("toggleContent");
+
+    toggle.addEventListener("change", () => {
+      toggleContent();
+    });
+
+    const toggleDisc = document.getElementById("toggleDisc");
+
+    toggleDisc.addEventListener("change", () => {
+      const hide = !toggleDisc.checked;
+      toggleDiscColumn(hide);
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+</body>
