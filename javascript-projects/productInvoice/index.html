@@ -41,7 +41,7 @@
             class="input_style"
             type="text"
             id="inv_no_input"
-            value="DT0000001"
+            value="PH/510/25-26"
           />
         </div>
         <div class="top column">
@@ -70,7 +70,7 @@
                 class="input_style1"
                 type="text"
                 id="cust_name_input"
-                value="Customer Two"
+                value="a.e.p.hed e/m sub division"
               />
             </div>
 
@@ -82,7 +82,7 @@
                 class="input_style1"
                 type="text"
                 id="cust_adrs_input"
-                value="Raipur Chhatisgarh"
+                value="RAIPUR"
               />
             </div>
             <div class="top">
@@ -93,7 +93,7 @@
                 class="input_style1"
                 type="text"
                 id="cust_ps_input"
-                value="Uttarakhand"
+                value="(C.G.)"
               />
             </div>
           </div>
@@ -107,7 +107,7 @@
                 class="input_style1"
                 type="text"
                 id="dlr_name_input"
-                value="Dealer One"
+                value="MAHAKOSHAL FUELS (ADHOC)"
               />
             </div>
 
@@ -119,7 +119,7 @@
                 class="input_style1"
                 type="text"
                 id="dlr_adrs_input"
-                value="Devendra nagar Raipur Chhatisgarh"
+                value="MANDIR HASAUD RAIPUR CG"
               />
             </div>
             <div class="top">
@@ -130,7 +130,7 @@
                 class="input_style1"
                 type="email"
                 id="dlr_email_input"
-                value="dealer1@vsyst.in"
+                value="mahakoshalfuels@gmail.com"
               />
             </div>
             <div class="top">
@@ -153,7 +153,7 @@
                 class="input_style1"
                 type="number"
                 id="dlr_code_input"
-                value="123456"
+                value="380033"
               />
             </div>
             <div class="top">
@@ -164,7 +164,7 @@
                 class="input_style1"
                 type="text"
                 id="dlr_gstin_input"
-                value="QUE437DT38497"
+                value="22ABZPC8882G1Z6"
               />
             </div>
 
@@ -339,7 +339,7 @@
               </div>
               <div class="input_padding"></div>
 
-              <div class="top">
+              <!-- <div class="top">
                 <label class="label_style" for="formGroupExampleInput"
                   >Disc</label
                 >
@@ -350,7 +350,7 @@
                   id="disc_1_i"
                   value="5"
                 />
-              </div>
+              </div> -->
               <div class="input_padding"></div>
               <div class="top">
                 <label class="label_style" for="formGroupExampleInput"
@@ -361,7 +361,7 @@
                   type="number"
                   name="amt1"
                   id="amt_1_i"
-                  value="4525.00"
+                  readonly
                 />
               </div>
             </div>
@@ -403,7 +403,7 @@
             </div>
           </div>
 
-          <div
+          <!-- <div
             style="
               display: flex;
               flex-direction: row;
@@ -414,14 +414,14 @@
               margin-top: 10px;
             "
           >
-            <p>Show Disc</p>
+            <div>Show Disc</div>
             <div class="toggle-wrapper">
               <label class="switch">
                 <input type="checkbox" id="toggleDisc" checked />
                 <span class="slider"></span>
               </label>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -456,12 +456,16 @@
 
         <div id="middlebox">
           <div>
-            <div class="name left_margin" id="dlr_name_text">Dealer One</div>
+            <div class="name left_margin" id="dlr_name_text">
+              MAHAKOSHAL FUELS (ADHOC)
+            </div>
           </div>
           <div class="margin_top left_margin" id="dlr_adrs_text">
-            Devendra nagar Raipur Chhatisgarh
+            MANDIR HASAUD RAIPUR CG
           </div>
-          <div class="left_margin" id="dlr_email_text">dealer1@vsyst.in</div>
+          <div class="left_margin" id="dlr_email_text">
+            mahakoshalfuels@gmail.com
+          </div>
           <div>
             <h5 id="pdf_topic">INVOICE</h5>
           </div>
@@ -477,11 +481,11 @@
           <div>
             <div class="margin_bottom margin_top right_margin gray">
               Dealer Code :
-              <span class="black" id="dlr_code_text">123456</span>
+              <span class="black" id="dlr_code_text">380033</span>
             </div>
             <div class="margin_bottom right_margin gray">
               GSTIN :
-              <span class="black" id="dlr_gstin_text">QUE437DT38497</span>
+              <span class="black" id="dlr_gstin_text">22ABZPC8882G1Z6</span>
             </div>
           </div>
         </div>
@@ -490,21 +494,21 @@
       <div class="border"></div>
       <div id="customer_details" class="vertical_border">
         <div>
-          <div class="customer_name" id="cust_name_text">Customer Two</div>
-        </div>
-        <div>
-          <div class="margin_bottom margin_top" id="cust_adrs_text">
-            Raipur Chhatisgarh
+          <div class="customer_name" id="cust_name_text">
+            a.e.p.hed e/m sub division
           </div>
         </div>
         <div>
-          <div class="margin_bottom margin_top" id="ps_text">Uttarakhand</div>
+          <div class="margin_bottom margin_top" id="cust_adrs_text">RAIPUR</div>
+        </div>
+        <div>
+          <div class="margin_bottom margin_top" id="ps_text">(C.G.)</div>
         </div>
       </div>
       <div id="invoice_details">
         <div class="margin_bottom gray align_left">
           Invoice no:
-          <span class="regular float_right" id="inv_no_text">DT0000001</span>
+          <span class="regular float_right" id="inv_no_text">PH/510/25-26</span>
         </div>
         <div class="margin_bottom align_left gray">
           Invoice Date:
@@ -529,7 +533,7 @@
               <th class="align_right">Qty</th>
               <th class="align_right">Unit</th>
               <th class="align_right">Rate</th>
-              <th class="align_right">Disc</th>
+              <!-- <th class="align_right">Disc</th> -->
               <th class="align_right">Amount (₹)</th>
             </tr>
           </thead>
@@ -548,7 +552,7 @@
               <td class="align_right" id="qty_1">50.000</td>
               <td class="align_right" id="unit_1">Ltr.</td>
               <td class="align_right" id="rate_1">90.5</td>
-              <td class="align_right" id="disc_1">5 %</td>
+              <!-- <td class="align_right" id="disc_1">5 %</td> -->
               <td class="align_right" id="amt_1">4525.00</td>
             </tr>
           </tbody>
@@ -563,16 +567,9 @@
             </tr> -->
 
             <tr>
-              <td colspan="4" data-colspan>Total Diesel Qty</td>
-              <td
-                colspan="1"
-                data-colspan
-                style="font-weight: bold"
-                id="total_diesel_qty"
-              >
-                50.000
-              </td>
-              <td colspan="1" style="font-weight: bold" data-colspan>Ltr.</td>
+              <td colspan="4" data-colspan>Total Diesel Qty (in Ltr.)</td>
+              <td colspan="1" data-colspan id="total_diesel_qty">50.000</td>
+
               <td colspan="2" style="text-align: left" data-colspan>
                 Product Amt.
               </td>
@@ -580,23 +577,23 @@
                 ₹ 4525.00
               </td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td colspan="6" data-colspan></td>
               <td style="text-align: left" colspan="2" data-colspan>
                 Total Disc
               </td>
               <td colspan="1" id="total_discount">-226.25</td>
-            </tr>
+            </tr> -->
 
             <tr>
-              <td colspan="6" data-colspan></td>
+              <td colspan="5" data-colspan></td>
               <td style="text-align: left" colspan="2" data-colspan>
                 Round Off
               </td>
               <td colspan="1" id="round_off_value">0.25</td>
             </tr>
             <tr>
-              <td colspan="6" rowspan="2" data-colspan>
+              <td colspan="5" rowspan="2" data-colspan>
                 <h3 id="inwords" class="align_left">
                   ₹ Four Thousand Two Hundred and Ninety Nine only.
                 </h3>
@@ -792,7 +789,7 @@
         <td class="align_right" id="qty_${prod_count}"></td>
         <td class="align_right" id="unit_${prod_count}"></td>
         <td class="align_right" id="rate_${prod_count}"></td>
-        <td class="align_right" id="disc_${prod_count}"></td>
+   
         <td class="align_right" id="amt_${prod_count}"></td>
       </tr>
     `;
@@ -906,19 +903,6 @@
                   />
                 </div>
                 <div class="input_padding"></div>
-
-                <div class="top">
-                  <label class="label_style" for="formGroupExampleInput"
-                    >Disc</label
-                  >
-                  <input
-                    class="input_style1"
-                    type="number"
-                    name="disc1${prod_count}"  id="disc_${prod_count}_i"
-                    placeholder="Discount"
-                  />
-                </div>
-                <div class="input_padding"></div>
                 <div class="top">
                   <label class="label_style" for="formGroupExampleInput"
                     >Amount</label
@@ -927,7 +911,7 @@
                     class="input_style1"
                     type="number"
                      name="amt1${prod_count}"  id="amt_${prod_count}_i"
-                     placeholder="Amount"
+                     readonly
                   />
                 </div>
               </div>
@@ -954,22 +938,22 @@
     document
       .getElementById("product_form_parent")
       .addEventListener("keyup", function (e) {
-        e.preventDefault();
+        const id = e.target.id;
+        if (!id || !id.endsWith("_i")) return;
 
-        const baseId = e.target.id.replace("_i", "");
+        const baseId = id.replace("_i", "");
+        const index = baseId.split("_")[1];
+
         const target = document.getElementById(baseId);
-        if (!target) return;
+        if (target) target.textContent = e.target.value;
 
-        // if (baseId.startsWith("dte")) {
-        //   target.textContent = formatDateDDMMYYYY(e.target.value);
-        // } else {
-        //   target.textContent = e.target.value;
-        // }
+        // 🔹 Auto-calc amount ONLY when qty or rate changes
+        if (baseId.startsWith("qty_") || baseId.startsWith("rate_")) {
+          calculateRowAmount(index);
+        }
 
-        target.textContent = e.target.value;
         updateTotalDieselQty();
         calculateInvoiceTotals();
-        updateTotalDiscount();
       });
 
     function generatePDF() {
@@ -984,7 +968,7 @@
         .from(element)
         .set({
           margin: 1,
-          filename: "myDocument.pdf",
+          filename: `INV-${formatDateDDMMYYYY(new Date())}.pdf`,
           html2canvas: { scale: 2 },
           jsPDF: { orientation: "portrait" },
         })
@@ -1036,7 +1020,7 @@
       // Recalculate totals
       updateTotalDieselQty();
       calculateInvoiceTotals();
-      updateTotalDiscount();
+      // updateTotalDiscount();
     }
 
     function formatDateDDMMYYYY(dateValue) {
@@ -1078,59 +1062,59 @@
     //   if (header) header.classList.toggle("hide-date-column");
     //   cells.forEach((cell) => cell.classList.toggle("hide-date-column"));
     // }
-    function toggleDiscColumn(hide) {
-      // Header
-      document
-        .querySelector("#dataTable thead th:nth-child(8)")
-        ?.classList.toggle("hide-disc-column", hide);
+    // function toggleDiscColumn(hide) {
+    //   // Header
+    //   document
+    //     .querySelector("#dataTable thead th:nth-child(8)")
+    //     ?.classList.toggle("hide-disc-column", hide);
 
-      // Body
-      document
-        .querySelectorAll("#dataTable tbody td:nth-child(8)")
-        .forEach((td) => td.classList.toggle("hide-disc-column", hide));
+    //   // Body
+    //   document
+    //     .querySelectorAll("#dataTable tbody td:nth-child(8)")
+    //     .forEach((td) => td.classList.toggle("hide-disc-column", hide));
 
-      // Hide "Total Disc" row
-      document
-        .getElementById("total_discount")
-        ?.closest("tr")
-        ?.classList.toggle("hide-disc-column", hide);
+    //   // Hide "Total Disc" row
+    //   document
+    //     .getElementById("total_discount")
+    //     ?.closest("tr")
+    //     ?.classList.toggle("hide-disc-column", hide);
 
-      // Fix footer layout
-      fixFooterColspan();
-    }
+    //   // Fix footer layout
+    //   fixFooterColspan();
+    // }
 
-    function fixFooterColspan() {
-      // Count visible columns from THEAD
-      const visibleCols = document.querySelectorAll(
-        "#dataTable thead th:not(.hide-disc-column)"
-      ).length;
+    // function fixFooterColspan() {
+    //   // Count visible columns from THEAD
+    //   const visibleCols = document.querySelectorAll(
+    //     "#dataTable thead th:not(.hide-disc-column)"
+    //   ).length;
 
-      document.querySelectorAll("#dataTable tfoot tr").forEach((row) => {
-        const tds = [...row.children];
+    //   document.querySelectorAll("#dataTable tfoot tr").forEach((row) => {
+    //     const tds = [...row.children];
 
-        // Store original colspans once
-        tds.forEach((td) => {
-          if (!td.dataset.original) {
-            td.dataset.original = td.colSpan;
-          }
-          td.colSpan = Number(td.dataset.original);
-        });
+    //     // Store original colspans once
+    //     tds.forEach((td) => {
+    //       if (!td.dataset.original) {
+    //         td.dataset.original = td.colSpan;
+    //       }
+    //       td.colSpan = Number(td.dataset.original);
+    //     });
 
-        // Current total colspan
-        let total = tds.reduce((sum, td) => sum + td.colSpan, 0);
+    //     // Current total colspan
+    //     let total = tds.reduce((sum, td) => sum + td.colSpan, 0);
 
-        // Difference after hiding column
-        const diff = visibleCols - total;
+    //     // Difference after hiding column
+    //     const diff = visibleCols - total;
 
-        if (diff !== 0) {
-          // Expand FIRST flexible cell (usually description / empty cell)
-          const flexibleCell =
-            tds.find((td) => td.dataset.colspan !== undefined) || tds[0];
+    //     if (diff !== 0) {
+    //       // Expand FIRST flexible cell (usually description / empty cell)
+    //       const flexibleCell =
+    //         tds.find((td) => td.dataset.colspan !== undefined) || tds[0];
 
-          flexibleCell.colSpan += diff;
-        }
-      });
-    }
+    //       flexibleCell.colSpan += diff;
+    //     }
+    //   });
+    // }
 
     function updateTotalDieselQty() {
       let total = 0;
@@ -1364,8 +1348,8 @@
         if (!isNaN(v)) productTotal += v;
       });
 
-      const discountTotal = updateTotalDiscount(); // ✅ correct discount
-      const totalValue = productTotal - discountTotal; // net total before rounding
+      // const discountTotal = updateTotalDiscount(); // ✅ correct discount
+      const totalValue = productTotal - 0; // net total before rounding
 
       // 🔹 Your rounding formula
       const inv_Gtotal_amt = Math.round(Number(totalValue).toFixed(2));
@@ -1393,12 +1377,35 @@
       toggleContent();
     });
 
-    const toggleDisc = document.getElementById("toggleDisc");
+    // const toggleDisc = document.getElementById("toggleDisc");
 
-    toggleDisc.addEventListener("change", () => {
-      const hide = !toggleDisc.checked;
-      toggleDiscColumn(hide);
-    });
+    // toggleDisc.addEventListener("change", () => {
+    //   const hide = !toggleDisc.checked;
+    //   toggleDiscColumn(hide);
+    // });
+
+    function calculateRowAmount(index) {
+      const qtyInput = document.getElementById(`qty_${index}_i`);
+      const rateInput = document.getElementById(`rate_${index}_i`);
+      const amtInput = document.getElementById(`amt_${index}_i`);
+
+      const qtyText = document.getElementById(`qty_${index}`);
+      const rateText = document.getElementById(`rate_${index}`);
+      const amtText = document.getElementById(`amt_${index}`);
+
+      const qty = parseFloat(qtyInput?.value || 0);
+      const rate = parseFloat(rateInput?.value || 0);
+
+      const amount = qty * rate;
+
+      if (!isNaN(amount)) {
+        amtInput.value = amount.toFixed(2);
+        amtText.textContent = amount.toFixed(2);
+      }
+
+      updateTotalDieselQty();
+      calculateInvoiceTotals();
+    }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 </body>
