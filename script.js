@@ -8,6 +8,15 @@ const sections = {
 };
 let names = [
 
+    {
+    title: "Hindi Translator",
+    href: "./javascript-projects/hindiTranslator/index.html",
+    date: "08/07/2026",
+    description: "Hindi Translator",
+    youtubelink: "",
+    section: sections.AdvJS,
+  },
+
       {
     title: "Product Invoice",
     href: "./javascript-projects/productInvoice/index.html",

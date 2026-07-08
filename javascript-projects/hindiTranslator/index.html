@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hindi Converter — Hinglish & English to Hindi</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Hindi <span class="devanagari">अनुवादक</span></h1>
+    </header>
+
+    <div class="app">
+      <div class="modes" role="tablist">
+        <button class="mode-btn active" data-mode="auto" role="tab">
+          ✨ Auto Detect
+        </button>
+        <button class="mode-btn" data-mode="hinglish" role="tab">
+          Hinglish → Hindi
+        </button>
+        <button class="mode-btn" data-mode="english" role="tab">
+          English → Hindi
+        </button>
+      </div>
+
+      <div class="toolbar">
+        <span class="font-size-ctl" title="Text size">
+          <button class="tool-btn" id="fontDecBtn" title="Decrease font size">
+            A−
+          </button>
+          <span class="font-size-val" id="fontSizeVal">17</span>
+          <button class="tool-btn" id="fontIncBtn" title="Increase font size">
+            A+
+          </button>
+        </span>
+        <span class="toolbar-sep"></span>
+        <button
+          class="tool-btn fmt-btn fmt-bold"
+          id="boldBtn"
+          title="Bold (Ctrl+B)"
+        >
+          B
+        </button>
+        <button
+          class="tool-btn fmt-btn fmt-italic"
+          id="italicBtn"
+          title="Italic (Ctrl+I)"
+        >
+          I
+        </button>
+        <button
+          class="tool-btn fmt-btn fmt-underline"
+          id="underlineBtn"
+          title="Underline (Ctrl+U)"
+        >
+          U
+        </button>
+        <button
+          class="tool-btn fmt-btn fmt-strike"
+          id="strikeBtn"
+          title="Strikethrough"
+        >
+          S
+        </button>
+        <button class="tool-btn fmt-btn" id="subBtn" title="Subscript">
+          X<sub>2</sub>
+        </button>
+        <button class="tool-btn fmt-btn" id="supBtn" title="Superscript">
+          X<sup>2</sup>
+        </button>
+        <span class="hl-ctl">
+          <button
+            class="tool-btn fmt-btn"
+            id="hlBtn"
+            title="Highlight color"
+          >
+            <span class="hl-icon">🖍<i id="hlSwatch"></i></span>
+          </button>
+          <div class="hl-palette" id="hlPalette" hidden>
+            <button
+              class="hl-swatch"
+              data-color="#fff176"
+              style="background: #fff176"
+              title="Yellow"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#aef28e"
+              style="background: #aef28e"
+              title="Green"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#8ee7f2"
+              style="background: #8ee7f2"
+              title="Cyan"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#f7a8d8"
+              style="background: #f7a8d8"
+              title="Pink"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#ffb266"
+              style="background: #ffb266"
+              title="Orange"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#c9b8ff"
+              style="background: #c9b8ff"
+              title="Purple"
+            ></button>
+            <label class="hl-custom" title="Pick any color">
+              <input type="color" id="hlCustomInput" value="#fff176" />
+              <span>More colors…</span>
+            </label>
+            <button class="hl-none" data-color="transparent">No color</button>
+          </div>
+        </span>
+        <span class="hl-ctl">
+          <button
+            class="tool-btn fmt-btn"
+            id="fcBtn"
+            title="Font color"
+          >
+            <span class="hl-icon fc-icon">A<i id="fcSwatch"></i></span>
+          </button>
+          <div class="hl-palette" id="fcPalette" hidden>
+            <button
+              class="hl-swatch"
+              data-color="#000000"
+              style="background: #000000"
+              title="Black"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#d32f2f"
+              style="background: #d32f2f"
+              title="Red"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#f57c00"
+              style="background: #f57c00"
+              title="Orange"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#388e3c"
+              style="background: #388e3c"
+              title="Green"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#1976d2"
+              style="background: #1976d2"
+              title="Blue"
+            ></button>
+            <button
+              class="hl-swatch"
+              data-color="#7b1fa2"
+              style="background: #7b1fa2"
+              title="Purple"
+            ></button>
+            <label class="hl-custom" title="Pick any color">
+              <input type="color" id="fcCustomInput" value="#d32f2f" />
+              <span>More colors…</span>
+            </label>
+            <button class="hl-none" data-color="auto">Automatic</button>
+          </div>
+        </span>
+        <span class="hl-ctl">
+          <button
+            class="tool-btn fmt-btn"
+            id="bdBtn"
+            title="Border (last type)"
+          >
+            ▦
+          </button>
+          <button
+            class="tool-btn fmt-btn hl-arrow"
+            id="bdArrowBtn"
+            title="Choose border"
+          >
+            ▾
+          </button>
+          <div class="hl-palette border-menu" id="bdMenu" hidden>
+            <button class="bd-item" data-border="box">
+              <span class="bd-glyph">□</span> Outside borders
+            </button>
+            <button class="bd-item" data-border="bottom">
+              <span class="bd-glyph">▁</span> Bottom border
+            </button>
+            <button class="bd-item" data-border="top">
+              <span class="bd-glyph">▔</span> Top border
+            </button>
+            <button class="bd-item" data-border="left">
+              <span class="bd-glyph">▏</span> Left border
+            </button>
+            <button class="bd-item" data-border="right">
+              <span class="bd-glyph">▕</span> Right border
+            </button>
+            <button class="bd-item" data-border="none">
+              <span class="bd-glyph">✕</span> No border
+            </button>
+          </div>
+        </span>
+        <span class="toolbar-sep"></span>
+        <button class="tool-btn fmt-btn" id="alignLeftBtn" title="Align left">
+          <span class="bars left"><i></i><i></i><i></i></span>
+        </button>
+        <button
+          class="tool-btn fmt-btn"
+          id="alignCenterBtn"
+          title="Align center"
+        >
+          <span class="bars center"><i></i><i></i><i></i></span>
+        </button>
+        <button class="tool-btn fmt-btn" id="alignRightBtn" title="Align right">
+          <span class="bars right"><i></i><i></i><i></i></span>
+        </button>
+        <button class="tool-btn fmt-btn" id="alignJustifyBtn" title="Justify">
+          <span class="bars"><i></i><i></i><i></i></span>
+        </button>
+        <span class="hl-ctl">
+          <button class="tool-btn fmt-btn" id="lsBtn" title="Line & paragraph spacing">
+            <span class="ls-icon">↕<span class="bars"><i></i><i></i><i></i></span></span>
+          </button>
+          <div class="hl-palette border-menu" id="lsMenu" hidden>
+            <div class="ls-head">Line spacing</div>
+            <button class="bd-item" data-line="1">1.0</button>
+            <button class="bd-item" data-line="1.15">1.15</button>
+            <button class="bd-item" data-line="1.5">1.5</button>
+            <button class="bd-item" data-line="1.7">1.7 (default)</button>
+            <button class="bd-item" data-line="2">2.0</button>
+            <button class="bd-item" data-line="2.5">2.5</button>
+            <button class="bd-item" data-line="3">3.0</button>
+            <div class="ls-head">Paragraph spacing</div>
+            <button class="bd-item" data-para="0">None</button>
+            <button class="bd-item" data-para="6">Small</button>
+            <button class="bd-item" data-para="12">Medium</button>
+            <button class="bd-item" data-para="20">Large</button>
+          </div>
+        </span>
+        <span class="toolbar-sep"></span>
+        <button class="tool-btn fmt-btn" id="bulletBtn" title="Bullets">
+          <span class="list-icon bullets"><i></i><i></i><i></i></span>
+        </button>
+        <button class="tool-btn fmt-btn" id="numberBtn" title="Numbering">
+          <span class="list-icon numbers"><i></i><i></i><i></i></span>
+        </button>
+        <span class="toolbar-sep"></span>
+        <button
+          class="tool-btn fmt-btn"
+          id="clearFmtBtn"
+          title="Clear formatting"
+        >
+          Tₓ
+        </button>
+        <span class="actions">
+          <label class="live-toggle"
+            ><input type="checkbox" id="liveToggle" checked /> Convert as I
+            type</label
+          >
+          <button class="convert-btn secondary" id="pdfBtn">Create PDF</button>
+          <button class="convert-btn secondary" id="wordBtn">
+            Create Word
+          </button>
+          <button class="convert-btn" id="convertBtn">Convert to Hindi</button>
+        </span>
+      </div>
+
+      <div class="panes">
+        <div class="pane">
+          <div class="pane-head">
+            <label for="input">Your text</label>
+            <div class="pane-tools">
+              <button class="tool-btn" id="clearBtn" title="Clear">
+                ✕ Clear
+              </button>
+            </div>
+          </div>
+          <textarea
+            id="input"
+            placeholder="Type or paste here…"
+            spellcheck="false"
+            autofocus
+          ></textarea>
+          <div class="char-count"><span id="charCount">0</span> characters</div>
+        </div>
+
+        <div class="pane">
+          <div class="pane-head">
+            <label>Hindi (हिन्दी)</label>
+            <div class="pane-tools">
+              <button class="tool-btn" id="copyBtn" title="Copy Hindi text">
+                ⧉ Copy
+              </button>
+            </div>
+          </div>
+          <div class="output empty" id="output" lang="hi">
+            Hindi output will appear here…
+          </div>
+          <div class="char-count">&nbsp;</div>
+        </div>
+      </div>
+
+      <div class="detected" id="detected"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
