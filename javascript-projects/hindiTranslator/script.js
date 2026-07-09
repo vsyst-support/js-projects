@@ -142,19 +142,40 @@
     return text;
   }
 
-  let krutiFontChecked = false;
-  function warnIfKrutiMissing() {
-    if (krutiFontChecked) return;
-    krutiFontChecked = true;
+  // Kruti-encoded text renders as Latin gibberish without a Kruti Dev font,
+  // so the pane shows Unicode Devanagari until one is available. The canvas
+  // check catches a locally-installed copy synchronously; the bundled webfont
+  // (fonts/KrutiDev011.ttf, declared in styles.css) arrives asynchronously
+  // and upgrades the flag — and any text already on screen — when it loads.
+  let krutiAvailable = (() => {
     try {
       const ctx = document.createElement('canvas').getContext('2d');
       ctx.font = '32px monospace';
       const base = ctx.measureText('vkbZ eSa').width;
       ctx.font = '32px "Kruti Dev 011", "Kruti Dev 010", monospace';
-      if (ctx.measureText('vkbZ eSa').width === base) {
-        showToast('⚠ Kruti Dev 011 font is not installed on this computer');
+      return ctx.measureText('vkbZ eSa').width !== base;
+    } catch {
+      return false;
+    }
+  })();
+
+  if (!krutiAvailable && document.fonts && document.fonts.load) {
+    document.fonts.load('16px "Kruti Dev 011"').then(faces => {
+      if (!faces.length || krutiAvailable) return;
+      krutiAvailable = true;
+      // The pane may already hold Unicode Devanagari — transcode it in place
+      // (text nodes only, so WYSIWYG formatting survives).
+      if (outputHasText()) {
+        const walker = document.createTreeWalker(output, NodeFilter.SHOW_TEXT);
+        let n;
+        while ((n = walker.nextNode())) n.textContent = toKrutiDev(n.textContent);
       }
-    } catch {}
+    }).catch(() => {});
+  }
+
+  // The pane's text in Unicode form, whatever encoding it displays in.
+  function paneTextToUnicode(text) {
+    return krutiAvailable ? krutiToUnicode(text) : text;
   }
 
   // --- UI ------------------------------------------------------------------
@@ -217,11 +238,10 @@
       let useHinglish = mode === 'hinglish' || (mode === 'auto' && detectHinglish(text));
       const result = useHinglish ? await transliterate(text) : await translate(text);
       if (seq !== requestSeq) return; // a newer request superseded this one
-      const kruti = toKrutiDev(result) || '—';
-      if (preserving) updateOutputPreservingFormat(kruti);
-      else setOutput(kruti);
+      const display = (krutiAvailable ? toKrutiDev(result) : result) || '—';
+      if (preserving) updateOutputPreservingFormat(display);
+      else setOutput(display);
       if (paraSpacing > 0) ensureBlockLines();
-      warnIfKrutiMissing();
       if (mode === 'auto') {
         detected.textContent = useHinglish
           ? 'Detected: Hinglish (transliterated)'
@@ -268,13 +288,15 @@
   copyBtn.addEventListener('click', async () => {
     if (output.classList.contains('empty') || output.classList.contains('error') || output.classList.contains('loading')) return;
     // innerText (not textContent) keeps line breaks from block-line paragraphs.
-    const plain = krutiToUnicode(output.innerText);
+    const plain = paneTextToUnicode(output.innerText);
     try {
       const tmp = document.createElement('div');
       tmp.innerHTML = output.innerHTML;
-      const walker = document.createTreeWalker(tmp, NodeFilter.SHOW_TEXT);
-      let n;
-      while ((n = walker.nextNode())) n.textContent = krutiToUnicode(n.textContent);
+      if (krutiAvailable) {
+        const walker = document.createTreeWalker(tmp, NodeFilter.SHOW_TEXT);
+        let n;
+        while ((n = walker.nextNode())) n.textContent = krutiToUnicode(n.textContent);
+      }
       const html = '<div style="font-family:\'Nirmala UI\',\'Mangal\',sans-serif;">' +
         tmp.innerHTML.replace(/\n/g, '<br>') + '</div>';
       await navigator.clipboard.write([new ClipboardItem({
@@ -730,6 +752,38 @@
     btn.addEventListener('click', () => applyList(kind));
   });
 
+  // --- Divider tool -------------------------------------------------------------
+  // Inserts a horizontal rule at the caret (or after the selection). Styles are
+  // inline because exported DOM (PDF/Word) never sees the app stylesheet;
+  // currentColor keeps the line theme-friendly on screen and dark in exports.
+
+  const dividerBtn = document.getElementById('dividerBtn');
+
+  dividerBtn.addEventListener('mousedown', e => e.preventDefault());
+  dividerBtn.addEventListener('click', () => {
+    if (!outputHasText()) { showToast('Convert some text first'); return; }
+    output.focus();
+    const sel = window.getSelection();
+    let range;
+    if (sel.rangeCount && output.contains(sel.getRangeAt(0).commonAncestorContainer)) {
+      range = sel.getRangeAt(0);
+      range.collapse(false); // insert after the selection, never replace text
+    } else {
+      // No caret in the pane: append the divider at the end.
+      range = document.createRange();
+      range.selectNodeContents(output);
+      range.collapse(false);
+    }
+    const hr = document.createElement('hr');
+    hr.dataset.divider = '1';
+    hr.style.cssText = 'border:none;border-top:1.5px solid currentColor;margin:10px 0;';
+    range.insertNode(hr);
+    range.setStartAfter(hr);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+
 
   // --- PDF export ------------------------------------------------------------
 
@@ -792,9 +846,14 @@
   }
 
   function buildPdfContent() {
+    // Without Kruti Dev installed the pane holds Unicode Devanagari, which the
+    // device's own Hindi fonts render correctly in the PDF.
+    const pdfFont = krutiAvailable
+      ? '"Kruti Dev 011","Kruti Dev 010",sans-serif'
+      : '"Nirmala UI","Mangal","Noto Sans Devanagari",sans-serif';
     const el = document.createElement('div');
     el.style.cssText = 'width:180mm;padding:4mm;background:#fff;color:#1f2430;' +
-      'font-family:"Kruti Dev 011","Kruti Dev 010",sans-serif;' +
+      'font-family:' + pdfFont + ';' +
       'font-size:' + fontSize + 'pt;line-height:' + lineSpacing + ';white-space:pre-wrap;word-wrap:break-word;';
     el.innerHTML = tagNumerals(output.innerHTML); // keeps WYSIWYG formatting in the PDF
     flattenLists(el);
@@ -843,7 +902,15 @@
       'font-size:' + fontSize + 'pt;line-height:' + lineSpacing + ';color:#1f2430;';
     // Word ignores plain newlines in HTML, so line breaks become <br>.
     const tmp = document.createElement('div');
-    tmp.innerHTML = tagNumerals(output.innerHTML);
+    tmp.innerHTML = output.innerHTML;
+    if (!krutiAvailable) {
+      // Pane holds Unicode on devices without Kruti Dev; the .doc is always
+      // Kruti-encoded (its whole point), so transcode text nodes at export.
+      const walker = document.createTreeWalker(tmp, NodeFilter.SHOW_TEXT);
+      let n;
+      while ((n = walker.nextNode())) n.textContent = toKrutiDev(n.textContent);
+    }
+    tmp.innerHTML = tagNumerals(tmp.innerHTML);
     flattenLists(tmp);
     applyParaGaps(tmp);
     const body = tmp.innerHTML.replace(/\n/g, '<br>');

@@ -1,3 +1,14 @@
+/* Kruti Dev 011 is bundled so the pane and PDF work on devices where the
+   desktop font isn't installed. local() prefers the installed copy, so the
+   TTF only downloads when it's actually needed. */
+@font-face {
+  font-family: "Kruti Dev 011";
+  src:
+    local("Kruti Dev 011"),
+    url("fonts/KrutiDev011.ttf") format("truetype");
+  font-display: swap;
+}
+
 :root {
   --bg: #f4f1ea;
   --card: #ffffff;
@@ -258,6 +269,31 @@ header p {
   background: currentColor;
 }
 
+/* Divider tool icon: faint text lines above and below a full-width rule */
+.divider-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 14px;
+}
+.divider-icon::before,
+.divider-icon::after {
+  content: "";
+  width: 60%;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  opacity: 0.4;
+}
+.divider-icon i {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
 .output ul,
 .output ol {
   margin: 2px 0;
@@ -470,7 +506,11 @@ textarea:focus,
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-y: auto;
-  font-family: "Kruti Dev 011", "Kruti Dev 010", "Nirmala UI", sans-serif;
+  /* Kruti Dev is bundled via @font-face above; the Unicode Devanagari fonts
+     remain as fallback while the webfont loads (and for the transitional
+     Unicode pane state on first visit). */
+  font-family: "Kruti Dev 011", "Kruti Dev 010", "Nirmala UI", "Mangal",
+    "Noto Sans Devanagari", "Devanagari Sangam MN", sans-serif;
 }
 .output.empty {
   color: var(--muted);
