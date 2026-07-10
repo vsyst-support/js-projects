@@ -599,6 +599,17 @@ textarea:focus,
   text-align: center;
 }
 
+/* Build marker so stale phone caches are visible at a glance */
+.app-version {
+  position: fixed;
+  bottom: 6px;
+  right: 10px;
+  font-size: 11px;
+  color: var(--muted);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .toast {
   position: fixed;
   bottom: 28px;

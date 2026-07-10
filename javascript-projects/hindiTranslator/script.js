@@ -28,15 +28,65 @@
     'ghar','paani','pani','khana','naam','baat','din','raat','log','dost','pyaar','pyar','dil'
   ]);
 
+  // Common English function words. Several HINGLISH_WORDS entries ('the',
+  // 'to', 'me', 'are', 'main', …) are also everyday English, so a word that
+  // appears in both lists counts as only a weak Hinglish signal, and English-
+  // heavy text is never treated as Hinglish.
+  const ENGLISH_WORDS = new Set([
+    'a','an','the','is','am','are','was','were','be','been','being',
+    'i','you','he','she','it','we','they','my','your','his','her','its','our','their',
+    'me','him','them','us','this','that','these','those',
+    'what','which','who','whom','whose','when','where','why','how',
+    'and','or','but','if','then','else','not','no','yes',
+    'do','does','did','done','doing','can','could','will','would','shall','should','may','might','must',
+    'have','has','had','having','of','in','on','at','by','for','with','from','about','into','over','under',
+    'to','too','up','down','out','off','again','once','here','there','now','soon',
+    'please','thanks','thank','want','need','like','love','know','think','make','made',
+    'get','got','go','going','gone','come','came','see','saw','look','say','said','tell','told',
+    'give','gave','take','took','put','send','sent','open','close','main','log',
+    'very','much','many','more','most','some','any','all','both','each','other',
+    'today','tomorrow','yesterday','time','year','man','new','old','good','bad'
+  ]);
+
   function detectHinglish(text) {
     const words = text.toLowerCase().replace(/[^a-z\s]/g, ' ').split(/\s+/).filter(Boolean);
     if (!words.length) return false;
-    const hits = words.filter(w => HINGLISH_WORDS.has(w)).length;
-    // One strong hit in a short phrase, or ≥15% density in longer text.
+    let strong = 0, weak = 0, english = 0;
+    for (const w of words) {
+      const hin = HINGLISH_WORDS.has(w), eng = ENGLISH_WORDS.has(w);
+      if (hin && !eng) strong++;
+      else if (hin) weak++;
+      else if (eng) english++;
+    }
+    // At least one unambiguous Hinglish word is required, and plain-English
+    // words must not outnumber the Hinglish ones — otherwise English
+    // sentences would be transliterated phonetically instead of translated.
+    if (!strong || english > strong + weak) return false;
+    const hits = strong + weak;
+    // One hit in a short phrase, or ≥15% density in longer text.
     return words.length <= 4 ? hits >= 1 : hits / words.length >= 0.15;
   }
 
   // --- Engines -------------------------------------------------------------
+
+  // Some phone viewers (WebView apps opening a local .html) block fetch()
+  // from local files entirely, even though the services allow it. <script>
+  // loads are exempt from that block, so requests fall back to JSONP where
+  // the service supports a callback parameter (Google Input Tools does).
+  let jsonpSeq = 0;
+  function jsonp(url) {
+    return new Promise((resolve, reject) => {
+      const name = '__hindiJsonp' + (++jsonpSeq);
+      const s = document.createElement('script');
+      const cleanup = () => { delete window[name]; s.remove(); };
+      const fail = msg => { cleanup(); reject(new Error(msg)); };
+      window[name] = data => { cleanup(); resolve(data); };
+      s.onerror = () => fail('Request failed');
+      setTimeout(() => { if (window[name]) fail('Request timed out'); }, 20000);
+      s.src = url + '&cb=' + name;
+      document.head.appendChild(s);
+    });
+  }
 
   // Hinglish → Hindi via Google Input Tools transliteration.
   async function transliterate(text) {
@@ -45,22 +95,86 @@
     for (const line of lines) {
       if (!line.trim()) { results.push(line); continue; }
       const url = 'https://inputtools.google.com/request?itc=hi-t-i0-und&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8&text=' + encodeURIComponent(line);
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('Transliteration service returned ' + res.status);
-      const data = await res.json();
+      let data;
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Transliteration service returned ' + res.status);
+        data = await res.json();
+      } catch {
+        data = await jsonp(url);
+      }
       if (data[0] !== 'SUCCESS') throw new Error('Transliteration failed');
       results.push(data[1]?.[0]?.[1]?.[0] ?? line);
     }
     return results.join('\n');
   }
 
-  // English → Hindi via Google Translate public endpoint.
-  async function translate(text) {
+  // Second Google endpoint (different host, so it survives the first being
+  // blocked or rate-limited). Response shape: [["translation","srcLang"]].
+  async function translateGoogleAlt(text) {
+    const url = 'https://clients5.google.com/translate_a/t?client=dict-chrome-ex&sl=auto&tl=hi&q=' + encodeURIComponent(text);
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Translation service returned ' + res.status);
+    const data = await res.json();
+    const first = data && data[0];
+    const t = Array.isArray(first) ? first[0] : first;
+    if (typeof t !== 'string') throw new Error('Translation failed');
+    return t;
+  }
+
+  // Last-resort translator (different provider, also CORS-open). Its community
+  // translation memory contains poisoned entries for short common phrases
+  // (e.g. "How are you" → a random unrelated sentence with a claimed perfect
+  // match), so it must only run when both Google endpoints are unreachable,
+  // and the UI shows a quality warning when it was used. MyMemory caps
+  // each request around 500 characters, so long lines go over in word-boundary
+  // chunks. No JSONP here — no public translation endpoint supports it.
+  async function translateViaMyMemory(text) {
+    const out = [];
+    for (const line of text.split('\n')) {
+      if (!line.trim()) { out.push(line); continue; }
+      const parts = [];
+      let rest = line;
+      while (rest.length > 450) {
+        let cut = rest.lastIndexOf(' ', 450);
+        if (cut < 1) cut = 450;
+        parts.push(rest.slice(0, cut));
+        rest = rest.slice(cut);
+      }
+      parts.push(rest);
+      let translated = '';
+      for (const part of parts) {
+        const res = await fetch('https://api.mymemory.translated.net/get?langpair=en%7Chi&q=' + encodeURIComponent(part));
+        if (!res.ok) throw new Error('Translation service returned ' + res.status);
+        const data = await res.json();
+        if (!data.responseData || data.responseStatus != 200) {
+          throw new Error(data.responseDetails || 'Translation failed');
+        }
+        translated += data.responseData.translatedText;
+      }
+      out.push(translated);
+    }
+    return out.join('\n');
+  }
+
+  // English → Hindi. Engines are tried in quality order; usedBackupTranslator
+  // lets the UI warn when the unreliable last resort produced the result.
+  let usedBackupTranslator = false;
+
+  async function translateGoogle(text) {
     const url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=hi&dt=t&q=' + encodeURIComponent(text);
     const res = await fetch(url);
     if (!res.ok) throw new Error('Translation service returned ' + res.status);
     const data = await res.json();
     return (data[0] || []).map(seg => seg[0]).join('');
+  }
+
+  async function translate(text) {
+    usedBackupTranslator = false;
+    try { return await translateGoogle(text); } catch {}
+    try { return await translateGoogleAlt(text); } catch {}
+    usedBackupTranslator = true;
+    return await translateViaMyMemory(text);
   }
 
   // --- Unicode → Kruti Dev transcoding ---------------------------------------
@@ -247,9 +361,18 @@
           ? 'Detected: Hinglish (transliterated)'
           : 'Detected: English (translated)';
       }
+      if (!useHinglish && usedBackupTranslator) {
+        detected.textContent = (detected.textContent ? detected.textContent + ' — ' : '') +
+          '⚠ Main translator unreachable; backup used — accuracy may be lower';
+      }
     } catch (err) {
       if (seq !== requestSeq) return;
-      setOutput('Could not reach the conversion service. Check your internet connection and try again.\n\n(' + err.message + ')', 'error');
+      // Opened straight from a file manager / chat app, the page runs in a
+      // viewer that blocks internet access for local files — tell the user
+      // the actual way out instead of a generic connection message.
+      const hint = /^https?:$/.test(location.protocol) ? '' :
+        '\n\nTip: if this file was opened from a file manager or chat app, its built-in viewer may block internet access. Use “Open with → Chrome” instead.';
+      setOutput('Could not reach the conversion service. Check your internet connection and try again.\n\n(' + err.message + ')' + hint, 'error');
     } finally {
       if (seq === requestSeq) {
         convertBtn.disabled = false;
